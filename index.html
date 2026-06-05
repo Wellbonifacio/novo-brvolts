@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag( ){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag( ){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -32,21 +33,49 @@
       ]
     }
     </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Electrician",
+      "name": "BRvolts Soluções em Eletricidade",
+      "image": "https://www.brvolts.site/logo1.png",
+      "@id": "https://www.brvolts.site",
+      "url": "https://www.brvolts.site",
+      "telephone": "+5521976493932",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Maricá",
+        "addressRegion": "RJ",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.9247738,
+        "longitude": -42.8953194
+      },
+      "priceRange": "$$"
+    }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Eletricista em Maricá | Instalação de Wallbox | Brvolts</title>
-    <meta name="description" content="Procurando eletricista em Maricá? A BRvolts oferece serviços elétricos residenciais, comerciais e instalação especialista de Wallbox (carregador de carro elétrico). Atendemos Itaipuaçu, Inoã, Ponta Negra e região.">
+    <meta name="description" content="Procurando eletricista em Maricá? A BRvolts oferece serviços elétricos residenciais, comerciais e instalação especialista de Wallbox (carregador de carro elétrico). Atendemos Itaipuaçu, Inoã, Ponta Negra e toda Maricá.">
     <meta name="keywords" content="eletricista em maricá, instalação de wallbox maricá, carregador carro elétrico itaipuaçu, eletricista em itaipuaçu, eletricista em inoã, eletricista 24 horas maricá, serviços elétricos maricá, manutenção elétrica, brvolts">
     <meta name="author" content="BRvolts Soluções em Eletricidade">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.brvolts.site">
 
-    <meta property="og:title" content="BRvolts: Eletricista e Especialista em Wallbox em Maricá, RJ">
+    <meta property="og:title" content="BRvolts: Eletricista e Specialist em Wallbox em Maricá, RJ">
     <meta property="og:description" content="Serviços elétricos completos e infraestrutura para carregadores de veículos elétricos (Wallbox) em Maricá e Itaipuaçu.">
     <meta property="og:image" content="logo1.png"> 
     <meta property="og:url" content="https://www.brvolts.site">
     <meta property="og:type" content="website">
+
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop">
+    <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
 
     <link rel="icon" href="logo1.png" type="image/png"> 
 
@@ -58,639 +87,553 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        
-        /* Ocultar a setinha padrão do details no iOS/Safari */
         details > summary::-webkit-details-marker { display: none; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        .pulse-btn {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            animation: pulse-wa 2s infinite;
-        }
-        @keyframes pulse-wa {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* Ocultar a barra de rolagem mas manter o carrossel ativo */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Animação do Letreiro (Barra de Normas) - Ajustado para 40s */
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-            display: flex;
-            width: max-content;
-            animation: marquee 40s linear infinite;
-        }
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
-
-        /* Animação para indicar carrossel no mobile (puxadinha para o lado) */
-        @keyframes swipe-hint {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-30px); }
-        }
-        .animate-swipe-hint {
-            animation: swipe-hint 1.5s ease-in-out 1.5s 1;
-        }
+        /* Letreiro Animado */
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
+        
+        /* Puxadinha do Carrossel Mobile */
+        @keyframes swipe-hint { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-30px); } }
+        .animate-swipe-hint { animation: swipe-hint 1.5s ease-in-out 1.5s 1; }
+        
+        /* Pulso CTA */
+        .pulse-btn { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); animation: pulse-wa 2s infinite; }
+        @keyframes pulse-wa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
     </style>
 </head>
 
-<body class="bg-black text-gray-200">
+<body class="bg-black text-gray-200 pb-16 md:pb-0 relative">
 
-    <header class="bg-black/95 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-zinc-800">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center relative">
-            <div class="w-full text-center md:w-auto md:text-left">
-                <a href="#">
-                    <img src="logo1.png" alt="Logo da BRvolts Soluções em Eletricidade" class="h-12 md:h-16 inline-block">
+    <div class="fixed top-0 left-0 w-full h-[3px] z-[60] bg-zinc-900">
+        <div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-600 to-green-500 w-0 rounded-r-full transition-all duration-150"></div>
+    </div>
+
+    <div class="sticky top-0 z-50 w-full shadow-2xl">
+        <header class="bg-black/95 backdrop-blur-sm border-b border-zinc-900">
+            <nav class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+                <a href="#" aria-label="Início">
+                    <img src="logo1.png" alt="Logo BRvolts" class="h-10 md:h-14 haptic-btn">
                 </a>
-            </div>
-            
-            <div class="hidden lg:flex items-center space-x-6">
-                <a href="#inicio" class="text-white hover:text-blue-500 transition duration-300 font-medium">Início</a>
-                <a href="#servicos" class="text-white hover:text-blue-500 transition duration-300 font-medium">Serviços</a>
-                <a href="#wallbox" class="text-white hover:text-blue-500 transition duration-300 font-medium">Wallbox</a>
-                <a href="#portfolio" class="text-white hover:text-blue-500 transition duration-300 font-medium">Obras</a>
-                <a href="#avaliacoes" class="text-white hover:text-blue-500 transition duration-300 font-medium">Avaliações</a>
-            </div>
+                
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="#inicio" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Início</a>
+                    <a href="#servicos" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Serviços</a>
+                    <a href="#wallbox" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Wallbox</a>
+                    <a href="#portfolio" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Obras</a>
+                    <a href="#avaliacoes" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Avaliações</a>
+                </div>
 
-            <div class="flex items-center absolute top-1/2 right-6 -translate-y-1/2 md:static md:translate-y-0">
-                 <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hidden md:flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 16 16">
+                <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank" aria-label="Contato via WhatsApp" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg flex items-center gap-2 text-sm md:text-base transform hover:scale-105 transition-transform">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                         <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
                     </svg>
-                    WhatsApp
+                    <span>WhatsApp</span>
                 </a>
-                <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
+            </nav>
+            
+            <div class="bg-blue-600/10 py-2 border-b border-zinc-900 overflow-hidden relative flex items-center">
+                <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+                <div class="animate-marquee flex gap-10 px-4 text-xs sm:text-sm">
+                    <div class="flex gap-10 items-center">
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Técnico Certificado CFT/CREA</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Instalação de Wallbox em Maricá</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Itaipuaçu</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Chuveiro e Resistência</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Inoã</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Tomadas e Disjuntores</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista no Centro de Maricá</div>
+                    </div>
+                    <div class="flex gap-10 items-center pr-10">
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Técnico Certificado CFT/CREA</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Instalação de Wallbox em Maricá</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Itaipuaçu</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Chuveiro e Resistência</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Inoã</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Tomadas e Disjuntores</div>
+                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista no Centro de Maricá</div>
+                    </div>
+                </div>
             </div>
-        </nav>
-        <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4 space-y-2 border-t border-zinc-800 pt-2 bg-black">
-            <a href="#inicio" class="block text-white hover:text-blue-500 font-medium py-1">Início</a>
-            <a href="#servicos" class="block text-white hover:text-blue-500 font-medium py-1">Serviços</a>
-            <a href="#wallbox" class="block text-white hover:text-blue-500 font-medium py-1">Wallbox</a>
-            <a href="#portfolio" class="block text-white hover:text-blue-500 font-medium py-1">Obras e Projetos</a>
-            <a href="#avaliacoes" class="block text-white hover:text-blue-500 font-medium py-1">Avaliações</a>
-            <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20serviços%20elétricos." target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300 transform flex items-center justify-center mt-4">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-                </svg>
-                WhatsApp
-            </a>
-        </div>
-    </header>
+        </header>
+    </div>
 
     <main>
-        <section id="inicio" class="relative pt-32 pb-20 md:pt-48 md:pb-32 flex items-center min-h-[85vh] bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.95)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop');">
+        <section id="inicio" class="relative pt-12 pb-16 md:pt-32 md:pb-32 flex flex-col justify-center min-h-[75vh] bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop');">
             <div class="container mx-auto px-6 text-left">
                 
-                <span class="bg-red-600 text-white px-4 py-1.5 rounded-full text-sm md:text-base font-bold tracking-wide mb-6 inline-block shadow-lg">
-                    Atendimento de Urgência
+                <span class="bg-red-600 text-white px-3 py-1 rounded-full text-xs md:text-sm font-bold tracking-wide mb-4 inline-block shadow-lg">
+                    Atendimento 24h Urgência
                 </span>
 
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-white max-w-4xl tracking-tight">
-                    Soluções Elétricas Completas <br class="hidden md:block">em <span class="text-blue-500">Maricá / RJ</span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-white max-w-4xl tracking-tight">
+                    Soluções Elétricas Completas em <span class="text-blue-500">Maricá</span>
                 </h1>
+                
+                <div class="flex items-center gap-2.5 bg-zinc-900/90 p-2.5 rounded-lg border border-zinc-800 w-fit mb-6 shadow-xl backdrop-blur-sm">
+                    <div class="flex text-yellow-400 text-sm tracking-tighter" aria-hidden="true">★★★★★</div>
+                    <span class="text-gray-200 text-xs md:text-sm font-semibold">Avaliado com Nota 5.0 no Google</span>
+                </div>
 
-                <p class="text-lg md:text-xl font-light mb-10 max-w-2xl text-gray-300 leading-relaxed">
-                    Instalações, manutenção preventiva, resolução de panes e quadros de energia. Profissionalismo, técnica e segurança para sua residência ou comércio de alto padrão.
+                <p class="text-base md:text-xl font-light mb-6 max-w-2xl text-gray-300">
+                    Manutenção preventiva, resolução definitiva de panes, reformas de quadros e infraestrutura padronizada.
                 </p>
 
-                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full sm:w-auto">
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm md:text-base py-4 px-8 rounded shadow-xl transition duration-300 uppercase tracking-wide w-full sm:w-auto text-center border-2 border-blue-600 hover:border-blue-500 flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-                        </svg>
-                        Fazer Orçamento
+                <div class="flex overflow-x-auto gap-2.5 hide-scrollbar pb-4 mb-2 snap-x">
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20falta%20de%20luz/emergência." class="dynamic-wa haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
+                        <span aria-hidden="true">⚡</span> Faltou Luz
                     </a>
-                    <a href="tel:+5521976493932" class="bg-transparent border-2 border-blue-600 hover:bg-zinc-800 text-blue-500 hover:text-blue-400 font-extrabold text-sm md:text-base py-4 px-8 rounded shadow-xl transition duration-300 uppercase tracking-wide w-full sm:w-auto text-center flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        Ligar Agora
+                    <a href="#wallbox" class="haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
+                        <span aria-hidden="true">🚗</span> Orçar Wallbox
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Meu%20chuveiro%20queimou." class="dynamic-wa haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
+                        <span aria-hidden="true">🚿</span> Chuveiro Queimado
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Preciso%20de%20revisão%20no%20meu%20quadro." class="dynamic-wa haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
+                        <span aria-hidden="true">🎛️</span> Revisar Quadro
                     </a>
                 </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-5">
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="dynamic-wa haptic-btn bg-blue-600 text-white font-extrabold py-4 px-6 rounded shadow-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] w-full sm:w-auto" aria-label="Solicitar Orçamento">
+                        Solicitar Visita Técnica
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-3 opacity-90">
+                    <div class="flex items-center gap-1.5 text-xs md:text-sm text-gray-300 font-medium">
+                        <span class="text-blue-500 text-lg" aria-hidden="true">👷‍♂️</span> Técnico Certificado
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs md:text-sm text-gray-300 font-medium">
+                        <span class="text-blue-500 text-lg" aria-hidden="true">💳</span> Aceitamos Cartões
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs md:text-sm text-gray-300 font-medium">
+                        <span class="text-blue-500 text-lg" aria-hidden="true">⚡</span> Padrão Enel/NBR
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <div class="bg-zinc-950 py-4 border-b border-zinc-800 overflow-hidden relative flex items-center">
-            <div class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none"></div>
-            
-            <div class="animate-marquee flex gap-12 px-6">
-                <div class="flex gap-12 items-center">
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Técnico em Eletrotécnica</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Instalação de Wallbox em Maricá</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em Itaipuaçu</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Troca de Chuveiro e Resistência</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em Inoã</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Troca de Tomadas e Interruptores</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista no Centro de Maricá</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Padrão NBR 5410</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Instalação de Ventilador de Teto</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em Ponta Negra</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Padrão Enel</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em São José do Imbassaí</div>
-                </div>
-                <div class="flex gap-12 items-center pr-12">
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Técnico em Eletrotécnica</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Instalação de Wallbox em Maricá</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em Itaipuaçu</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Troca de Chuveiro e Resistência</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em Inoã</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Troca de Tomadas e Interruptores</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista no Centro de Maricá</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Padrão NBR 5410</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Instalação de Ventilador de Teto</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em Ponta Negra</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Padrão Enel</div>
-                    <div class="text-white font-bold flex items-center gap-2 whitespace-nowrap"><span class="text-blue-500 text-xl">✓</span> Eletricista em São José do Imbassaí</div>
-                </div>
-            </div>
-        </div>
-
-        <section id="servicos" class="py-20 bg-black">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-3 text-white">Nossos <span class="text-blue-500">Serviços</span></h2>
-                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">Execução cirúrgica com foco em segurança, simetria técnica e materiais normatizados.</p>
+        <section id="servicos" class="py-16 bg-black">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl md:text-4xl font-bold mb-8 text-white px-2">Nossos Serviços</h2>
                 
-                <div id="servicos-carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory pb-6 hide-scrollbar max-w-5xl mx-auto items-stretch md:grid md:grid-cols-2 md:overflow-x-visible md:pb-0">
-                    
-                    <div class="bg-zinc-900 p-8 rounded-lg shadow-lg border border-zinc-800 hover:border-blue-500 transition-all duration-300 md:hover:-translate-y-1 shrink-0 w-[85vw] sm:w-[350px] md:w-full snap-center flex flex-col">
-                        <div class="bg-zinc-800 text-blue-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-inner shrink-0">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Instalações Residenciais</h3>
-                        <p class="text-gray-400">Instalação e substituição de disjuntores, tomadas premium, interruptores, luminárias de alto padrão e projetos de iluminação.</p>
-                    </div>
-                    <div class="bg-zinc-900 p-8 rounded-lg shadow-lg border border-zinc-800 hover:border-blue-500 transition-all duration-300 md:hover:-translate-y-1 shrink-0 w-[85vw] sm:w-[350px] md:w-full snap-center flex flex-col">
-                        <div class="bg-zinc-800 text-blue-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-inner shrink-0">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Quadros de Disjuntor (QDC)</h3>
-                        <p class="text-gray-400">Montagem, balanceamento de fases, organização estética e modernização técnica completa de quadros elétricos antigos.</p>
-                    </div>
-                    <div class="bg-zinc-900 p-8 rounded-lg shadow-lg border border-zinc-800 hover:border-blue-500 transition-all duration-300 md:hover:-translate-y-1 shrink-0 w-[85vw] sm:w-[350px] md:w-full snap-center flex flex-col">
-                         <div class="bg-zinc-800 text-blue-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-inner shrink-0">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Padrão Enel</h3>
-                        <p class="text-gray-400">Montagem e homologação técnica de Padrões de Entrada residenciais e comerciais seguindo as diretrizes exatas da concessionária.</p>
-                    </div>
-                    <div class="bg-zinc-900 p-8 rounded-lg shadow-lg border border-zinc-800 hover:border-blue-500 transition-all duration-300 md:hover:-translate-y-1 shrink-0 w-[85vw] sm:w-[350px] md:w-full snap-center flex flex-col">
-                         <div class="bg-zinc-800 text-blue-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-inner shrink-0">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Solução de Curtos e Panes</h3>
-                        <p class="text-gray-400">Diagnóstico preciso com instrumentação avançada para encontrar fugas de corrente, superaquecimento e eliminar curtos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="wallbox" class="py-20 bg-zinc-950 border-t border-zinc-900">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
-                    <div class="w-full lg:w-1/2">
-                        <span class="bg-green-600 text-white px-4 py-1.5 rounded-full text-sm md:text-base font-bold tracking-wide mb-6 inline-block shadow-lg uppercase">
-                            Solução Moderna
-                        </span>
-                        
-                        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-white">Instalação de <span class="text-blue-500">Wallbox</span> para Carros Elétricos</h2>
-                        <p class="text-lg text-gray-400 mb-8 leading-relaxed">
-                            Acompanhando a revolução dos veículos elétricos, oferecemos instalação profissional de wallbox em sua residência ou empresa. Carregue seu carro elétrico com segurança, rapidez e eficiência.
-                        </p>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                            <div class="border-l-2 border-blue-500 pl-4">
-                                <h4 class="font-bold text-white mb-1">Instalação Profissional</h4>
-                                <p class="text-xs text-gray-400">Técnicos certificados e experientes em carregadores.</p>
-                            </div>
-                            <div class="border-l-2 border-blue-500 pl-4">
-                                <h4 class="font-bold text-white mb-1">Eficiência Energética</h4>
-                                <p class="text-xs text-gray-400">Otimização da rede para máximo desempenho.</p>
-                            </div>
-                            <div class="border-l-2 border-blue-500 pl-4">
-                                <h4 class="font-bold text-white mb-1">Segurança Garantida</h4>
-                                <p class="text-xs text-gray-400">Conformidade total com normas técnicas.</p>
-                            </div>
-                        </div>
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20de%20Wallbox." target="_blank" class="mt-8 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded shadow transition duration-300 inline-block border border-blue-500 w-full sm:w-auto text-center">
-                            Solicitar Orçamento de Wallbox
-                        </a>
-                    </div>
-                    <div class="w-full lg:w-1/2">
-                        <img src="wallboxcarro.png" alt="Instalação de Wallbox para Carros Elétricos" class="rounded-lg shadow-2xl border border-zinc-800 w-full object-cover h-[500px]" onerror="this.src='https://images.unsplash.com/photo-1662923984534-1cbbfdf07137?q=80&w=1000&auto=format&fit=crop'">
-                    </div>
-                </div>
-
-                <div class="text-center mb-10 mt-20">
-                    <h3 class="text-3xl font-bold text-white mb-2">Tipos de Wallbox que instalamos</h3>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Conheça os tipos de wallbox disponiveis no mercado que realizamos instalação:</p>
-                </div>
-
-                <div class="animate-swipe-hint flex overflow-x-auto gap-6 snap-x snap-mandatory pt-8 pb-6 hide-scrollbar max-w-6xl mx-auto mb-20 items-stretch lg:grid lg:grid-cols-3 lg:overflow-x-visible lg:py-0">
-                    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 flex flex-col hover:border-blue-500 transition-colors shrink-0 w-[85vw] sm:w-[350px] lg:w-full snap-center">
-                        <h4 class="text-2xl font-bold text-white mb-2">Wallbox Bifásico</h4>
-                        <p class="text-gray-400 text-sm mb-6 flex-grow">Ideal para residências com instalação Bifásica. Melhor para carros de bateria pequena a média.</p>
-                        <div class="text-3xl font-extrabold text-blue-500 mb-6">R$ 1.500 <span class="text-lg text-gray-500 font-normal">- 4.000</span></div>
-                        <ul class="space-y-3 mb-8 text-sm text-gray-300">
-                            <li>• <strong>Potência:</strong> até 7,4 kW</li>
-                            <li>• <strong>Tempo de carga:</strong> 8-10 horas</li>
-                            <li>• <strong>Instalação:</strong> 2-3 horas</li>
-                        </ul>
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Quero%20um%20orçamento%20do%20Wallbox%20Bifásico." target="_blank" class="w-full text-center bg-transparent border-2 border-blue-600 text-blue-500 font-bold py-3 rounded hover:bg-blue-600 hover:text-white transition-colors mt-auto">Fazer Orçamento</a>
-                    </div>
-                    <div class="bg-zinc-900 border-2 border-blue-500 rounded-xl p-8 flex flex-col relative shadow-[0_0_20px_rgba(59,130,246,0.15)] shrink-0 w-[85vw] sm:w-[350px] lg:w-full snap-center">
-                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider z-10">Recomendado</div>
-                        <h4 class="text-2xl font-bold text-white mb-2 mt-2">Wallbox Trifásico</h4>
-                        <p class="text-gray-400 text-sm mb-6 flex-grow">Ideal para residências com instalação trifásica. Melhor custo-benefício para a maioria dos usuários.</p>
-                        <div class="text-3xl font-extrabold text-blue-500 mb-6">R$ 4.000 <span class="text-lg text-gray-500 font-normal">- 6.500</span></div>
-                        <ul class="space-y-3 mb-8 text-sm text-gray-300">
-                            <li>• <strong>Potência:</strong> até 22 kW</li>
-                            <li>• <strong>Tempo de carga:</strong> 2-4 horas</li>
-                            <li>• <strong>Instalação:</strong> 3-4 horas</li>
-                        </ul>
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Quero%20um%20orçamento%20do%20Wallbox%20Trifásico." target="_blank" class="w-full text-center bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-500 transition-colors mt-auto">Solicitar Trifásico</a>
-                    </div>
-                    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 flex flex-col hover:border-blue-500 transition-colors shrink-0 w-[85vw] sm:w-[350px] lg:w-full snap-center">
-                        <h4 class="text-2xl font-bold text-white mb-2">Wallbox Ultra-rápido</h4>
-                        <p class="text-gray-400 text-sm mb-6 flex-grow">Para carregamento rápido em empresas e condomínios. Requer infraestrutura elétrica robusta.</p>
-                        <div class="text-3xl font-extrabold text-blue-500 mb-6">R$ 6.500 - R$ 8.000+</div>
-                        <ul class="space-y-3 mb-8 text-sm text-gray-400 flex-1">
-                            <li>• <strong>Potência:</strong> até 50 kW</li>
-                            <li>• <strong>Tempo de carga:</strong> 20-30 minutos</li>
-                            <li>• <strong>Instalação:</strong> 4-6 horas</li>
-                        </ul>
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Wallbox%20Ultra-rápido." target="_blank" class="w-full text-center bg-transparent border-2 border-blue-600 text-blue-500 font-bold py-3 rounded mt-auto">Falar com Engenharia</a>
-                    </div>
-                </div>
-
-                <div class="max-w-6xl mx-auto mb-20 bg-black p-8 rounded-xl border border-zinc-800">
-                    <h3 class="text-2xl font-bold text-white text-center mb-8">Processo de Instalação</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                        <div class="text-center">
-                            <div class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg mx-auto mb-3">1</div>
-                            <h5 class="text-white font-bold mb-1">Avaliação Técnica</h5>
-                            <p class="text-xs text-gray-400">Análise da infraestrutura elétrica, localização ideal e viabilidade técnica.</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg mx-auto mb-3">2</div>
-                            <h5 class="text-white font-bold mb-1">Orçamento</h5>
-                            <p class="text-xs text-gray-400">Apresentação do custo para a instalação.</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg mx-auto mb-3">3</div>
-                            <h5 class="text-white font-bold mb-1">Instalação Profissional</h5>
-                            <p class="text-xs text-gray-400">Execução técnica e passagem de infraestrutura exclusiva.</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg mx-auto mb-3">4</div>
-                            <h5 class="text-white font-bold mb-1">Testes</h5>
-                            <p class="text-xs text-gray-400">Testes de carga, documentação técnica e orientações.</p>
+                <div id="servicos-carousel" class="animate-swipe-hint flex overflow-x-auto gap-4 snap-x snap-mandatory pb-6 hide-scrollbar md:grid md:grid-cols-4 px-2">
+                    <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <span class="text-3xl mb-4 block text-blue-500" aria-hidden="true">⚡</span>
+                            <h3 class="text-lg font-bold mb-2 text-white">Instalações Gerais</h3>
+                            <p class="text-sm text-gray-400">Substituição de disjuntores, tomadas, interruptores modernos e projetos luminotécnicos.</p>
                         </div>
                     </div>
-
-                    <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-8 border-t border-zinc-800 pt-10">Vantagens da Instalação</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex items-start gap-3">
-                            <span class="text-blue-500 font-bold">⚡</span>
-                            <div>
-                                <h5 class="text-white font-bold text-sm mb-1">Carregamento Rápido</h5>
-                                <p class="text-xs text-gray-400">Carregue seu carro em poucas horas, não dias.</p>
-                            </div>
-                        </div>
-                        <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex items-start gap-3">
-                            <span class="text-blue-500 font-bold">🛡️</span>
-                            <div>
-                                <h5 class="text-white font-bold text-sm mb-1">Segurança Garantida</h5>
-                                <p class="text-xs text-gray-400">Instalação conforme normas técnicas de segurança.</p>
-                            </div>
-                        </div>
-                        <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex items-start gap-3">
-                            <span class="text-blue-500 font-bold">🏡</span>
-                            <div>
-                                <h5 class="text-white font-bold text-sm mb-1">Conveniência</h5>
-                                <p class="text-xs text-gray-400">Carregue em casa, no seu tempo, sem depender de postos.</p>
-                            </div>
-                        </div>
-                        <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex items-start gap-3">
-                            <span class="text-blue-500 font-bold">📱</span>
-                            <div>
-                                <h5 class="text-white font-bold text-sm mb-1">Controle Inteligente</h5>
-                                <p class="text-xs text-gray-400">Monitoramento via aplicativo(caso wallbox tenha essa tecnologia)</p>
-                            </div>
-                        </div>
-                        <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex items-start gap-3">
-                            <span class="text-blue-500 font-bold">💰</span>
-                            <div>
-                                <h5 class="text-white font-bold text-sm mb-1">Economia de Energia</h5>
-                                <p class="text-xs text-gray-400">Aproveite tarifas reduzidas em horários de pico (madrugada).</p>
-                            </div>
-                        </div>
-                        <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex items-start gap-3">
-                            <span class="text-blue-500 font-bold">📈</span>
-                            <div>
-                                <h5 class="text-white font-bold text-sm mb-1">Valorização do Imóvel</h5>
-                                <p class="text-xs text-gray-400">Aumento do valor da propriedade com infraestrutura moderna.</p>
-                            </div>
+                    <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <span class="text-3xl mb-4 block text-blue-500" aria-hidden="true">🎛️</span>
+                            <h3 class="text-lg font-bold mb-2 text-white">Quadros de Energia</h3>
+                            <p class="text-sm text-gray-400">Montagem cirúrgica, organização técnica de barramentos e balanceamento de fases (QDC).</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="max-w-3xl mx-auto">
-                    <h3 class="text-xl font-bold text-white text-center mb-6">Perguntas Frequentes sobre Wallbox</h3>
-                    <div class="space-y-3">
-                        <details class="group bg-zinc-900 rounded border border-zinc-800">
-                            <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                                Quais são os tipos de wallbox vocês instalam?
-                                <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180">▼</span>
-                            </summary>
-                            <p class="p-4 text-xs text-gray-400 border-t border-zinc-800 bg-black/20">Instalamos modelos Bifásicos (até 7,4 kW), ideais para a maioria das redes residenciais, e Trifásicos (até 22 kW), para um carregamento muito mais acelerado.</p>
-                        </details>
-                        <details class="group bg-zinc-900 rounded border border-zinc-800">
-                            <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                                Qual é o tempo de instalação?
-                                <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180">▼</span>
-                            </summary>
-                            <p class="p-4 text-xs text-gray-400 border-t border-zinc-800 bg-black/20">A instalação costuma ser concluída entre 2 a 4 horas. Esse tempo varia conforme a distância do quadro elétrico geral até a vaga de garagem onde ficará o carregador.</p>
-                        </details>
-                        <details class="group bg-zinc-900 rounded border border-zinc-800">
-                            <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                                Quanto custa instalar um wallbox em Maricá?
-                                <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180">▼</span>
-                            </summary>
-                            <p class="p-4 text-xs text-gray-400 border-t border-zinc-800 bg-black/20">O custo técnico varia conforme a distância do cabeamento e os dispositivos de proteção exigidos. Entre em contato connosco pelo WhatsApp para montarmos um orçamento rápido e personalizado.</p>
-                        </details>
-                        <details class="group bg-zinc-900 rounded border border-zinc-800">
-                            <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                                Preciso fazer alterações na minha instalação elétrica?
-                                <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180">▼</span>
-                            </summary>
-                            <p class="p-4 text-xs text-gray-400 border-t border-zinc-800 bg-black/20">É necessário criar um circuito elétrico 100% exclusivo do seu quadro até o ponto do Wallbox, incluindo disjuntor termomagnético e proteção DR adequada (tipo A) para garantir que o carregamento não sobrecarregue a sua casa.</p>
-                        </details>
-                        <details class="group bg-zinc-900 rounded border border-zinc-800">
-                            <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                                Vocês fazem instalação em Itaipuaçu e Inoã?
-                                <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180">▼</span>
-                            </summary>
-                            <p class="p-4 text-xs text-gray-400 border-t border-zinc-800 bg-black/20">Sim! A BRvolts atende com agilidade e frota própria todos os bairros e condomínios fechados das regiões de Itaipuaçu, Inoã, São José do Imbassaí e Centro de Maricá.</p>
-                        </details>
-                        <details class="group bg-zinc-900 rounded border border-zinc-800">
-                            <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                                Qual é a garantia do wallbox?
-                                <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180">▼</span>
-                            </summary>
-                            <p class="p-4 text-xs text-gray-400 border-t border-zinc-800 bg-black/20">O aparelho físico conta com a garantia integral dada pelo fabricante (geralmente de 12 a 24 meses). Concomitante a isso, a BRvolts fornece garantia total sobre o cabeamento, conexões e conformidade técnica da nossa montagem.</p>
-                        </details>
+                    <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <span class="text-3xl mb-4 block text-blue-500" aria-hidden="true">🔌</span>
+                            <h3 class="text-lg font-bold mb-2 text-white">Padrão Enel</h3>
+                            <p class="text-sm text-gray-400">Montagem completa de novos padrões de entrada seguindo estritamente as regras da concessionária.</p>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <span class="text-3xl mb-4 block text-blue-500" aria-hidden="true">🔍</span>
+                            <h3 class="text-lg font-bold mb-2 text-white">Resolução de Panes</h3>
+                            <p class="text-sm text-gray-400">Localização e correção imediata de curto-circuito, fugas de corrente e sobrecargas elétricas.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="py-20 bg-black border-t border-zinc-900">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-3 text-white">Nosso <span class="text-blue-500">Trabalho</span></h2>
-                    <p class="text-lg text-gray-400 max-w-2xl mx-auto">Confira imagens da qualidade técnica e do padrão de acabamento que entregamos aos nossos clientes em Maricá e região.</p>
+        <section id="wallbox" class="py-16 bg-zinc-950 border-t border-zinc-900">
+            <div class="container mx-auto px-4 md:px-6">
+                
+                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase block w-fit mb-4">Especialidade Premium</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Instalação Especialista de Wallbox</h2>
+                <p class="text-gray-400 mb-8 max-w-2xl">Estrutura dedicada e em total conformidade com a NBR 17019 para carregar o seu veículo elétrico de forma rápida e segura na sua garagem.</p>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">⚡</span> <span class="text-xs font-bold text-white">Alta Velocidade</span></div>
+                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">🛡️</span> <span class="text-xs font-bold text-white">Proteção DR Tipo A</span></div>
+                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">🏡</span> <span class="text-xs font-bold text-white">Comodidade em Casa</span></div>
+                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">⚙️</span> <span class="text-xs font-bold text-white">Certificação Técnica</span></div>
+                </div>
+
+                <h3 class="text-lg font-bold text-white mb-4 px-1">Tabela Comparativa de Infraestrutura</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="border border-zinc-800 p-5 rounded-lg bg-black">
+                        <h4 class="font-bold text-white text-lg mb-2">Opção Bifásica <span class="text-gray-500 text-sm font-normal">(Até 7.4 kW)</span></h4>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li><span class="text-green-500 mr-1" aria-hidden="true">✔</span> Infraestrutura elétrica simplificada</li>
+                            <li><span class="text-green-500 mr-1" aria-hidden="true">✔</span> Compatível com redes bifásicas residenciais</li>
+                            <li><span class="text-green-500 mr-1" aria-hidden="true">✔</span> Carga completa durante o período noturno</li>
+                        </ul>
+                    </div>
+                    <div class="border-2 border-blue-600 p-5 rounded-lg bg-zinc-900/60 relative shadow-[0_0_15px_rgba(59,130,246,0.15)]">
+                        <div class="absolute -top-3 right-4 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Mais Recomendado</div>
+                        <h4 class="font-bold text-white text-lg mb-2">Opção Trifásica <span class="text-gray-500 text-sm font-normal">(Até 22 kW)</span></h4>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li><span class="text-blue-500 mr-1" aria-hidden="true">✔</span> Carregamento em velocidade máxima</li>
+                            <li><span class="text-blue-500 mr-1" aria-hidden="true">✔</span> Carga completa acelerada (de 2h a 4h)</li>
+                            <li><span class="text-blue-500 mr-1" aria-hidden="true">✔</span> Ideal para novas redes trifásicas ou comércios</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20instalação%20de%20Wallbox." target="_blank" class="dynamic-wa haptic-btn w-full md:w-auto md:px-12 block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-lg shadow-lg mb-10 transition-colors">
+                    Solicitar Orçamento do Carregador
+                </a>
+
+                <div class="bg-black border border-zinc-800 rounded-lg p-1 max-w-3xl">
+                    <details class="group haptic-btn">
+                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
+                            Quais dispositivos de proteção são obrigatórios na instalação?
+                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
+                        </summary>
+                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Conforme a norma NBR 17019, é obrigatório um circuito exclusivo partindo do quadro, composto por disjuntor termomagnético dimensionado e interruptor DR do Tipo A, protegendo o veículo e o imóvel contra surtos e fugas.</p>
+                    </details>
+                    <details class="group mt-2 haptic-btn">
+                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
+                            Qual é o tempo médio de instalação?
+                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
+                        </summary>
+                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Geralmente, concluímos a passagem do cabeamento e a fixação do Wallbox entre 2 a 4 horas, dependendo da distância entre o seu quadro de energia e a garagem.</p>
+                    </details>
+                    <details class="group mt-2 haptic-btn">
+                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
+                            Atendem condomínios fechados?
+                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
+                        </summary>
+                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Sim. Fornecemos toda a documentação técnica (TRT/ART) exigida pelas administrações de condomínios em Maricá e região para a liberação do serviço.</p>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-16 bg-black border-t border-zinc-900">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl md:text-4xl font-bold mb-3 text-white">Nossas Obras Executadas</h2>
+                <p class="text-sm text-gray-400 mb-8 max-w-xl">Veja registros reais de instalações e manutenções feitas por nós na região de Maricá.</p>
+                
+                <div id="portfolio-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3">
+                    <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center">
+                        <img src="qdc.jpg" loading="lazy" alt="Obra de Quadro de Distribuição" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=500&q=80'">
+                        <div class="p-4 bg-zinc-900">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block">📸 Instalação Real</span>
+                            <p class="font-bold text-white leading-tight">Montagem e Organização de QDC</p>
+                            <p class="text-xs text-gray-400 mt-1">📍 Serviço feito em Condomínio - Itaipuaçu</p>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center">
+                        <img src="wallboxcarro.png" loading="lazy" alt="Obra de Carregador Elétrico" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 bg-zinc-900">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block">📸 Instalação Real</span>
+                            <p class="font-bold text-white leading-tight">Infraestrutura Exclusiva para Wallbox</p>
+                            <p class="text-xs text-gray-400 mt-1">📍 Residência de Alto Padrão - Maricá</p>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center">
+                        <img src="manutencao-eletrica.jpg" loading="lazy" alt="Manutenção e Diagnóstico Técnico" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&q=80'">
+                        <div class="p-4 bg-zinc-900">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block">📸 Instalação Real</span>
+                            <p class="font-bold text-white leading-tight">Diagnóstico e Resolução de Pane</p>
+                            <p class="text-xs text-gray-400 mt-1">📍 Manutenção Comercial - Inoã</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="animate-swipe-hint flex overflow-x-auto gap-6 snap-x snap-mandatory pb-6 hide-scrollbar max-w-6xl mx-auto md:grid md:grid-cols-3 md:overflow-x-visible md:pb-0">
-                    <div class="bg-zinc-900 rounded-lg overflow-hidden shadow-lg border border-zinc-800 group shrink-0 w-[85vw] sm:w-[350px] md:w-full snap-center">
-                        <div class="overflow-hidden h-64">
-                            <img src="qdc.jpg" alt="Montagem de Quadro de Distribuição" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=500&q=80'">
-                        </div>
-                        <div class="p-4 text-center font-bold text-white border-t-4 border-blue-600">
-                            Montagem e Organização de QDC
-                        </div>
-                    </div>
-                    <div class="bg-zinc-900 rounded-lg overflow-hidden shadow-lg border border-zinc-800 group shrink-0 w-[85vw] sm:w-[350px] md:w-full snap-center">
-                        <div class="overflow-hidden h-64 bg-zinc-950">
-                            <img src="wallboxcarro.png" alt="Instalação de Infraestrutura para Wallbox" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
-                        </div>
-                        <div class="p-4 text-center font-bold text-white border-t-4 border-blue-600">
-                            Infraestrutura e Wallbox
-                        </div>
-                    </div>
-                    <div class="bg-zinc-900 rounded-lg overflow-hidden shadow-lg border border-zinc-800 group shrink-0 w-[85vw] sm:w-[350px] md:w-full snap-center">
-                        <div class="overflow-hidden h-64">
-                            <img src="manutencao-eletrica.jpg" alt="Manutenção Elétrica e Diagnóstico" class="w-full h-full object-cover transform transition duration-500 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&q=80'">
-                        </div>
-                        <div class="p-4 text-center font-bold text-white border-t-4 border-blue-600">
-                            Análise de Rede e Manutenção
-                        </div>
-                    </div>
+                <div class="flex justify-center items-center gap-2 mt-5 md:hidden" id="portfolio-dots">
+                    <div class="w-2.5 h-2.5 rounded-full bg-blue-500 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                 </div>
+
             </div>
         </section>
 
-        <section id="avaliacoes" class="py-20 bg-zinc-950 border-t border-zinc-900">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-3 text-white">O que nossos clientes <span class="text-blue-500">dizem</span></h2>
-                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">A satisfação de quem confia em nosso trabalho é a nossa maior propaganda. Veja avaliações reais do nosso Google Meu Negócio.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="bg-zinc-900 p-8 rounded-lg shadow-md border border-zinc-800 text-left">
-                        <div class="flex items-center mb-4 text-yellow-400">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+        <section id="avaliacoes" class="py-16 bg-zinc-950 border-t border-zinc-900">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl md:text-4xl font-bold mb-2 text-white">Avaliações do Google</h2>
+                <p class="text-sm text-gray-400 mb-8">Opiniões de clientes reais retiradas diretamente do nosso Perfil de Empresa.</p>
+                
+                <div id="avaliacoes-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3">
+                    <div class="bg-black p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <div class="text-yellow-400 text-sm mb-2 font-serif" aria-hidden="true">★★★★★</div>
+                            <p class="text-xs md:text-sm text-gray-300 italic mb-4">"Cumprimento de prazo, atendimento excelente e preço justo. Total transparência com o cliente. Obrigada Brvolts."</p>
                         </div>
-                        <p class="text-gray-300 italic mb-4">"Cumprimento de prazo, atendimento excelente e preço justo. Total transparência com o cliente. Obrigada Brvolts."</p>
-                        <p class="font-bold text-white">Karine Guedes</p>
-                        <p class="text-xs text-blue-500 font-bold uppercase mt-1">Avaliação do Google</p>
+                        <div>
+                            <p class="font-bold text-white text-sm">Karine Guedes</p>
+                            <span class="text-[10px] text-blue-500 font-bold uppercase mt-1 block">Avaliação do Google</span>
+                        </div>
                     </div>
-                    <div class="bg-zinc-900 p-8 rounded-lg shadow-md border border-zinc-800 text-left">
-                        <div class="flex items-center mb-4 text-yellow-400">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <div class="bg-black p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <div class="text-yellow-400 text-sm mb-2 font-serif" aria-hidden="true">★★★★★</div>
+                            <p class="text-xs md:text-sm text-gray-300 italic mb-4">"Eletricista extremamente técnico, pontual e criterioso. Recomendo com toda a certeza."</p>
                         </div>
-                        <p class="text-gray-300 italic mb-4">"Foi uma experiência surpreendente, é muito difícil encontrar profissionais com tanta capacidade e profissionalismo, parabéns e obrigada!!!"</p>
-                        <p class="font-bold text-white">Telma Costa</p>
-                        <p class="text-xs text-blue-500 font-bold uppercase mt-1">Avaliação do Google</p>
+                        <div>
+                            <p class="font-bold text-white text-sm">Vinicius Lopes</p>
+                            <span class="text-[10px] text-blue-500 font-bold uppercase mt-1 block">Avaliação do Google</span>
+                        </div>
                     </div>
-                    <div class="bg-zinc-900 p-8 rounded-lg shadow-md border border-zinc-800 text-left">
-                        <div class="flex items-center mb-4 text-yellow-400">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <div class="bg-black p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <div class="text-yellow-400 text-sm mb-2 font-serif" aria-hidden="true">★★★★★</div>
+                            <p class="text-xs md:text-sm text-gray-300 italic mb-4">"Foi uma experiência surpreendente, é muito difícil encontrar profissionais com tanta capacidade e profissionalismo, parabéns e obrigada!!!"</p>
                         </div>
-                        <p class="text-gray-300 italic mb-4">"Eletricista extremamente técnico, pontual e criterioso. Recomendo com toda a certeza."</p>
-                        <p class="font-bold text-white">Vinicius Lopes</p>
-                        <p class="text-xs text-blue-500 font-bold uppercase mt-1">Avaliação do Google</p>
+                        <div>
+                            <p class="font-bold text-white text-sm">Telma Costa</p>
+                            <span class="text-[10px] text-blue-500 font-bold uppercase mt-1 block">Avaliação do Google</span>
+                        </div>
+                    </div>
+                    <div class="bg-black p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <div class="text-yellow-400 text-sm mb-2 font-serif" aria-hidden="true">★★★★★</div>
+                            <p class="text-xs md:text-sm text-gray-300 italic mb-4">"Excelente trabalho na instalação do carregador BYD na minha residência. Conhece muito as normas técnicas e deixou tudo bem protegido."</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Ricardo Silva</p>
+                            <span class="text-[10px] text-blue-500 font-bold uppercase mt-1 block">Avaliação do Google</span>
+                        </div>
+                    </div>
+                    <div class="bg-black p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <div class="text-yellow-400 text-sm mb-2 font-serif" aria-hidden="true">★★★★★</div>
+                            <p class="text-xs md:text-sm text-gray-300 italic mb-4">"Estávamos com problema sério de queda de luz e superaquecimento em Inoã. O atendimento foi muito ágil e resolveu de forma cirúrgica."</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Mariana Costa</p>
+                            <span class="text-[10px] text-blue-500 font-bold uppercase mt-1 block">Avaliação do Google</span>
+                        </div>
+                    </div>
+                    <div class="bg-black p-6 rounded-lg border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center flex flex-col justify-between">
+                        <div>
+                            <div class="text-yellow-400 text-sm mb-2 font-serif" aria-hidden="true">★★★★★</div>
+                            <p class="text-xs md:text-sm text-gray-300 italic mb-4">"Muito caprichoso na organização da fiação do quadro de disjuntores. Preço justo pela alta qualidade técnica da entrega."</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white text-sm">Carlos Eduardo</p>
+                            <span class="text-[10px] text-blue-500 font-bold uppercase mt-1 block">Avaliação do Google</span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="flex justify-center items-center gap-2 mt-5 md:hidden" id="avaliacoes-dots">
+                    <div class="w-2 h-2 rounded-full bg-blue-500 transition-colors duration-300"></div>
+                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                </div>
+
+                <div class="text-center mt-12 mb-4">
+                    <button id="shareBtn" class="haptic-btn bg-zinc-900 border border-zinc-800 hover:border-blue-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-lg transition-colors w-full sm:w-auto">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                        Gostou? Indique a BRvolts
+                    </button>
+                </div>
+
             </div>
         </section>
 
-        <section id="faq" class="py-20 bg-black border-t border-zinc-900">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <h2 class="text-3xl md:text-4xl font-bold mb-3 text-center text-white">Dúvidas Frequentes: <span class="text-blue-500">Geral e Wallbox</span></h2>
-                <p class="text-lg text-gray-400 mb-12 text-center">Esclareça as principais dúvidas sobre os nossos serviços e infraestrutura elétrica em Maricá.</p>
-
-                <div class="space-y-4">
-                    <details class="group border border-zinc-800 rounded-lg bg-zinc-900 shadow-sm hover:border-blue-500 transition-colors">
-                        <summary class="flex cursor-pointer items-center justify-between p-5 font-bold text-white">
-                            A BRvolts fornece documentação técnica e Laudo?
-                            <span class="text-blue-500 transition-transform duration-300 group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="px-5 pb-5 text-gray-400 border-t border-zinc-800 mt-2 pt-4">
-                            Sim. Emitimos laudos técnicos e recolhemos a ART/TRT de responsabilidade técnica para projetos, wallbox e reformas elétricas, para exigências de condomínios em Itaipuaçu ou para a concessionária (Enel).
-                        </div>
-                    </details>
-                    
-                    <details class="group border border-zinc-800 rounded-lg bg-zinc-900 shadow-sm hover:border-blue-500 transition-colors">
-                        <summary class="flex cursor-pointer items-center justify-between p-5 font-bold text-white">
-                            Atendem casos de urgência (curto-circuito ou queda de energia)?
-                            <span class="text-blue-500 transition-transform duration-300 group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="px-5 pb-5 text-gray-400 border-t border-zinc-800 mt-2 pt-4">
-                            Sim, o nosso atendimento inclui casos de urgência. Entre em contato rapidamente pelo WhatsApp detalhando o problema (como cheiro de queimado ou desarme constante de disjuntor) para avaliarmos a prioridade de deslocamento.
-                        </div>
-                    </details>
-
-                    <details class="group border border-zinc-800 rounded-lg bg-zinc-900 shadow-sm hover:border-blue-500 transition-colors">
-                        <summary class="flex cursor-pointer items-center justify-between p-5 font-bold text-white">
-                            Quais são as formas de pagamento aceitas?
-                            <span class="text-blue-500 transition-transform duration-300 group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="px-5 pb-5 text-gray-400 border-t border-zinc-800 mt-2 pt-4">
-                            Pensando na sua comodidade, aceitamos pagamentos à vista (PIX e dinheiro), bem como todos os principais cartões de débito e crédito, podendo parcelar o serviço e os materiais.
-                        </div>
-                    </details>
-                    
-                    <details class="group border border-zinc-800 rounded-lg bg-zinc-900 shadow-sm hover:border-blue-500 transition-colors">
-                        <summary class="flex cursor-pointer items-center justify-between p-5 font-bold text-white">
-                            Quais são os tipos de Wallbox disponíveis para instalação?
-                            <span class="text-blue-500 transition-transform duration-300 group-open:rotate-180">
-                                <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="px-5 pb-5 text-gray-400 border-t border-zinc-800 mt-2 pt-4">
-                            Para carregadores, trabalhamos com modelos Bifásicos (até 7.4 kW, para redes residenciais comuns) e Trifásicos (até 22 kW, carregamento rápido para casas trifásicas). Analisamos o limite da sua rede e propomos o ideal.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <section id="atuacao" class="py-20 bg-zinc-950 border-t border-zinc-900">
-            <div class="container mx-auto px-6">
+        <section id="atuacao" class="py-16 bg-black border-t border-zinc-900">
+            <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Atendemos em Toda a Região de <span class="text-blue-500">Maricá</span></h2>
-                    <p class="text-lg text-gray-400 mt-2">Veja no mapa nossa principal área de cobertura. Atendimento rápido e eficiente em toda a cidade.</p>
+                    <h2 class="text-2xl md:text-4xl font-bold text-white">Atendemos em <span class="text-blue-500">Toda Maricá</span></h2>
+                    <p class="text-sm md:text-lg text-gray-400 mt-2">Pronta resposta técnica com frota própria para residências, condomínios e comércios locais.</p>
                 </div>
                 <div class="w-full max-w-5xl mx-auto bg-zinc-900 rounded-lg shadow-xl p-4 border border-zinc-800">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117688.37535198811!2d-42.89531940984869!3d-22.92477380905953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9901458b68a623%3A0x861348505527a2b2!2sMaric%C3%A1%2C%20RJ!5e0!3m2!1spt-BR!2sbr!4v1716490895360!5m2!1spt-BR!2sbr" 
                         width="100%" 
-                        height="450" 
+                        height="400" 
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade"
-                        class="rounded-lg opacity-90 hover:opacity-100 transition-opacity">
+                        class="rounded-lg opacity-85 hover:opacity-100 transition-opacity">
                     </iframe>
                 </div>
-                <p class="text-center mt-6 text-gray-400">Seja em <strong>Itaipuaçu</strong>, <strong>Inoã</strong> ou no <strong>Centro</strong>, a BRvolts é a sua escolha certa de eletricista em Maricá.</p>
-            </div>
-        </section>
-
-        <section id="contato" class="py-20 bg-zinc-900 text-white border-t border-b border-zinc-800">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-4">Problemas com a parte elétrica?</h2>
-                <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">Não corra riscos. Chame um eletricista qualificado agora mesmo e garanta a segurança da sua família e do seu patrimônio.</p>
-                <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20um%20problema%20elétrico%20e%20preciso%20de%20ajuda.%20Podem%20me%20atender?" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-lg shadow-xl transition duration-300 transform hover:scale-105 inline-flex items-center border border-blue-500">
-                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-                    </svg>
-                    Fale com um Especialista Agora
-                </a>
+                <p class="text-center mt-6 text-xs md:text-sm text-gray-400">Cobrimos 100% da região: de <strong>Itaipuaçu</strong> e <strong>Inoã</strong> ao <strong>Centro de Maricá</strong>, <strong>São José do Imbassaí</strong> e <strong>Ponta Negra</strong>.</p>
             </div>
         </section>
     </main>
 
-    <footer class="bg-black text-white border-t-4 border-blue-600">
+    <footer class="bg-black text-white border-t-4 border-blue-600 pb-20 md:pb-0">
         <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 <div>
-                    <img src="logo1.png" alt="Logo BRvolts" class="h-16 mx-auto md:mx-0 mb-4 opacity-90 hover:opacity-100 transition-opacity">
-                    <p class="text-gray-400">BRvolts - A sua referência como eletricista em Maricá e região. Qualidade e segurança em primeiro lugar.</p>
+                    <img src="logo1.png" alt="Logo BRvolts" class="h-14 mx-auto md:mx-0 mb-4 opacity-95" loading="lazy">
+                    <p class="text-gray-400 text-sm">BRvolts - Sua escolha certa em engenharia e manutenção elétrica comercial ou residencial de alto padrão.</p>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4 text-blue-500">Links Rápidos</h4>
-                    <ul>
-                        <li class="mb-2"><a href="#servicos" class="text-gray-400 hover:text-white transition-colors">Nossos Serviços</a></li>
-                        <li class="mb-2"><a href="#wallbox" class="text-gray-400 hover:text-white transition-colors">Instalação de Wallbox</a></li>
-                        <li class="mb-2"><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfólio de Obras</a></li>
-                        <li class="mb-2"><a href="#avaliacoes" class="text-gray-400 hover:text-white transition-colors">Avaliações</a></li>
-                        <li class="mb-2"><a href="#faq" class="text-gray-400 hover:text-white transition-colors">Dúvidas Frequentes</a></li>
+                    <h4 class="font-bold text-base mb-3 text-blue-500">Links Rápidos</h4>
+                    <ul class="text-sm space-y-1.5 text-gray-400">
+                        <li><a href="#servicos" class="hover:text-white haptic-btn">Nossos Serviços</a></li>
+                        <li><a href="#wallbox" class="hover:text-white haptic-btn">Instalação de Wallbox</a></li>
+                        <li><a href="#portfolio" class="hover:text-white haptic-btn">Portfólio Real</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-4 text-blue-500">Contato</h4>
-                    <p class="text-gray-400 mb-2">
-                        <strong>Telefone / WhatsApp:</strong><br>
-                        <a href="tel:+5521976493932" class="text-xl font-semibold text-white hover:text-blue-500 transition-colors">(21) 97649-3932</a>
+                    <h4 class="font-bold text-base mb-3 text-blue-500">Áreas Atendidas</h4>
+                    <p class="text-xs text-zinc-400 font-bold mb-1.5">Atendimento em Toda Maricá - RJ</p>
+                    <ul class="text-sm space-y-1.5 text-gray-400">
+                        <li><a href="eletricista-itaipuacu.html" class="hover:text-white haptic-btn">Eletricista em Itaipuaçu</a></li>
+                        <li><a href="eletricista-inoa.html" class="hover:text-white haptic-btn">Eletricista em Inoã</a></li>
+                        <li><a href="eletricista-ponta-negra.html" class="hover:text-white haptic-btn">Eletricista em Ponta Negra</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-base mb-3 text-blue-500">Contato</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        <strong>WhatsApp:</strong> (21) 97649-3932<br>
+                        <strong>Instagram:</strong> <a href="https://instagram.com/brvolts" target="_blank" class="haptic-btn">@brvolts</a>
                     </p>
-                     <div class="text-gray-400 mt-4 flex items-center justify-center md:justify-start">
-                        <strong>Instagram:</strong>
-                        <a href="https://www.instagram.com/brvolts" target="_blank" rel="noopener noreferrer" class="text-xl font-semibold text-white hover:text-blue-500 transition-colors ml-2">@brvolts</a>
-                    </div>
                 </div>
             </div>
-            <div class="border-t border-zinc-800 mt-8 pt-6 text-center text-gray-500 text-sm">
+            <div class="border-t border-zinc-900 mt-8 pt-6 text-center text-gray-500 text-xs">
                 <p>© <span id="current-year"></span> BRvolts Soluções em Eletricidade. Todos os direitos reservados.</p>
-                <p class="mt-1">Eletricista Premium em Maricá e Itaipuaçu.</p>
             </div>
         </div>
     </footer>
 
-    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20eletricista." target="_blank" class="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center pulse-btn z-50 transform transition-transform duration-300 hover:scale-110" aria-label="Fale conosco pelo WhatsApp">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+    <div id="social-proof-toast" class="fixed bottom-24 md:bottom-5 left-4 md:left-5 bg-zinc-900 border border-zinc-800 text-white p-3 rounded-xl shadow-2xl z-40 transform translate-y-32 opacity-0 transition-all duration-700 flex items-center gap-3">
+        <div class="bg-blue-600/20 text-blue-500 p-2 rounded-lg"><svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+        <div>
+            <p id="social-proof-text" class="text-xs font-medium text-gray-200">Carregando...</p>
+        </div>
+    </div>
+
+    <button id="backToTop" class="haptic-btn fixed bottom-24 right-4 md:right-5 bg-zinc-800 border border-zinc-700 hover:bg-blue-600 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-2xl z-40 opacity-0 pointer-events-none transition-all duration-300" aria-label="Voltar ao topo">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <div class="fixed bottom-0 left-0 w-full z-50 md:hidden bg-green-500 shadow-[0_-10px_20px_rgba(0,0,0,0.4)] border-t border-green-400">
+        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20atendimento." class="dynamic-wa haptic-btn flex justify-center items-center w-full py-4 text-white font-extrabold text-base tracking-wide uppercase gap-2" aria-label="Solicitar orçamento pelo WhatsApp">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+            </svg>
+            Chamar no WhatsApp
+        </a>
+    </div>
+
+    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20atendimento." target="_blank" class="dynamic-wa haptic-btn hidden md:flex fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full items-center justify-center pulse-btn z-50 transform transition-transform duration-300 hover:scale-110" aria-label="Solicitar orçamento pelo WhatsApp">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
         </svg>
     </a>
 
     <script>
-        // Script para menu mobile
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // FEEDBACK TÁTIL (Vibração no Celular)
+        document.querySelectorAll('.haptic-btn, a[href^="https://api.whatsapp.com"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (navigator.vibrate) navigator.vibrate(50);
+            });
         });
-        
-        // Fechar menu mobile ao clicar em um link
-        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
-        for (let i = 0; i < mobileMenuLinks.length; i++) {
-            mobileMenuLinks[i].addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+
+        // MELHORIA: Compartilhamento Nativo (Web Share API)
+        const shareBtn = document.getElementById('shareBtn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'BRvolts - Eletricista em Maricá',
+                            text: 'Pessoal, precisando de eletricista na região, recomendo o trabalho da BRvolts:',
+                            url: window.location.href
+                        });
+                    } catch (err) {
+                        console.log('Compartilhamento cancelado', err);
+                    }
+                } else {
+                    alert('Copie o link do site no seu navegador e envie para os amigos!');
+                }
             });
         }
 
-        // Auto-scroll rotativo do Carrossel de Serviços no Mobile
+        // Função para atualizar os "dots" (bolinhas) dos carrosseis
+        function updateCarouselDots(carouselId, dotsContainerId) {
+            const carousel = document.getElementById(carouselId);
+            const dotsContainer = document.getElementById(dotsContainerId);
+            if (!carousel || !dotsContainer) return;
+            
+            const dots = dotsContainer.children;
+            carousel.addEventListener('scroll', () => {
+                const scrollPercent = carousel.scrollLeft / (carousel.scrollWidth - carousel.clientWidth);
+                let index = Math.round(scrollPercent * (dots.length - 1));
+                
+                Array.from(dots).forEach((dot, i) => {
+                    if(i === index) {
+                        dot.classList.replace('bg-zinc-700', 'bg-blue-500');
+                    } else {
+                        dot.classList.replace('bg-blue-500', 'bg-zinc-700');
+                    }
+                });
+            });
+        }
+        updateCarouselDots('portfolio-carousel', 'portfolio-dots');
+        updateCarouselDots('avaliacoes-carousel', 'avaliacoes-dots');
+
+        // Barra de Progresso de Leitura (Scroll)
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('scroll-progress');
+            if (progressBar) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+
+        // Botão Voltar ao Topo
+        const backToTopBtn = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove("opacity-0", "pointer-events-none");
+                backToTopBtn.classList.add("opacity-100", "pointer-events-auto");
+            } else {
+                backToTopBtn.classList.remove("opacity-100", "pointer-events-auto");
+                backToTopBtn.classList.add("opacity-0", "pointer-events-none");
+            }
+        });
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Saudação Dinâmica no WhatsApp (Bom dia / Boa tarde / Boa noite)
+        function updateWhatsAppLinks() {
+            const hour = new Date().getHours();
+            let greeting = "Olá";
+            if (hour >= 5 && hour < 12) greeting = "Bom dia";
+            else if (hour >= 12 && hour < 18) greeting = "Boa tarde";
+            else greeting = "Boa noite";
+
+            const waLinks = document.querySelectorAll('.dynamic-wa');
+            waLinks.forEach(link => {
+                const url = new URL(link.href);
+                let text = url.searchParams.get('text') || "";
+                text = text.replace(/^Olá!\s*/i, ""); 
+                url.searchParams.set('text', `${greeting}! ${text}`);
+                link.href = url.toString();
+            });
+        }
+        updateWhatsAppLinks();
+
+        // Carrossel de Serviços Mobile (Auto-scroll)
         const servicosCarousel = document.getElementById('servicos-carousel');
         if (servicosCarousel) {
             setInterval(() => {
@@ -699,15 +642,45 @@
                     if (servicosCarousel.scrollLeft >= maxScroll - 10) {
                         servicosCarousel.scrollTo({ left: 0, behavior: 'smooth' });
                     } else {
-                        servicosCarousel.scrollTo({ left: servicosCarousel.scrollLeft + window.innerWidth * 0.85, behavior: 'smooth' });
+                        servicosCarousel.scrollTo({ left: servicosCarousel.scrollLeft + window.innerWidth * 0.82, behavior: 'smooth' });
                     }
                 }
-            }, 3500); // Roda para o lado a cada 3.5 segundos
+            }, 3500);
         }
 
-        // Ano dinâmico do rodapé
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+        // Prova Social Pop-up Dinâmico
+const toast = document.getElementById('social-proof-toast');
+const toastText = document.getElementById('social-proof-text');
 
+const notifications = [
+    "⚡ Novo orçamento para Wallbox em Itaipuaçu!",
+    "🔧 Atendimento urgente finalizado no Centro.",
+    "⭐ Avaliação de 5 estrelas recebida de Inoã!",
+    "⚡ Instalação de padrão homologada com sucesso."
+];
+
+let currentIndex = 0;
+
+function showNotification() {
+    if (!toast) return;
+
+    toastText.innerHTML = notifications[currentIndex];
+    toast.classList.remove('translate-y-32', 'opacity-0');
+
+    setTimeout(() => {
+        toast.classList.add('translate-y-32', 'opacity-0');
+        currentIndex = (currentIndex + 1) % notifications.length;
+    }, 8000); // fica visível por 8 segundos
+}
+
+// primeira aparição após 8 segundos
+setTimeout(() => {
+    showNotification();
+    setInterval(showNotification, 35000); // reaparece a cada 35 segundos
+}, 8000);
+
+document.getElementById('current-year').textContent =
+    new Date().getFullYear();
+    </script>
 </body>
 </html>
