@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BRvolts - Sistema de Gestão</title>
+    <title>BRvolts - Gestão Empresarial</title>
     
     <meta name="theme-color" content="#000000" id="theme-color-meta">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Script do Google reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <style>
@@ -120,6 +122,7 @@
             .doc-section h3 { margin: 0 0 5px 0; font-size: 12pt; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; color: #0f172a; }
             .doc-section p { margin: 0; font-size: 10pt; line-height: 1.4; text-align: justify; white-space: pre-wrap; }
             
+            /* LAYOUT FOTOS ANTES E DEPOIS */
             .print-fotos-wrapper { display: flex; justify-content: space-between; gap: 15px; margin-top: 10px; }
             .print-fotos-col { width: 48%; }
             .print-fotos-col h4 { text-align: center; text-transform: uppercase; font-size: 10pt; margin: 0 0 8px 0; padding-bottom: 4px; border-bottom: 2px solid #e2e8f0; }
@@ -142,13 +145,6 @@
             .clearfix { clear: both; }
             .doc-termos { font-size: 8pt; color: #555; margin-top: 10px; border-top: 1px dashed #cbd5e1; padding-top: 10px; page-break-inside: avoid; }
             .doc-termos p { margin: 3px 0; text-align: justify; line-height: 1.3; }
-            
-            .doc-signatures { display: flex; justify-content: center; margin-top: 35px; text-align: center; page-break-inside: avoid; }
-            .signature-box { width: 50%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
-            .signature-img { max-height: 60px; width: auto; margin-bottom: -10px; }
-            .signature-line { border-top: 1px solid #000; padding-top: 5px; font-weight: bold; font-size: 10pt; width: 100%; margin-top: 30px; }
-            .signature-sub { font-size: 8pt; color: #555; }
-
             .doc-footer { margin-top: 25px; text-align: center; font-size: 8pt; color: #555; border-top: 1px solid #cbd5e1; padding-top: 15px; page-break-inside: avoid; }
             .doc-footer p { margin: 4px 0; }
             
@@ -160,106 +156,40 @@
         }
 
         #mobile-print-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
-
-        /* TELA DE APROVAÇÃO DO CLIENTE */
-        #client-screen { display: none; min-height: 100vh; background: #000; flex-direction: column; align-items: center; padding: 20px; }
-        .client-card { background: #18181b; border: 1px solid #27272a; border-radius: 12px; width: 100%; max-width: 600px; padding: 20px; margin-bottom: 40px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); }
-        #client-sig-canvas { background: #fff; border-radius: 8px; touch-action: none; width: 100%; height: 200px; border: 2px solid #3b82f6; }
     </style>
 </head>
 <body>
 
-    <!-- TELA DE LOGIN DO SISTEMA COM RECAPTCHA -->
+    <!-- NOVO SISTEMA DE LOGIN SEGURO (E-MAIL + SENHA + RECAPTCHA) -->
     <div id="login-screen">
         <img src="https://www.brvolts.site/logo1.png" alt="BRvolts Logo" class="h-16 object-contain mb-8">
-        <h2 class="text-white text-xl font-bold mb-2">Acesso Corporativo</h2>
-        <p class="text-gray-400 text-sm mb-6 text-center">Gestão Exclusiva BRvolts.</p>
+        <h2 class="text-white text-xl font-bold mb-2">Acesso Restrito</h2>
+        <p class="text-gray-400 text-sm mb-6 text-center">Faça login para acessar a gestão BRvolts.</p>
         
-        <form id="login-form" onsubmit="realizarLogin(event)" class="flex flex-col items-center">
-            <input type="email" id="login-email" required placeholder="wellington.bonifacio@proton.me" class="w-64 mb-3">
-            <input type="password" id="login-password" required placeholder="Sua Senha" class="w-64 mb-4">
+        <form id="form-login" onsubmit="realizarLogin(event)" class="flex flex-col items-center gap-4 w-full max-w-xs">
+            <input type="email" id="login-email" class="w-full bg-zinc-900 border-zinc-700 text-white p-3 rounded-lg" placeholder="Seu E-mail" required>
+            <input type="password" id="login-password" class="w-full bg-zinc-900 border-zinc-700 text-white p-3 rounded-lg" placeholder="Sua Senha" required>
             
-            <!-- GOOGLE reCAPTCHA v2 COM A SUA CHAVE REAL -->
-            <div class="g-recaptcha mb-4" data-sitekey="6Ld1jnctAAAAACYonu6H7-ngQzbOu3wpgkg9BW5I" data-theme="dark"></div>
+            <!-- CAIXA DO RECAPTCHA -->
+            <div class="g-recaptcha" data-sitekey="6Ld1jnctAAAAACYonu6H7-ngQzbOu3wpgkg9BW5I" data-theme="dark"></div>
             
-            <button type="submit" class="w-64 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-lg transition">Autenticar</button>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-lg">Autenticar</button>
         </form>
     </div>
 
-    <!-- TELA MÁGICA DE APROVAÇÃO DO CLIENTE (INVISÍVEL POR PADRÃO) -->
-    <div id="client-screen">
-        <img src="https://www.brvolts.site/logo1.png" alt="BRvolts Logo" class="h-12 object-contain mb-6 mt-4">
-        
-        <div id="client-loader" class="flex flex-col items-center py-10">
-            <div class="spinner mb-4"></div>
-            <p class="text-gray-400 font-bold">Buscando orçamento...</p>
-        </div>
-
-        <div id="client-content" class="client-card hidden">
-            <div class="border-b border-zinc-800 pb-4 mb-4">
-                <h2 class="text-xl font-bold text-white mb-1">Proposta Comercial</h2>
-                <p class="text-sm text-gray-400" id="client-os-num">OS: 000</p>
-                <p class="text-sm text-gray-400 mt-2">Olá, <strong id="client-nome" class="text-white">Cliente</strong>!</p>
-            </div>
-            
-            <div class="mb-4">
-                <h3 class="text-sm font-bold text-gray-300 uppercase mb-2">Descrição dos Serviços</h3>
-                <p class="text-sm text-gray-200 whitespace-pre-wrap" id="client-desc"></p>
-            </div>
-            
-            <div class="mb-4 bg-zinc-900 p-3 rounded-lg border border-zinc-800" id="client-mat-container">
-                <h3 class="text-sm font-bold text-gray-300 uppercase mb-1">Fornecimento de Materiais</h3>
-                <p class="text-sm text-blue-400 font-bold mb-2" id="client-mat-status"></p>
-                <p class="text-xs text-gray-400 whitespace-pre-wrap" id="client-mat-list"></p>
-            </div>
-
-            <div class="mb-6 bg-green-900/20 border border-green-800/50 p-4 rounded-lg flex justify-between items-center">
-                <span class="font-bold text-gray-300">Investimento Total</span>
-                <span class="text-2xl font-black text-green-500" id="client-valor">R$ 0,00</span>
-            </div>
-
-            <button id="btn-aprovar-client" onclick="abrirModalAssinaturaCliente()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg shadow-lg text-lg transition">✅ Aprovar Orçamento</button>
-        </div>
-
-        <div id="client-success" class="client-card hidden text-center py-10">
-            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <h2 class="text-2xl font-bold text-white mb-2">Orçamento Aprovado!</h2>
-            <p class="text-gray-400">Muito obrigado pela confiança. A BRvolts entrará em contato em breve para combinar os detalhes do serviço.</p>
-        </div>
-    </div>
-
-    <!-- MODAL DE ASSINATURA (TELA DO CLIENTE) -->
-    <div id="modal-assinatura-cliente" class="modal-overlay">
-        <div class="modal-content">
-            <h3 class="text-white font-bold mb-2 text-lg text-center">Assinatura Digital</h3>
-            <p class="text-gray-400 text-xs mb-4 text-center">Assine com o dedo no quadro abaixo para aprovar o serviço.</p>
-            
-            <canvas id="client-sig-canvas"></canvas>
-            
-            <div class="flex gap-3 mt-4">
-                <button onclick="limparAssinaturaCliente()" class="bg-zinc-700 hover:bg-zinc-600 text-white py-3 px-4 rounded-lg font-bold transition">Limpar</button>
-                <button onclick="fecharModalAssinaturaCliente()" class="bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg font-bold transition">Cancelar</button>
-                <button onclick="confirmarAprovacaoCliente()" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold transition">Confirmar</button>
-            </div>
-        </div>
-    </div>
-
-
     <div id="toast-container"></div>
-    <div id="global-loader" style="display:none;"><div class="flex flex-col items-center"><div class="spinner mb-4"></div><p class="text-white font-bold tracking-widest">Sincronizando Nuvem...</p></div></div>
 
-    <!-- HEADER DO SISTEMA PRINCIPAL -->
-    <header id="main-header" class="fixed top-0 w-full z-40 bg-black/90 backdrop-blur-md border-b border-zinc-900 px-4 py-3 flex items-center justify-between transition-colors duration-300 hidden">
-        <div class="flex gap-2">
-            <button onclick="realizarLogout()" class="text-red-400 hover:text-red-300" title="Sair do Sistema">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-            </button>
-            <button onclick="abrirCalculadora()" class="text-blue-400 hover:text-blue-300" title="Calculadora de Dimensionamento">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-            </button>
+    <div id="global-loader" style="display:none;">
+        <div class="flex flex-col items-center">
+            <div class="spinner mb-4"></div>
+            <p class="text-white font-bold tracking-widest">Sincronizando Nuvem...</p>
         </div>
+    </div>
+
+    <header class="fixed top-0 w-full z-40 bg-black/90 backdrop-blur-md border-b border-zinc-900 px-4 py-3 flex items-center justify-between transition-colors duration-300">
+        <button onclick="abrirCalculadora()" class="text-blue-400 hover:text-blue-300" title="Calculadora de Dimensionamento">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+        </button>
         <img src="https://www.brvolts.site/logo1.png" alt="BRvolts Logo" class="h-8 object-contain">
         <button onclick="toggleTheme()" class="text-gray-400 hover:text-white" title="Modo Claro/Escuro">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -272,7 +202,6 @@
         <p class="text-gray-300 text-sm">Na próxima tela, selecione a opção <strong>"Salvar como PDF"</strong>.</p>
     </div>
 
-    <!-- CONTAINER DO SISTEMA PRINCIPAL -->
     <div id="main-container" class="pt-14 hidden">
         
         <nav class="bottom-nav" id="main-nav">
@@ -305,6 +234,7 @@
                         <button onclick="forcarSincronizacao()" title="Sincronizar Dados" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded shadow transition">🔄</button>
                         <button onclick="exportarCSV()" title="Exportar Excel" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-3 rounded shadow transition">📥 CSV</button>
                         <button onclick="exportarJSON()" title="Salvar Backup de Segurança" class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-3 rounded shadow transition">💾 JSON</button>
+                        <button onclick="fazerLogout()" title="Sair do Sistema" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-3 rounded shadow transition">Sair</button>
                     </div>
                 </div>
 
@@ -414,6 +344,7 @@
                 </div>
             </div>
 
+            <!-- SERVIÇO (ORÇAMENTOS) COM FOTOS ANTES E DEPOIS -->
             <div id="orcamentos" class="section">
                 <h2 class="text-xl font-bold text-white mb-4" id="titulo-aba-servico">Descrever Serviço</h2>
                 <div class="space-y-4 max-w-2xl">
@@ -439,6 +370,7 @@
                     
                     <div><label>Observações Técnicas</label><textarea id="orc-obs" rows="2" spellcheck="true" lang="pt-BR" placeholder="O serviço exige desmontagem..."></textarea></div>
                     
+                    <!-- NOVO SISTEMA FOTOGRÁFICO ANTES/DEPOIS -->
                     <div class="bg-zinc-900 p-4 rounded-xl border border-zinc-800 transition-colors">
                         <h3 class="font-bold text-sm text-white mb-3 flex items-center gap-2">📸 Relatório Fotográfico (Nuvem 24h)</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -596,257 +528,84 @@
     <!-- ÁREA DE IMPRESSÃO (PDF) -->
     <div id="print-area">
         <div id="carimbo-pago-print" class="carimbo-pago-css">PAGO</div>
+        
         <div class="doc-header">
-            <div class="doc-logo"><img src="https://www.brvolts.site/logo1.png" alt="BRvolts Logo"><h2>Soluções em Eletricidade</h2><p>CPF: 165.*** ***-30</p><p>Rua Nilo Ribeiro N° 44</p><p>Ubatiba - Maricá</p></div>
+            <div class="doc-logo"><img src="logo_pdf.png" alt="BRvolts Logo"><h2>Soluções em Eletricidade</h2><p>CPF: 165.*** ***-30</p><p>Rua Nilo Ribeiro N° 44</p><p>Ubatiba - Maricá</p></div>
             <div class="doc-contacts">
                 <p><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg> brvolts.site</p>
                 <p><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> 21 97649-3932</p>
                 <p><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> wellington.bonifacio@proton.me</p>
             </div>
         </div>
+
         <div class="doc-info" id="print-info"></div>
         <div class="doc-section"><h3>Serviços e Mão de Obra</h3><p id="print-servicos"></p></div>
         <div class="doc-section" id="print-section-materiais"><h3>Materiais</h3><p id="print-materiais"></p></div>
+        
         <div class="doc-section" id="print-section-laudo" style="display: none; background-color: #f8fafc; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
-            <h3 style="margin-top: 0; color: #1e293b;">Laudo de Conformidade Técnica</h3><ul class="laudo-list" id="print-laudo-lista"></ul>
+            <h3 style="margin-top: 0; color: #1e293b;">Laudo de Conformidade Técnica</h3>
+            <ul class="laudo-list" id="print-laudo-lista"></ul>
         </div>
+
+        <!-- RELATÓRIO FOTOGRÁFICO ANTES E DEPOIS -->
         <div class="doc-section" id="print-section-fotos" style="display: none;">
             <h3>Relatório Fotográfico</h3>
             <div class="print-fotos-wrapper" id="print-fotos-wrapper">
-                <div class="print-fotos-col" id="print-col-antes" style="display: none;"><h4>ANTES</h4><div class="print-fotos-grid" id="print-fotos-antes-container"></div></div>
-                <div class="print-fotos-col" id="print-col-depois" style="display: none;"><h4 style="border-bottom-color: #16a34a;">DEPOIS</h4><div class="print-fotos-grid" id="print-fotos-depois-container"></div></div>
+                <div class="print-fotos-col" id="print-col-antes" style="display: none;">
+                    <h4>ANTES</h4>
+                    <div class="print-fotos-grid" id="print-fotos-antes-container"></div>
+                </div>
+                <div class="print-fotos-col" id="print-col-depois" style="display: none;">
+                    <h4 style="border-bottom-color: #16a34a;">DEPOIS</h4>
+                    <div class="print-fotos-grid" id="print-fotos-depois-container"></div>
+                </div>
             </div>
+            <!-- Container caso seja apenas um tipo de foto (para preencher 100% da tela) -->
             <div class="print-fotos-full" id="print-fotos-full-container" style="display: none; margin-top: 10px;"></div>
         </div>
+
         <div class="doc-section"><h3>Observações</h3><p id="print-obs"></p></div>
+        
         <div class="doc-section">
             <div class="payment-grid">
                 <div class="payment-conditions"></div>
                 <div class="pix-box" id="print-pix-box">
-                    <div class="pix-box-info"><h4><img src="https://www.brvolts.site/Pix_logo.png" alt="Pix" style="height: 18px; width: auto; margin-right: 6px;">Pague com PIX</h4><p>Chave (CPF): <strong>16562195730</strong></p><p>Titular: Wellington Nunes Bonifácio Correa</p></div>
+                    <div class="pix-box-info">
+                        <h4><img src="Pix_logo.png" alt="Pix" style="height: 18px; width: auto; margin-right: 6px;">Pague com PIX</h4>
+                        <p>Chave (CPF): <strong>16562195730</strong></p>
+                        <p>Titular: Wellington Nunes Bonifácio Correa</p>
+                    </div>
                     <img id="print-qrcode-pix" class="pix-qr" src="">
                 </div>
             </div>
         </div>
-        <div class="doc-total">TOTAL GERAL: R$ <span id="print-valor-total">0,00</span></div><div class="clearfix"></div>
+
+        <div class="doc-total">TOTAL GERAL: R$ <span id="print-valor-total">0,00</span></div>
+        <div class="clearfix"></div>
+
         <div class="doc-termos">
             <p><strong>Termo de Responsabilidade:</strong> A BRvolts não se responsabiliza por tubulações obstruídas ou danos estruturais ocultos na alvenaria do imóvel não sinalizados previamente.</p>
             <p><strong>Garantia de Qualidade:</strong> Garantia de 90 dias para a mão de obra prestada, conforme art. 26 do Código de Defesa do Consumidor (CDC).</p>
         </div>
-        <div class="doc-signatures" id="print-area-assinatura" style="display:none;">
-            <div class="signature-box" id="print-box-cliente">
-                <img id="print-img-assinatura" class="signature-img" src="">
-                <div class="signature-line" id="print-assinatura-cliente">Nome do Cliente</div><div class="signature-sub">Aprovação Digital do Cliente</div>
-            </div>
-        </div>
+
         <div class="doc-footer">
             <p id="print-rodape-data" style="font-size: 11pt; font-weight: 600; margin-bottom: 12px;"></p>
             <p id="print-validade" style="margin-bottom: 15px; color: #dc2626;"></p>
+            <a href="https://g.page/r/CbiafVBOu7JAEBM/review" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background-color: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; text-decoration: none; padding: 10px 18px; border-radius: 8px; font-weight: bold; font-size: 10pt; margin-top: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <svg viewBox="0 0 48 48" style="width: 18px; height: 18px; margin-right: 8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                Avalie-nos no Google
+                <div style="display: flex; margin-left: 8px; gap: 2px;">
+                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+            </a>
         </div>
     </div>
 
     <script>
-        // INIT SUPABASE
-        let supabaseClient = null;
-        try { if (window.supabase) supabaseClient = window.supabase.createClient('https://mflvwscgghdvtxasgmdd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mbHZ3c2NnZ2hkdnR4YXNnbWRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0ODgyNjQsImV4cCI6MjA5ODA2NDI2NH0.tB34mGuyV-Y4xGwnF-1UANJl-p534yEmvsPPcDUA4sk'); } catch(e) {}
-
-        // --- SISTEMA DE ROTEAMENTO E AUTH ---
-        const urlParams = new URLSearchParams(window.location.search);
-        const osParamID = urlParams.get('os');
-
-        if (osParamID) {
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('client-screen').style.display = 'flex';
-            iniciarTelaCliente(osParamID);
-        } else {
-            checkLogin();
-        }
-
-        async function checkLogin() {
-            if(!supabaseClient) {
-                document.getElementById('login-screen').style.display = 'flex';
-                return;
-            }
-            
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            if (session) {
-                desbloquearApp();
-            } else {
-                document.getElementById('login-screen').style.display = 'flex';
-            }
-        }
-
-        async function realizarLogin(e) {
-            e.preventDefault();
-            
-            if(!supabaseClient) {
-                alert("Erro interno: Supabase não conectado.");
-                return;
-            }
-
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            // Verificação do reCAPTCHA
-            const captchaResponse = grecaptcha.getResponse();
-            if (!captchaResponse) {
-                alert("Por favor, confirme que você não é um robô.");
-                return;
-            }
-
-            document.getElementById('global-loader').style.display = 'flex';
-
-            const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email: email,
-                password: password,
-                options: { captchaToken: captchaResponse }
-            });
-
-            if (error) {
-                document.getElementById('global-loader').style.display = 'none';
-                // ESTA É A LINHA MÁGICA QUE VAI MOSTRAR O ERRO REAL
-                alert("ERRO DO SUPABASE: " + error.message); 
-                grecaptcha.reset(); 
-            } else {
-                desbloquearApp();
-            }
-        }
-        async function realizarLogout() {
-            if(supabaseClient) {
-                await supabaseClient.auth.signOut();
-                window.location.reload();
-            }
-        }
-
-        function desbloquearApp() {
-            document.getElementById('login-screen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('main-container').classList.remove('hidden');
-                document.getElementById('global-loader').style.display = 'flex';
-                
-                const now = new Date();
-                document.getElementById('filtro-mes').value = String(now.getMonth() + 1).padStart(2, '0');
-                document.getElementById('filtro-ano').value = String(now.getFullYear());
-                
-                initApp();
-            }, 500);
-        }
-
-        // --- LÓGICA DA TELA DO CLIENTE ---
-        async function iniciarTelaCliente(id) {
-            if(!supabaseClient) { alert("Erro de conexão com o banco de dados."); return; }
-            try {
-                const { data: osData, error: osErr } = await supabaseClient.from('servicos').select('*').eq('id', id).single();
-                if(osErr || !osData) throw new Error("Orçamento não encontrado.");
-
-                const { data: cliData } = await supabaseClient.from('clientes').select('*').eq('id', osData.cliente_id).single();
-                const clienteNome = cliData ? cliData.nome : 'Cliente';
-
-                document.getElementById('client-loader').style.display = 'none';
-                
-                if(osData.status !== 'Pendente') {
-                    document.getElementById('client-success').classList.remove('hidden');
-                    document.querySelector('#client-success h2').innerText = "Orçamento já Aprovado!";
-                    document.querySelector('#client-success p').innerText = "O status deste orçamento indica que ele já foi aprovado ou concluído anteriormente. A BRvolts agradece!";
-                    return;
-                }
-
-                document.getElementById('client-content').classList.remove('hidden');
-
-                document.getElementById('client-os-num').innerText = `Documento OS: ${osData.os_number || id}`;
-                document.getElementById('client-nome').innerText = clienteNome;
-                document.getElementById('client-desc').innerText = osData.descricao || 'Serviço sob análise.';
-                
-                const matStatus = osData.materiais_status || 'Não especificado';
-                const matLista = osData.materiais_lista || '';
-                document.getElementById('client-mat-status').innerText = matStatus;
-                if(matLista) document.getElementById('client-mat-list').innerText = matLista;
-                else document.getElementById('client-mat-container').style.display = 'none';
-
-                const valorTotal = parseFloat(osData.valor_servico || 0);
-                document.getElementById('client-valor').innerText = valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-            } catch (e) {
-                document.getElementById('client-loader').innerHTML = `<p class="text-red-500 font-bold">Erro: Link inválido ou orçamento removido.</p>`;
-            }
-        }
-
-        function copiarLinkCliente(id) {
-            const url = `${window.location.origin}${window.location.pathname}?os=${id}`;
-            if(navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(url).then(() => showToast("Link de Aprovação copiado!", "success"));
-            } else {
-                let textArea = document.createElement("textarea");
-                textArea.value = url;
-                textArea.style.position = "fixed"; document.body.appendChild(textArea);
-                textArea.focus(); textArea.select();
-                try { document.execCommand('copy'); showToast("Link copiado!", "success"); } catch (err) { alert("Link: " + url); }
-                document.body.removeChild(textArea);
-            }
-        }
-
-        // ASSINATURA CLIENTE
-        const clientSigCanvas = document.getElementById('client-sig-canvas');
-        const clientSigCtx = clientSigCanvas ? clientSigCanvas.getContext('2d') : null;
-        let clientAssinando = false;
-
-        function resizeClientCanvas() {
-            if(clientSigCanvas) {
-                const ratio = Math.max(window.devicePixelRatio || 1, 1);
-                clientSigCanvas.width = clientSigCanvas.offsetWidth * ratio;
-                clientSigCanvas.height = clientSigCanvas.offsetHeight * ratio;
-                clientSigCtx.scale(ratio, ratio);
-                clientSigCtx.lineWidth = 3;
-                clientSigCtx.lineCap = 'round';
-                clientSigCtx.strokeStyle = '#000';
-            }
-        }
-        function getClientCoords(e) {
-            const rect = clientSigCanvas.getBoundingClientRect();
-            const cx = e.touches ? e.touches[0].clientX : e.clientX;
-            const cy = e.touches ? e.touches[0].clientY : e.clientY;
-            return { x: cx - rect.left, y: cy - rect.top };
-        }
-
-        if(clientSigCanvas) {
-            clientSigCanvas.addEventListener('mousedown', (e) => { clientAssinando = true; const pos = getClientCoords(e); clientSigCtx.beginPath(); clientSigCtx.moveTo(pos.x, pos.y); });
-            clientSigCanvas.addEventListener('mousemove', (e) => { if(clientAssinando) { const pos = getClientCoords(e); clientSigCtx.lineTo(pos.x, pos.y); clientSigCtx.stroke(); } });
-            clientSigCanvas.addEventListener('mouseup', () => { clientAssinando = false; });
-            clientSigCanvas.addEventListener('touchstart', (e) => { clientAssinando = true; const pos = getClientCoords(e); clientSigCtx.beginPath(); clientSigCtx.moveTo(pos.x, pos.y); });
-            clientSigCanvas.addEventListener('touchmove', (e) => { if(clientAssinando) { const pos = getClientCoords(e); clientSigCtx.lineTo(pos.x, pos.y); clientSigCtx.stroke(); } e.preventDefault(); }, {passive: false});
-            clientSigCanvas.addEventListener('touchend', () => { clientAssinando = false; });
-        }
-
-        function abrirModalAssinaturaCliente() {
-            document.getElementById('modal-assinatura-cliente').style.display = 'flex';
-            setTimeout(resizeClientCanvas, 50);
-        }
-        function fecharModalAssinaturaCliente() { document.getElementById('modal-assinatura-cliente').style.display = 'none'; }
-        function limparAssinaturaCliente() { if(clientSigCtx) clientSigCtx.clearRect(0, 0, clientSigCanvas.width, clientSigCanvas.height); }
-
-        async function confirmarAprovacaoCliente() {
-            const btn = document.querySelector('#modal-assinatura-cliente button:last-child');
-            btn.innerText = "Aguarde..."; btn.disabled = true;
-            
-            try {
-                const dataUri = clientSigCanvas.toDataURL('image/png');
-                await supabaseClient.from('servicos').update({
-                    status: 'Aprovado',
-                    assinatura_cliente: dataUri
-                }).eq('id', osParamID);
-
-                fecharModalAssinaturaCliente();
-                document.getElementById('client-content').classList.add('hidden');
-                document.getElementById('client-success').classList.remove('hidden');
-            } catch(e) {
-                alert("Erro ao aprovar. Tente novamente.");
-                btn.innerText = "Confirmar"; btn.disabled = false;
-            }
-        }
-
-
-        // --- LÓGICA DO SISTEMA (ADMIN) ---
         let timeTrackerMeta = JSON.parse(localStorage.getItem('brvolts_timetracker')) || {};
         function saveTimeTracker() { localStorage.setItem('brvolts_timetracker', JSON.stringify(timeTrackerMeta)); }
 
@@ -874,6 +633,100 @@
             document.getElementById('calc-resultado').classList.remove('hidden');
         }
 
+        function maskPhone(e) { let v = e.target.value.replace(/\D/g, ""); if (v.length > 11) v = v.slice(0, 11); if (v.length > 10) v = v.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3"); else if (v.length > 5) v = v.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3"); else if (v.length > 2) v = v.replace(/^(\d\d)(\d{0,5})/, "($1) $2"); e.target.value = v; }
+        function maskCEP(e) { let v = e.target.value.replace(/\D/g, ""); if (v.length > 8) v = v.slice(0, 8); if (v.length > 5) v = v.replace(/^(\d{5})(\d{1,3}).*/, "$1-$2"); e.target.value = v; }
+        function maskCurrency(e) { let value = e.target.value.replace(/\D/g, ""); if(!value) { e.target.value = ""; return; } value = (parseInt(value) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); e.target.value = value; }
+        function parseDinheiro(val) { if (!val) return 0; if (typeof val === 'number') return val; const str = String(val).replace(/[R$\s\.]/g, '').replace(',', '.'); return parseFloat(str) || 0; }
+        function formatarDinheiroInput(val) { if (!val) return ''; return parseFloat(val).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+
+        function extrairData(dataString) {
+            if (!dataString) return null; let dia, mes, ano;
+            if (dataString.includes('/')) { const p = dataString.split('/'); if (p.length >= 3) { dia = p[0]; mes = p[1]; ano = p[2]; } } 
+            else if (dataString.includes('-')) { const p = dataString.split('-'); if (p.length >= 3) { if (p[0].length === 4) { ano = p[0]; mes = p[1]; dia = p[2]; } else { dia = p[0]; mes = p[1]; ano = p[2]; } } }
+            if (dia && mes && ano) return { dia: dia.padStart(2, '0'), mes: mes.padStart(2, '0'), ano: ano };
+            return null;
+        }
+
+        function exportarJSON() {
+            if (clientes.length === 0 && orcamentos.length === 0) return showToast("Nenhum dado.", "error");
+            const data = { clientes: clientes, orcamentos: orcamentos, tracker: timeTrackerMeta };
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+            const link = document.createElement("a"); link.setAttribute("href", dataStr); link.setAttribute("download", `brvolts_backup_${new Date().toISOString().slice(0,10)}.json`); document.body.appendChild(link); link.click(); link.remove(); showToast("Backup baixado!", "success");
+        }
+
+        async function forcarSincronizacao() { document.getElementById('global-loader').style.display = 'flex'; await initApp(); showToast("Sincronizado!", "success"); }
+
+        // --- INÍCIO: NOVO SISTEMA DE LOGIN SUPABASE + RECAPTCHA ---
+        let supabaseClient = null;
+        try { 
+            if (window.supabase) supabaseClient = window.supabase.createClient('https://mflvwscgghdvtxasgmdd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mbHZ3c2NnZ2hkdnR4YXNnbWRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0ODgyNjQsImV4cCI6MjA5ODA2NDI2NH0.tB34mGuyV-Y4xGwnF-1UANJl-p534yEmvsPPcDUA4sk'); 
+        } catch(e) { console.error("Erro no Supabase:", e); }
+
+        async function checkSession() {
+            if(!supabaseClient) return;
+            const { data, error } = await supabaseClient.auth.getSession();
+            if (data?.session) {
+                desbloquearApp();
+            } else {
+                document.getElementById('login-screen').style.display = 'flex';
+            }
+        }
+
+        async function realizarLogin(e) {
+            e.preventDefault();
+            
+            if(!supabaseClient) {
+                alert("Erro interno: Supabase não conectado.");
+                return;
+            }
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const captchaResponse = grecaptcha.getResponse();
+            if (!captchaResponse) {
+                alert("Por favor, confirme que você não é um robô.");
+                return;
+            }
+
+            document.getElementById('global-loader').style.display = 'flex';
+
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                document.getElementById('global-loader').style.display = 'none';
+                alert("Erro ao entrar: Verifique seu e-mail e senha."); 
+                grecaptcha.reset(); 
+            } else {
+                desbloquearApp();
+            }
+        }
+
+        async function fazerLogout() {
+            if(supabaseClient) await supabaseClient.auth.signOut();
+            window.location.reload();
+        }
+
+        function desbloquearApp() {
+            document.getElementById('login-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('login-screen').style.display = 'none'; 
+                document.getElementById('main-container').classList.remove('hidden'); 
+                document.getElementById('global-loader').style.display = 'flex';
+                const now = new Date(); 
+                document.getElementById('filtro-mes').value = String(now.getMonth() + 1).padStart(2, '0'); 
+                document.getElementById('filtro-ano').value = String(now.getFullYear());
+                initApp();
+            }, 500);
+        }
+
+        // Chama verificação de sessão assim que a página carregar
+        checkSession();
+        // --- FIM: NOVO SISTEMA DE LOGIN SUPABASE ---
+
         let clientes = []; let orcamentos = []; let editandoOSId = null;
         let fotosAntesTemporarias = []; let fotosDepoisTemporarias = [];
 
@@ -892,7 +745,7 @@
 
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); const active = document.querySelector('.section.active').id; if(active === 'orcamentos') salvarOrcamento(); else if(active === 'clientes') salvarCliente(); }
-            if (e.key === 'Escape') { fecharHistorico(); fecharModalWhatsapp(); fecharModalEdicaoCliente(); fecharCalculadora(); fecharModalAssinaturaCliente(); }
+            if (e.key === 'Escape') { fecharHistorico(); fecharModalWhatsapp(); fecharModalEdicaoCliente(); fecharCalculadora(); }
         });
 
         document.addEventListener('DOMContentLoaded', async () => { if(localStorage.getItem('brvolts-theme') === 'light') toggleTheme(); });
@@ -907,15 +760,12 @@
                             id: s.id, osNumber: s.os_number || '', clienteId: s.cliente_id, desc: s.descricao || '', obs: s.observacoes || '',
                             materiaisStatus: s.materiais_status || '', materiaisLista: s.materiais_lista || '', valor: s.valor_servico || 0,
                             despesas: s.despesas || 0, status: s.status || 'Pendente', data: s.data_servico || '', fotos: s.fotos || [], pago: s.pago || false,
-                            laudoAterramento: s.laudo_aterramento || false, laudoBornes: s.laudo_bornes || false, laudoIsolacao: s.laudo_isolacao || false, laudoInstrucao: s.laudo_instrucao || false,
-                            assinaturaCliente: s.assinatura_cliente || ''
+                            laudoAterramento: s.laudo_aterramento || false, laudoBornes: s.laudo_bornes || false, laudoIsolacao: s.laudo_isolacao || false, laudoInstrucao: s.laudo_instrucao || false
                         }));
                     }
-                } catch(e) {}
+                } catch(e) { console.error(e) }
             }
-            document.getElementById('global-loader').style.display = 'none';
-            document.getElementById('main-header').classList.remove('hidden');
-            atualizarTelas();
+            document.getElementById('global-loader').style.display = 'none'; atualizarTelas();
         }
 
         function mudarAba(aba) {
@@ -923,6 +773,18 @@
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(aba).classList.add('active'); document.getElementById('tab-' + aba).classList.add('active');
             window.scrollTo(0, 0); atualizarTelas();
+        }
+
+        const cepInput = document.getElementById('cli-cep');
+        if(cepInput) {
+            cepInput.addEventListener('input', async function(e) {
+                let cep = e.target.value.replace(/\D/g, '');
+                if (cep.length === 8) {
+                    try { let res = await fetch(`https://viacep.com.br/ws/${cep}/json/`); let data = await res.json();
+                        if(!data.erro) { document.getElementById('cli-rua').value = data.logradouro; document.getElementById('cli-bairro').value = data.bairro; document.getElementById('cli-cidade_uf').value = `${data.localidade}/${data.uf}`; document.getElementById('cli-num').focus(); }
+                    } catch(err) {}
+                }
+            });
         }
 
         async function salvarCliente() {
@@ -1019,9 +881,12 @@
                     const formData = new FormData(); formData.append('image', base64.split(',')[1]); formData.append('expiration', 86400); 
                     const res = await fetch(`https://api.imgbb.com/1/upload?key=34c16686fb4cdc4ae33bc426bebfda47`, { method: 'POST', body: formData });
                     const data = await res.json();
+                    
                     const src = (data && data.data && data.data.url) ? data.data.url : base64;
                     if(tipo === 'antes') fotosAntesTemporarias.push(src); else fotosDepoisTemporarias.push(src);
-                } catch(err) { if(tipo === 'antes') fotosAntesTemporarias.push(base64); else fotosDepoisTemporarias.push(base64); }
+                } catch(err) { 
+                    if(tipo === 'antes') fotosAntesTemporarias.push(base64); else fotosDepoisTemporarias.push(base64);
+                }
                 atualizarPreviewFotos();
             }
             document.getElementById('global-loader').style.display = 'none'; showToast("Pronto!", "success");
@@ -1030,10 +895,15 @@
         function atualizarPreviewFotos() {
             const contAntes = document.getElementById('preview-fotos-antes');
             if(contAntes) contAntes.innerHTML = fotosAntesTemporarias.map((src, i) => `<div class="relative w-16 h-16"><img src="${src}" class="w-full h-full object-cover rounded border border-red-900"><button onclick="removerFoto(${i}, 'antes')" class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs shadow">X</button></div>`).join('');
+            
             const contDepois = document.getElementById('preview-fotos-depois');
             if(contDepois) contDepois.innerHTML = fotosDepoisTemporarias.map((src, i) => `<div class="relative w-16 h-16"><img src="${src}" class="w-full h-full object-cover rounded border border-green-900"><button onclick="removerFoto(${i}, 'depois')" class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs shadow">X</button></div>`).join('');
         }
-        function removerFoto(i, tipo) { if(tipo === 'antes') fotosAntesTemporarias.splice(i, 1); else fotosDepoisTemporarias.splice(i, 1); atualizarPreviewFotos(); }
+        
+        function removerFoto(i, tipo) { 
+            if(tipo === 'antes') fotosAntesTemporarias.splice(i, 1); else fotosDepoisTemporarias.splice(i, 1);
+            atualizarPreviewFotos(); 
+        }
 
         function gerarNumeroOS() {
             const anoAtual = new Date().getFullYear().toString();
@@ -1059,7 +929,12 @@
             const chkInstrucao = document.getElementById('chk-laudo-instrucao').checked;
 
             if(!clienteId || !desc) return showToast('Selecione cliente e preencha descrição!', 'error');
-            const fotosEstruturadas = [...fotosAntesTemporarias.map(f => 'antes|||' + f), ...fotosDepoisTemporarias.map(f => 'depois|||' + f)];
+            
+            // Junta as fotos no formato para o BD (prefixando)
+            const fotosEstruturadas = [
+                ...fotosAntesTemporarias.map(f => 'antes|||' + f),
+                ...fotosDepoisTemporarias.map(f => 'depois|||' + f)
+            ];
 
             if(editandoOSId) {
                 const idProtegido = editandoOSId; const os = orcamentos.find(o => String(o.id) === String(idProtegido));
@@ -1109,9 +984,10 @@
             (os.fotos || []).forEach(f => {
                 if(f.startsWith('antes|||')) fotosAntesTemporarias.push(f.replace('antes|||',''));
                 else if(f.startsWith('depois|||')) fotosDepoisTemporarias.push(f.replace('depois|||',''));
-                else fotosDepoisTemporarias.push(f);
+                else fotosDepoisTemporarias.push(f); // Legacy cai no depois
             });
-            atualizarPreviewFotos(); showToast("Clonada! Salve para criar uma nova.", "info"); mudarAba('orcamentos');
+            atualizarPreviewFotos();
+            showToast("Clonada! Salve para criar uma nova.", "info"); mudarAba('orcamentos');
         }
 
         function editarOS(id) {
@@ -1129,9 +1005,10 @@
             (os.fotos || []).forEach(f => {
                 if(f.startsWith('antes|||')) fotosAntesTemporarias.push(f.replace('antes|||',''));
                 else if(f.startsWith('depois|||')) fotosDepoisTemporarias.push(f.replace('depois|||',''));
-                else fotosDepoisTemporarias.push(f);
+                else fotosDepoisTemporarias.push(f); // Legacy cai no depois
             });
             atualizarPreviewFotos();
+
             document.getElementById('titulo-aba-servico').innerText = `Editando: ${os.osNumber}`;
             document.getElementById('btn-salvar-os').innerText = "Atualizar"; document.getElementById('btn-cancelar-edicao').classList.remove('hidden');
             mudarAba('orcamentos');
@@ -1140,9 +1017,12 @@
         function cancelarEdicaoOS() { limparFormularioOS(); showToast("Cancelada."); }
 
         function limparFormularioOS() {
-            editandoOSId = null; document.getElementById('titulo-aba-servico').innerText = "Descrever Serviço"; document.getElementById('btn-salvar-os').innerText = "Salvar Orçamento (Ctrl+S)";
+            editandoOSId = null;
+            document.getElementById('titulo-aba-servico').innerText = "Descrever Serviço";
+            document.getElementById('btn-salvar-os').innerText = "Salvar Orçamento (Ctrl+S)";
             document.getElementById('btn-cancelar-edicao').classList.add('hidden');
-            ['orc-desc', 'orc-obs', 'orc-materiais', 'orc-valor', 'orc-despesas', 'orc-data', 'orc-fotos-antes', 'orc-fotos-depois'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+            ['orc-desc', 'orc-obs', 'orc-materiais', 'orc-valor', 'orc-despesas', 'orc-data'].forEach(id => { document.getElementById(id).value = ''; });
+            ['orc-fotos-antes', 'orc-fotos-depois'].forEach(id => { document.getElementById(id).value = ''; });
             document.getElementById('orc-pago').checked = false;
             ['chk-laudo-aterramento','chk-laudo-bornes','chk-laudo-isolacao','chk-laudo-instrucao'].forEach(id => { document.getElementById(id).checked = false; });
             fotosAntesTemporarias = []; fotosDepoisTemporarias = []; atualizarPreviewFotos();
@@ -1154,6 +1034,19 @@
             if(supabaseClient) { try { await supabaseClient.from('servicos').delete().eq('id', id); } catch(e) {} }
         }
 
+        function exportarCSV() {
+            if(orcamentos.length === 0) return showToast("Vazio.", "error");
+            let csvContent = "data:text/csv;charset=utf-8,OS Numero,Cliente,Data,Status,Pago,Valor Total,Despesas,Lucro Bruto\r\n";
+            orcamentos.forEach(o => {
+                const c = clientes.find(cli => String(cli.id) === String(o.clienteId));
+                const nomeCli = c ? c.nome : "Desconhecido"; const lucro = (parseFloat(o.valor || 0) - parseFloat(o.despesas || 0)).toFixed(2);
+                csvContent += `${o.osNumber},"${nomeCli}",${o.data},${o.status},${o.pago ? 'Sim' : 'Não'},${o.valor || 0},${o.despesas || 0},${lucro}\r\n`;
+            });
+            const link = document.createElement("a"); link.setAttribute("href", encodeURI(csvContent)); link.setAttribute("download", "brvolts_os.csv");
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        }
+
+        // TIME TRACKING LÓGICA
         function toggleTimer(id) {
             const os = orcamentos.find(o => String(o.id) === String(id)); if(!os) return;
             if(!timeTrackerMeta[id]) timeTrackerMeta[id] = { totalMinutos: 0, startedAt: null };
@@ -1169,6 +1062,7 @@
         function atualizarDashboard() {
             const dashFat = document.getElementById('dash-faturamento'); const pLucro = document.getElementById('dash-lucro');
             const filtroMes = document.getElementById('filtro-mes')?.value; const filtroAno = document.getElementById('filtro-ano')?.value;
+            
             let faturamento = 0, despesas = 0; let clientesStats = {}; const hojeData = new Date();
             const kanbanLists = { 'Pendente': [], 'Aprovado': [], 'Em Andamento': [], 'Concluído': [] };
             const followups = []; const alertas = []; const garantias = [];
@@ -1238,11 +1132,8 @@
                 const total = parseFloat(o.valor || 0); const lucro = total - parseFloat(o.despesas || 0);
                 
                 let badges = ''; if(o.pago) badges += `<span class="bg-green-900/50 text-green-400 text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">Pago</span>`;
-                if(o.assinaturaCliente) badges += `<span class="bg-blue-900/50 text-blue-400 text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">✍️ Assinado</span>`;
                 
-                let trackerBtn = ''; let rentabilidadeHtml = ''; let linkBtn = '';
-                if(o.status === 'Pendente') linkBtn = `<button onclick="copiarLinkCliente(${o.id})" class="w-full mt-2 bg-zinc-800 hover:bg-zinc-700 text-gray-300 border border-zinc-700 text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition">🔗 Copiar Link P/ Cliente</button>`;
-                
+                let trackerBtn = ''; let rentabilidadeHtml = '';
                 if(o.status === 'Aprovado') trackerBtn = `<button onclick="toggleTimer(${o.id})" class="w-full mt-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition">▶ Iniciar Serviço</button>`;
                 else if(o.status === 'Em Andamento') trackerBtn = `<button onclick="toggleTimer(${o.id})" class="w-full mt-3 bg-red-600 hover:bg-red-500 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition animate-pulse">⏹ Finalizar e Salvar</button>`;
 
@@ -1257,7 +1148,7 @@
                     <p class="font-bold text-gray-200 text-sm mb-1 truncate">${cNome}</p>
                     <p class="text-xs text-gray-400 mb-2">📅 ${o.data}</p>
                     <p class="text-green-500 font-bold text-sm border-t border-zinc-800 pt-2 flex justify-between">R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits:2})} <span class="text-xs text-blue-500 font-normal mt-0.5" title="Lucro Bruto">(Lucro: R$ ${lucro.toLocaleString('pt-BR', {minimumFractionDigits:0})})</span></p>
-                    ${linkBtn}${rentabilidadeHtml}${trackerBtn}
+                    ${rentabilidadeHtml}${trackerBtn}
                     <div class="flex justify-between mt-3 gap-2">
                         <select onchange="mudarStatusOS(${o.id}, this.value)" class="text-[10px] p-1.5 bg-zinc-800 border border-zinc-700 rounded text-white flex-grow outline-none"><option value="Pendente" ${o.status === 'Pendente' ? 'selected' : ''}>Pendente</option><option value="Aprovado" ${o.status === 'Aprovado' ? 'selected' : ''}>Aprovado</option><option value="Em Andamento" ${o.status === 'Em Andamento' ? 'selected' : ''}>Andamento</option><option value="Concluído" ${o.status === 'Concluído' ? 'selected' : ''}>Concluído</option></select>
                         <button onclick="editarOS(${o.id})" class="bg-zinc-800 hover:bg-zinc-700 p-1.5 rounded" title="Editar">✏️</button>
@@ -1311,8 +1202,7 @@
             if(agendados.length === 0) { lista.innerHTML = '<p class="text-gray-500 text-sm">Nenhum serviço pendente.</p>'; return; }
             lista.innerHTML = agendados.map(o => {
                 const c = clientes.find(cli => String(cli.id) === String(o.clienteId));
-                return `
-                <li class="bg-zinc-900 p-4 rounded-xl border border-zinc-800 transition-colors hover:border-blue-900/50">
+                return `<li class="bg-zinc-900 p-4 rounded-xl border border-zinc-800 transition-colors hover:border-blue-900/50">
                     <div class="flex justify-between items-start mb-2"><p class="text-xs bg-blue-900/30 text-blue-400 px-2 py-1 rounded-full font-bold">📅 ${o.data}</p><span class="text-xs text-gray-500">OS: ${o.osNumber}</span></div>
                     <p class="font-bold text-white text-lg">${c ? c.nome : 'Desconhecido'}</p><p class="text-sm text-gray-400 mt-1 line-clamp-2">${o.desc || 'Sem descrição'}</p><p class="text-sm text-gray-500 mt-1">📍 ${c && c.end ? c.end : 'Sem endereço'}</p>
                 </li>`;
@@ -1326,8 +1216,7 @@
                 if(selectOS) {
                     const optionsOrcamentos = (orcamentos || []).slice(-15).reverse().map(o => {
                         const c = (clientes || []).find(cli => String(cli.id) === String(o.clienteId)); const cNome = c && c.nome ? c.nome : 'Removido'; const checkPago = o.pago ? '💰 ' : '';
-                        const checkAss = o.assinaturaCliente ? '✍️ ' : '';
-                        return `<option value="${o.id}">${checkAss}${checkPago}OS ${o.osNumber || 'S/N'} | ${cNome}</option>`;
+                        return `<option value="${o.id}">${checkPago}OS ${o.osNumber || 'S/N'} | ${cNome}</option>`;
                     }).join('');
                     selectOS.innerHTML = '<option value="" disabled selected>Escolha o serviço salvo...</option>' + optionsOrcamentos;
                 }
@@ -1365,24 +1254,37 @@
                 if(tipo === 'Orçamento' && dEmissao) { const dataObj = new Date(dEmissao.ano, parseInt(dEmissao.mes) - 1, dEmissao.dia); dataObj.setDate(dataObj.getDate() + 10); validadeStr = dataObj.toLocaleDateString('pt-BR'); }
                 document.getElementById('print-validade').innerHTML = validadeStr ? `Válido até <strong>${validadeStr}</strong>.` : '';
 
+                // SEPARAR FOTOS ANTES E DEPOIS
                 let fAntes = []; let fDepois = [];
                 (orcamento.fotos || []).forEach(f => {
                     if(f.startsWith('antes|||')) fAntes.push(f.replace('antes|||',''));
                     else if(f.startsWith('depois|||')) fDepois.push(f.replace('depois|||',''));
-                    else fDepois.push(f);
+                    else fDepois.push(f); // Legado
                 });
 
-                const secFotos = document.getElementById('print-section-fotos'); const colAntes = document.getElementById('print-col-antes'); const colDepois = document.getElementById('print-col-depois'); const fullContainer = document.getElementById('print-fotos-full-container'); const wrapper = document.getElementById('print-fotos-wrapper');
-                if (document.getElementById('chk-incluir-fotos').checked && (fAntes.length > 0 || fDepois.length > 0)) {
+                const secFotos = document.getElementById('print-section-fotos');
+                const colAntes = document.getElementById('print-col-antes');
+                const colDepois = document.getElementById('print-col-depois');
+                const fullContainer = document.getElementById('print-fotos-full-container');
+                const wrapper = document.getElementById('print-fotos-wrapper');
+                const chkFotos = document.getElementById('chk-incluir-fotos').checked;
+
+                if (chkFotos && (fAntes.length > 0 || fDepois.length > 0)) {
                     secFotos.style.display = 'block';
+
                     if (fAntes.length > 0 && fDepois.length > 0) {
-                        wrapper.style.display = 'flex'; fullContainer.style.display = 'none'; colAntes.style.display = 'block'; colDepois.style.display = 'block';
-                        document.getElementById('print-fotos-antes-container').innerHTML = fAntes.map(src => `<img src="${src}">`).join(''); document.getElementById('print-fotos-depois-container').innerHTML = fDepois.map(src => `<img src="${src}">`).join('');
+                        wrapper.style.display = 'flex'; fullContainer.style.display = 'none';
+                        colAntes.style.display = 'block'; colDepois.style.display = 'block';
+                        document.getElementById('print-fotos-antes-container').innerHTML = fAntes.map(src => `<img src="${src}">`).join('');
+                        document.getElementById('print-fotos-depois-container').innerHTML = fDepois.map(src => `<img src="${src}">`).join('');
                     } else {
-                        wrapper.style.display = 'none'; fullContainer.style.display = 'flex'; const lista = fAntes.length > 0 ? fAntes : fDepois;
+                        wrapper.style.display = 'none'; fullContainer.style.display = 'flex';
+                        const lista = fAntes.length > 0 ? fAntes : fDepois;
                         fullContainer.innerHTML = lista.map(src => `<img src="${src}">`).join('');
                     }
-                } else secFotos.style.display = 'none';
+                } else {
+                    secFotos.style.display = 'none';
+                }
 
                 const sLaudo = document.getElementById('print-section-laudo'); const lLaudo = document.getElementById('print-laudo-lista'); let itensLaudo = [];
                 if(orcamento.laudoAterramento) itensLaudo.push('<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Verificação de Aterramento (TT/TN-S) conferida</li>');
@@ -1390,13 +1292,6 @@
                 if(orcamento.laudoIsolacao) itensLaudo.push('<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Testes de isolação e tensão operacionais aprovados</li>');
                 if(orcamento.laudoInstrucao) itensLaudo.push('<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Cliente instruído sobre parâmetros de uso e garantia</li>');
                 if(itensLaudo.length > 0) { sLaudo.style.display = 'block'; lLaudo.innerHTML = itensLaudo.join(''); } else { sLaudo.style.display = 'none'; }
-
-                const sigContainer = document.getElementById('print-area-assinatura'); const imgAss = document.getElementById('print-img-assinatura');
-                if(orcamento.assinaturaCliente) { 
-                    if(imgAss) { imgAss.src = orcamento.assinaturaCliente; imgAss.style.display = 'block'; }
-                    if(sigContainer) sigContainer.style.display = 'flex';
-                } else { if(imgAss) imgAss.style.display = 'none'; if(sigContainer) sigContainer.style.display = 'none'; }
-                document.getElementById('print-assinatura-cliente').innerText = cliente.nome || '';
 
                 const pixBox = document.getElementById('print-pix-box'); const carimboPago = document.getElementById('carimbo-pago-print'); const condicoesContainer = document.querySelector('.payment-conditions');
                 if (estaPago && (tipo === 'OS' || tipo === 'Recibo')) {
@@ -1408,6 +1303,7 @@
 
                 const textoFormas = `<p><strong>Formas aceitas:</strong></p><p>• PIX Escaneável (Ao lado)</p><p>• Dinheiro / Cartões / Crédito</p>`;
                 const textoPago = `<p><strong>Situação:</strong> <span style="color: #16a34a; font-weight: bold;">SERVIÇO PAGO</span></p><p>Obrigado pela preferência e confiança na BRvolts!</p>`;
+
                 if (tipo === 'Orçamento') condicoesContainer.innerHTML = `<h3>Pagamento</h3>` + textoFormas;
                 else if (tipo === 'Recibo') condicoesContainer.innerHTML = `<h3>Pagamento</h3>` + (estaPago ? textoPago + '<br>' : '') + textoFormas;
                 else if (tipo === 'OS') condicoesContainer.innerHTML = `<h3>Pagamento</h3>` + (estaPago ? textoPago : textoFormas);
