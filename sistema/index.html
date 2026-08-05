@@ -679,7 +679,10 @@
         async function realizarLogin(e) {
             e.preventDefault();
             
-            if(!supabaseClient) return showToast("Erro interno de banco de dados.", "error");
+            if(!supabaseClient) {
+                alert("Erro interno: Supabase não conectado.");
+                return;
+            }
 
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
@@ -687,7 +690,7 @@
             // Verificação do reCAPTCHA
             const captchaResponse = grecaptcha.getResponse();
             if (!captchaResponse) {
-                showToast("Por favor, confirme que você não é um robô.", "error");
+                alert("Por favor, confirme que você não é um robô.");
                 return;
             }
 
@@ -701,13 +704,13 @@
 
             if (error) {
                 document.getElementById('global-loader').style.display = 'none';
-                showToast("Acesso Negado: Credenciais inválidas.", "error");
-                grecaptcha.reset(); // Reseta o captcha para nova tentativa
+                // ESTA É A LINHA MÁGICA QUE VAI MOSTRAR O ERRO REAL
+                alert("ERRO DO SUPABASE: " + error.message); 
+                grecaptcha.reset(); 
             } else {
                 desbloquearApp();
             }
         }
-
         async function realizarLogout() {
             if(supabaseClient) {
                 await supabaseClient.auth.signOut();
