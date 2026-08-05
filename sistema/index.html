@@ -451,6 +451,9 @@
                         <button onclick="imprimirEEnviar('Orçamento')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📄 Enviar Orçamento</button>
                         <button onclick="imprimirEEnviar('OS')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📋 Enviar OS</button>
                         <button onclick="imprimirEEnviar('Recibo')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">💰 Enviar Recibo</button>
+                        <button onclick="copiarLinkMagico()" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow mt-3 border border-purple-500">
+    🪄 Copiar Link Mágico para o Cliente
+</button>
                     </div>
                 </div>
             </div>
@@ -1328,7 +1331,20 @@
             if(linkWhatsApp) { setTimeout(() => { document.getElementById('btn-whatsapp-link').href = linkWhatsApp; document.getElementById('whatsapp-modal').style.display = 'flex'; }, 1000); }
         }
         function fecharModalWhatsapp() { document.getElementById('whatsapp-modal').style.display = 'none'; }
-
+function copiarLinkMagico() {
+    const orcIdEl = document.getElementById('os-orcamento'); 
+    if(!orcIdEl || !orcIdEl.value) {
+        return showToast('Selecione uma OS na lista acima primeiro!', 'error');
+    }
+    const link = `https://brvolts.site/proposta.html?id=${orcIdEl.value}`;
+    
+    // Copia o link para o celular/pc
+    navigator.clipboard.writeText(link).then(() => {
+        showToast("Link Mágico copiado! Cole no WhatsApp.", "success");
+    }).catch(() => {
+        showToast("Erro ao copiar, tente novamente.", "error");
+    });
+}
     </script>
 </body>
 </html>
