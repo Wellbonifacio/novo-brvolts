@@ -451,7 +451,7 @@
                         <button onclick="imprimirEEnviar('Orçamento')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📄 Enviar Orçamento</button>
                         <button onclick="imprimirEEnviar('OS')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📋 Enviar OS</button>
                         <button onclick="imprimirEEnviar('Recibo')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">💰 Enviar Recibo</button>
-                        <button onclick="copiarLinkMagico()" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow mt-3 border border-purple-500">
+                        <button onclick="copiarLinkMagico()" class="w-full col-span-1 md:col-span-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow mt-3 border border-purple-500">
     🪄 Copiar Link Mágico para o Cliente
 </button>
                     </div>
@@ -798,8 +798,10 @@
             if(!nome) return showToast('Preencha o nome!', 'error');
             const tempId = Date.now(); clientes.push({ id: tempId, nome, tel, end }); atualizarTelas();
             if(supabaseClient) {
-                const { data } = await supabaseClient.from('clientes').insert([{ nome, telefone: tel, endereco: end }]).select();
-                if(data && data.length > 0) { const idx = clientes.findIndex(c => c.id === tempId); if(idx > -1) clientes[idx].id = data[0].id; atualizarTelas(); }
+                const { data, error } = await supabaseClient.from('clientes').insert([{ nome, telefone: tel, endereco: end }]).select();
+                if (error) {
+                    alert("⚠️ ERRO DO SUPABASE AO SALVAR CLIENTE:\n" + error.message);
+                } else if(data && data.length > 0) { const idx = clientes.findIndex(c => c.id === tempId); if(idx > -1) clientes[idx].id = data[0].id; atualizarTelas(); }
             }
             document.getElementById('cli-nome').value = ''; document.getElementById('cli-tel').value = ''; 
             ['cli-cep', 'cli-rua', 'cli-num', 'cli-comp', 'cli-bairro', 'cli-cidade_uf'].forEach(id => { document.getElementById(id).value = ''; }); showToast('Cliente cadastrado!');
@@ -948,26 +950,38 @@
                     os.laudoIsolacao = chkIsolacao; os.laudoInstrucao = chkInstrucao;
                 }
                 if(supabaseClient) {
-                    await supabaseClient.from('servicos').update({
-                        cliente_id: clienteId, descricao: desc, observacoes: obs, materiais_status: materiaisStatus,
+                    const { error } = await supabaseClient.from('servicos').update({
+                        cliente_id: parseInt(clienteId), descricao: desc, observacoes: obs, materiais_status: materiaisStatus,
                         materiais_lista: materiaisLista, valor_servico: valor, despesas: despesas, fotos: fotosEstruturadas,
                         pago: pago, data_servico: dataServ, laudo_aterramento: chkAterramento, laudo_bornes: chkBornes,
                         laudo_isolacao: chkIsolacao, laudo_instrucao: chkInstrucao
                     }).eq('id', idProtegido);
+                    if (error) alert("❌ O SUPABASE RECUSOU A ATUALIZAÇÃO:\n" + error.message);
                 }
                 atualizarTelas(); showToast('Atualizado!'); limparFormularioOS(); mudarAba('os');
             } else {
                 const numOs = gerarNumeroOS(); const tempId = Date.now();
                 const novaOs = { id: tempId, osNumber: numOs, clienteId: parseInt(clienteId), desc, obs, materiaisStatus, materiaisLista, valor: valor, despesas: despesas, data: dataServ, status: 'Pendente', fotos: fotosEstruturadas, pago: pago, laudoAterramento: chkAterramento, laudoBornes: chkBornes, laudoIsolacao: chkIsolacao, laudoInstrucao: chkInstrucao };
-                orcamentos.push(novaOs); atualizarTelas(); limparFormularioOS(); showToast('Salvo! Pode Gerar PDF.'); mudarAba('os');
+                
+                orcamentos.push(novaOs); atualizarTelas(); limparFormularioOS(); mudarAba('os');
+                
                 if(supabaseClient) {
                     const { data, error } = await supabaseClient.from('servicos').insert([{
-                        cliente_id: clienteId, os_number: numOs, descricao: desc, observacoes: obs, materiais_status: materiaisStatus,
+                        cliente_id: parseInt(clienteId), os_number: numOs, descricao: desc, observacoes: obs, materiais_status: materiaisStatus,
                         materiais_lista: materiaisLista, valor_servico: valor, despesas: despesas, data_servico: dataServ, status: 'Pendente',
                         fotos: fotosEstruturadas, pago: pago, laudo_aterramento: chkAterramento, laudo_bornes: chkBornes,
                         laudo_isolacao: chkIsolacao, laudo_instrucao: chkInstrucao
                     }]).select();
-                    if(!error && data && data.length > 0) { const idx = orcamentos.findIndex(o => o.id === tempId); if(idx > -1) orcamentos[idx].id = data[0].id; atualizarTelas(); }
+                    
+                    if (error) {
+                        alert("❌ O SUPABASE RECUSOU SALVAR A OS:\n" + error.message);
+                        console.error(error);
+                    } else if(data && data.length > 0) { 
+                        const idx = orcamentos.findIndex(o => o.id === tempId); 
+                        if(idx > -1) orcamentos[idx].id = data[0].id; 
+                        atualizarTelas();
+                        showToast('Salvo na nuvem!');
+                    }
                 }
             }
         }
@@ -1154,15 +1168,33 @@
                     ${rentabilidadeHtml}${trackerBtn}
                     <div class="flex justify-between mt-3 gap-2">
                         <select onchange="mudarStatusOS(${o.id}, this.value)" class="text-[10px] p-1.5 bg-zinc-800 border border-zinc-700 rounded text-white flex-grow outline-none"><option value="Pendente" ${o.status === 'Pendente' ? 'selected' : ''}>Pendente</option><option value="Aprovado" ${o.status === 'Aprovado' ? 'selected' : ''}>Aprovado</option><option value="Em Andamento" ${o.status === 'Em Andamento' ? 'selected' : ''}>Andamento</option><option value="Concluído" ${o.status === 'Concluído' ? 'selected' : ''}>Concluído</option></select>
-                        <button onclick="editarOS(${o.id})" class="bg-zinc-800 hover:bg-zinc-700 p-1.5 rounded" title="Editar">✏️</button>
+                        <div class="flex gap-1 shrink-0">
+                            <button onclick="editarOS(${o.id})" class="bg-zinc-800 hover:bg-zinc-700 p-1.5 rounded" title="Editar">✏️</button>
+                            <button onclick="excluirOS(${o.id})" class="bg-red-900/30 hover:bg-red-600 text-red-500 hover:text-white p-1.5 rounded transition" title="Excluir OS">🗑️</button>
+                        </div>
                     </div>
                 </div>`;
             };
 
             const sortFn = (a,b) => { const da = a.data ? a.data.split('/').reverse().join('-') : '0000'; const db = b.data ? b.data.split('/').reverse().join('-') : '0000'; return db.localeCompare(da); };
-            ['Pendente', 'Aprovado', 'Em Andamento', 'Concluído'].forEach(st => {
-                const el = document.getElementById(`kb-${st.toLowerCase().replace(' ','')}`); const cnt = document.getElementById(`kb-count-${st.toLowerCase().replace(' ','')}`);
-                if(el && cnt) { const list = kanbanLists[st].sort(sortFn); cnt.innerText = list.length; el.innerHTML = list.length > 0 ? list.map(renderKanbanCard).join('') : `<p class="text-xs text-gray-500 text-center mt-4">Vazio</p>`; }
+            
+            // CORREÇÃO DOS NOMES DAS COLUNAS
+            const statusMap = {
+                'Pendente': 'pendente',
+                'Aprovado': 'aprovado',
+                'Em Andamento': 'andamento',
+                'Concluído': 'concluido'
+            };
+
+            Object.keys(statusMap).forEach(st => {
+                const elId = statusMap[st];
+                const el = document.getElementById(`kb-${elId}`); 
+                const cnt = document.getElementById(`kb-count-${elId}`);
+                if(el && cnt) { 
+                    const list = kanbanLists[st].sort(sortFn); 
+                    cnt.innerText = list.length; 
+                    el.innerHTML = list.length > 0 ? list.map(renderKanbanCard).join('') : `<p class="text-xs text-gray-500 text-center mt-4">Vazio</p>`; 
+                }
             });
         }
 
@@ -1331,20 +1363,21 @@
             if(linkWhatsApp) { setTimeout(() => { document.getElementById('btn-whatsapp-link').href = linkWhatsApp; document.getElementById('whatsapp-modal').style.display = 'flex'; }, 1000); }
         }
         function fecharModalWhatsapp() { document.getElementById('whatsapp-modal').style.display = 'none'; }
-function copiarLinkMagico() {
-    const orcIdEl = document.getElementById('os-orcamento'); 
-    if(!orcIdEl || !orcIdEl.value) {
-        return showToast('Selecione uma OS na lista acima primeiro!', 'error');
-    }
-    const link = `https://brvolts.site/proposta.html?id=${orcIdEl.value}`;
-    
-    // Copia o link para o celular/pc
-    navigator.clipboard.writeText(link).then(() => {
-        showToast("Link Mágico copiado! Cole no WhatsApp.", "success");
-    }).catch(() => {
-        showToast("Erro ao copiar, tente novamente.", "error");
-    });
-}
+        
+        function copiarLinkMagico() {
+            const orcIdEl = document.getElementById('os-orcamento'); 
+            if(!orcIdEl || !orcIdEl.value) {
+                return showToast('Selecione uma OS na lista acima primeiro!', 'error');
+            }
+            const link = `https://brvolts.site/proposta.html?id=${orcIdEl.value}`;
+            
+            // Copia o link para o celular/pc
+            navigator.clipboard.writeText(link).then(() => {
+                showToast("Link Mágico copiado! Cole no WhatsApp.", "success");
+            }).catch(() => {
+                showToast("Erro ao copiar, tente novamente.", "error");
+            });
+        }
     </script>
 </body>
 </html>
