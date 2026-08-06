@@ -22,7 +22,6 @@
 
     <!-- CABEÇALHO DA PROPOSTA -->
     <header class="bg-zinc-900 border-b border-zinc-800 p-4 text-center sticky top-0 z-10 shadow-lg flex justify-center">
-        <!-- onerror evita que a página quebre se a logo não carregar -->
         <img src="logo1.png" alt="BRvolts" class="h-10 object-contain" onerror="this.style.display='none'">
     </header>
 
@@ -32,7 +31,7 @@
         <p class="text-gray-400 text-sm font-bold animate-pulse mt-4">Buscando sua proposta...</p>
     </div>
 
-    <!-- MENSAGEM DE ERRO (Agora mostra o motivo) -->
+    <!-- MENSAGEM DE ERRO -->
     <div id="error-screen" class="hidden flex-1 flex flex-col items-center justify-center p-8 text-center fade-in">
         <div class="text-red-500 text-5xl mb-4">⚠️</div>
         <h2 class="text-xl font-bold text-white mb-2">Proposta Indisponível</h2>
@@ -103,11 +102,7 @@
     </div>
 
     <script>
-        // CONEXÃO COM O SUPABASE
-        const supabaseUrl = 'https://mflvwscgghdvtxasgmdd.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mbHZ3c2NnZ2hkdnR4YXNnbWRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0ODgyNjQsImV4cCI6MjA5ODA2NDI2NH0.tB34mGuyV-Y4xGwnF-1UANJl-p534yEmvsPPcDUA4sk';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
+        let supabase = null;
         let dadosOS = null;
         let payloadPixCopiaECola = "";
 
@@ -125,28 +120,36 @@
 
         async function carregarProposta() {
             try {
+                // 1. Valida a URL primeiro
                 const urlParams = new URLSearchParams(window.location.search);
                 const osId = urlParams.get('id');
 
-                // Verifica se veio sem ID na URL
-                if (!osId || osId === 'undefined') {
-                    throw new Error("ID do orçamento ausente no link.");
+                if (!osId || osId === 'undefined' || osId === 'null') {
+                    throw new Error("O link está incompleto (falta o ID da OS).");
                 }
 
-                // Busca a OS
+                // 2. Conecta ao Banco de Dados APENAS DENTRO DA PROTEÇÃO
+                if (!window.supabase) {
+                    throw new Error("A biblioteca do sistema não conseguiu carregar.");
+                }
+                const supabaseUrl = 'https://mflvwscgghdvtxasgmdd.supabase.co';
+                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mbHZ3c2NnZ2hkdnR4YXNnbWRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0ODgyNjQsImV4cCI6MjA5ODA2NDI2NH0.tB34mGuyV-Y4xGwnF-1UANJl-p534yEmvsPPcDUA4sk';
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+                // 3. Busca a OS no banco
                 const { data: osData, error: osError } = await supabase.from('servicos').select('*').eq('id', osId).single();
                 
                 if (osError || !osData) {
-                    throw new Error("Não foi possível encontrar este orçamento no banco de dados.");
+                    throw new Error("Não foi possível encontrar este orçamento no sistema.");
                 }
                 
                 dadosOS = osData;
 
-                // Busca o Cliente da OS
+                // 4. Busca o Cliente da OS
                 const { data: cliData } = await supabase.from('clientes').select('nome').eq('id', dadosOS.cliente_id).single();
                 const nomeCliente = cliData ? cliData.nome : "Prezado Cliente";
 
-                // Preencher a tela
+                // 5. Preencher a tela
                 document.getElementById('os-number').innerText = `OS ${dadosOS.os_number}`;
                 document.getElementById('cliente-nome').innerText = nomeCliente;
                 document.getElementById('os-desc').innerText = dadosOS.descricao;
@@ -155,15 +158,15 @@
                 const valorFormatado = parseFloat(dadosOS.valor_servico || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
                 document.getElementById('os-valor').innerText = `R$ ${valorFormatado}`;
 
-                // Gera o código do PIX invisível
                 payloadPixCopiaECola = gerarPayloadPix('16562195730', 'Wellington Bonifacio', 'Marica', parseFloat(dadosOS.valor_servico || 0));
 
+                // Esconde carregamento e mostra a proposta
                 document.getElementById('loading').classList.add('hidden');
                 const pContent = document.getElementById('proposta-content');
                 pContent.classList.remove('hidden');
                 pContent.classList.add('flex', 'flex-col');
 
-                // Se já estiver concluído ou aprovado, esconde o botão e avisa
+                // Lógica do botão
                 if (dadosOS.status !== 'Pendente') {
                     const btn = document.getElementById('btn-aprovar');
                     btn.innerText = "✅ ORÇAMENTO JÁ APROVADO";
@@ -175,14 +178,13 @@
                 document.getElementById('action-bar').classList.remove('hidden');
 
             } catch (error) {
-                // Se der qualquer erro, esconde o loading e mostra a tela de erro
+                // SE ALGO DER ERRADO, CAI AQUI E AVISA
                 document.getElementById('loading').classList.add('hidden');
                 
                 const errScreen = document.getElementById('error-screen');
                 errScreen.classList.remove('hidden');
                 errScreen.classList.add('flex');
                 
-                // Exibe o erro real para facilitar se precisarmos debugar
                 const errLog = document.getElementById('error-log');
                 errLog.innerText = error.message;
                 errLog.classList.remove('hidden');
@@ -197,13 +199,12 @@
         }
 
         async function aprovarOrcamento() {
-            if (dadosOS.status !== 'Pendente') return;
+            if (!supabase || dadosOS.status !== 'Pendente') return;
 
             const btn = document.getElementById('btn-aprovar');
             btn.innerText = "⏳ Aprovando...";
             btn.disabled = true;
 
-            // Atualiza o banco (MOVE NO KANBAN SOZINHO!)
             const { error } = await supabase.from('servicos').update({ status: 'Aprovado' }).eq('id', dadosOS.id);
 
             if (!error) {
@@ -220,7 +221,7 @@
             }
         }
 
-        // GATILHO CORRIGIDO: Carrega assim que o código estiver pronto, sem esperar imagens pesadas.
+        // Aguarda a tela desenhar para rodar a lógica
         document.addEventListener('DOMContentLoaded', carregarProposta);
     </script>
 </body>
