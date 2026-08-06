@@ -21,21 +21,23 @@
 <body class="flex flex-col min-h-screen">
 
     <!-- CABEÇALHO DA PROPOSTA -->
-    <header class="bg-zinc-900 border-b border-zinc-800 p-4 text-center sticky top-0 z-10 shadow-lg">
-        <img src="logo1.png" alt="BRvolts" class="h-10 mx-auto object-contain">
+    <header class="bg-zinc-900 border-b border-zinc-800 p-4 text-center sticky top-0 z-10 shadow-lg flex justify-center">
+        <!-- onerror evita que a página quebre se a logo não carregar -->
+        <img src="logo1.png" alt="BRvolts" class="h-10 object-contain" onerror="this.style.display='none'">
     </header>
 
     <!-- ÁREA DE CARREGAMENTO -->
     <div id="loading" class="flex-1 flex flex-col items-center justify-center p-8">
         <div class="spinner mb-4"></div>
-        <p class="text-gray-400 text-sm font-bold animate-pulse">Buscando sua proposta...</p>
+        <p class="text-gray-400 text-sm font-bold animate-pulse mt-4">Buscando sua proposta...</p>
     </div>
 
-    <!-- MENSAGEM DE ERRO -->
+    <!-- MENSAGEM DE ERRO (Agora mostra o motivo) -->
     <div id="error-screen" class="hidden flex-1 flex flex-col items-center justify-center p-8 text-center fade-in">
         <div class="text-red-500 text-5xl mb-4">⚠️</div>
-        <h2 class="text-xl font-bold text-white mb-2">Proposta não encontrada</h2>
-        <p class="text-gray-400">O link pode estar quebrado ou o orçamento foi removido. Entre em contato conosco.</p>
+        <h2 class="text-xl font-bold text-white mb-2">Proposta Indisponível</h2>
+        <p class="text-gray-400 text-sm mb-4">Verifique se o link está correto ou se o orçamento foi removido.</p>
+        <p id="error-log" class="text-xs text-red-400 font-mono bg-red-900/20 p-2 rounded hidden"></p>
     </div>
 
     <!-- CONTEÚDO DA PROPOSTA -->
@@ -65,7 +67,7 @@
         <!-- ÁREA PIX -->
         <div class="bg-gradient-to-br from-emerald-900/30 to-green-900/10 border border-emerald-900/50 rounded-2xl p-5 mb-6">
             <div class="flex items-center gap-3 mb-4 border-b border-emerald-900/30 pb-3">
-                <img src="Pix_logo.png" alt="Pix" class="h-6">
+                <img src="Pix_logo.png" alt="Pix" class="h-6" onerror="this.style.display='none'">
                 <p class="text-sm font-bold text-emerald-400">Pague com segurança via PIX</p>
             </div>
             <div class="text-xs text-gray-400 space-y-1 mb-4">
@@ -94,7 +96,7 @@
             <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         </div>
         <h2 class="text-3xl font-black text-white mb-3">Tudo Certo!</h2>
-        <p class="text-gray-400 mb-8 max-w-sm">O seu orçamento foi aprovado e nossa equipe já foi notificada na central.</p>
+        <p class="text-gray-400 mb-8 max-w-sm">O seu orçamento foi aprovado e a BRvolts já foi notificada na central.</p>
         <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Ol%C3%A1%20Wellington!%20Acabei%20de%20aprovar%20o%20or%C3%A7amento%20pelo%20link.%20Podemos%20agendar%3F" target="_blank" class="bg-[#25D366] text-white font-bold py-4 px-8 rounded-xl w-full max-w-xs flex items-center justify-center gap-2">
             Falar no WhatsApp
         </a>
@@ -122,19 +124,22 @@
         }
 
         async function carregarProposta() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const osId = urlParams.get('id');
-
-            if (!osId) {
-                document.getElementById('loading').classList.add('hidden');
-                document.getElementById('error-screen').classList.remove('hidden');
-                return;
-            }
-
             try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const osId = urlParams.get('id');
+
+                // Verifica se veio sem ID na URL
+                if (!osId || osId === 'undefined') {
+                    throw new Error("ID do orçamento ausente no link.");
+                }
+
                 // Busca a OS
                 const { data: osData, error: osError } = await supabase.from('servicos').select('*').eq('id', osId).single();
-                if (osError || !osData) throw new Error("OS não encontrada");
+                
+                if (osError || !osData) {
+                    throw new Error("Não foi possível encontrar este orçamento no banco de dados.");
+                }
+                
                 dadosOS = osData;
 
                 // Busca o Cliente da OS
@@ -145,7 +150,7 @@
                 document.getElementById('os-number').innerText = `OS ${dadosOS.os_number}`;
                 document.getElementById('cliente-nome').innerText = nomeCliente;
                 document.getElementById('os-desc').innerText = dadosOS.descricao;
-                document.getElementById('os-materiais-status').innerText = dadosOS.materiais_status;
+                document.getElementById('os-materiais-status').innerText = dadosOS.materiais_status || "Não especificado";
                 
                 const valorFormatado = parseFloat(dadosOS.valor_servico || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
                 document.getElementById('os-valor').innerText = `R$ ${valorFormatado}`;
@@ -154,8 +159,9 @@
                 payloadPixCopiaECola = gerarPayloadPix('16562195730', 'Wellington Bonifacio', 'Marica', parseFloat(dadosOS.valor_servico || 0));
 
                 document.getElementById('loading').classList.add('hidden');
-                document.getElementById('proposta-content').classList.remove('hidden');
-                document.getElementById('proposta-content').classList.add('flex');
+                const pContent = document.getElementById('proposta-content');
+                pContent.classList.remove('hidden');
+                pContent.classList.add('flex', 'flex-col');
 
                 // Se já estiver concluído ou aprovado, esconde o botão e avisa
                 if (dadosOS.status !== 'Pendente') {
@@ -169,8 +175,17 @@
                 document.getElementById('action-bar').classList.remove('hidden');
 
             } catch (error) {
+                // Se der qualquer erro, esconde o loading e mostra a tela de erro
                 document.getElementById('loading').classList.add('hidden');
-                document.getElementById('error-screen').classList.remove('hidden');
+                
+                const errScreen = document.getElementById('error-screen');
+                errScreen.classList.remove('hidden');
+                errScreen.classList.add('flex');
+                
+                // Exibe o erro real para facilitar se precisarmos debugar
+                const errLog = document.getElementById('error-log');
+                errLog.innerText = error.message;
+                errLog.classList.remove('hidden');
             }
         }
 
@@ -188,13 +203,16 @@
             btn.innerText = "⏳ Aprovando...";
             btn.disabled = true;
 
-            // Atualiza o banco (MOVE NO KANBAN!)
+            // Atualiza o banco (MOVE NO KANBAN SOZINHO!)
             const { error } = await supabase.from('servicos').update({ status: 'Aprovado' }).eq('id', dadosOS.id);
 
             if (!error) {
                 document.getElementById('action-bar').classList.add('hidden');
                 document.getElementById('proposta-content').classList.add('hidden');
-                document.getElementById('success-screen').classList.remove('hidden');
+                
+                const sucScreen = document.getElementById('success-screen');
+                sucScreen.classList.remove('hidden');
+                sucScreen.classList.add('flex');
             } else {
                 alert("Erro ao tentar aprovar. Tente novamente ou chame no WhatsApp.");
                 btn.innerText = "👍 APROVAR ORÇAMENTO";
@@ -202,7 +220,8 @@
             }
         }
 
-        window.onload = carregarProposta;
+        // GATILHO CORRIGIDO: Carrega assim que o código estiver pronto, sem esperar imagens pesadas.
+        document.addEventListener('DOMContentLoaded', carregarProposta);
     </script>
 </body>
 </html>
