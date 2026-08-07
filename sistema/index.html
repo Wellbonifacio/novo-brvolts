@@ -451,11 +451,6 @@
                         <button onclick="imprimirEEnviar('Orçamento')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📄 Enviar Orçamento</button>
                         <button onclick="imprimirEEnviar('OS')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📋 Enviar OS</button>
                         <button onclick="imprimirEEnviar('Recibo')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">💰 Enviar Recibo</button>
-                        
-                        <!-- BOTÃO DO LINK MÁGICO REINSERIDO AQUI -->
-                        <button onclick="copiarLinkMagico()" class="w-full col-span-1 md:col-span-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow mt-3 border border-purple-500">
-                            🪄 Copiar Link Mágico para o Cliente
-                        </button>
                     </div>
                 </div>
             </div>
@@ -1390,7 +1385,15 @@
                 let linkWhatsApp = null;
                 if(cliente.tel) {
                     let telRaw = String(cliente.tel).replace(/\D/g, ''); if(telRaw.length === 10 || telRaw.length === 11) telRaw = "55" + telRaw;
-                    linkWhatsApp = `https://api.whatsapp.com/send?phone=${telRaw}&text=${encodeURIComponent(`Olá *${cliente.nome}*, tudo bem?\n\nAqui é o Wellington da *BRvolts*.\nReferente ao serviço, geramos o seu documento (OS: ${orcamento.osNumber || '001'}).\n\n*Valor Total:* R$ ${valorTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}\n\nSe puder nos dar uma força, avalie nosso atendimento no Google clicando no link abaixo:\nhttps://g.page/r/CbiafVBOu7JAEBM/review\n\nA BRvolts agradece a preferência!`)}`;
+                    
+                    // 👇 NOVA INTELIGÊNCIA DO LINK MÁGICO EMBUTIDA NA MENSAGEM DO PDF 👇
+                    const baseUrlVercel = "https://sistema-sepia-six.vercel.app";
+                    const linkProposta = `${baseUrlVercel}/?id=${orcamento.id}`;
+                    let tipoDocText = tipo === 'Orçamento' ? 'orçamento' : tipo === 'Recibo' ? 'recibo' : 'ordem de serviço';
+
+                    const txtMsg = `🤖 *Mensagem Automática*\n\nOlá *${cliente.nome}*, tudo bem? Aqui é o Wellington da *BRvolts*.\n\nSegue o link interativo do seu ${tipoDocText} (OS: ${orcamento.osNumber || '001'}):\n🔗 ${linkProposta}\n\n*Valor Total:* R$ ${valorTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}\n\nVocê pode verificar todos os detalhes clicando no link acima ou visualizando o PDF que estou enviando logo abaixo.\n\n⭐ Se puder dar uma força, avalie nosso atendimento no Google:\nhttps://g.page/r/CbiafVBOu7JAEBM/review\n\nA BRvolts agradece a confiança!`;
+
+                    linkWhatsApp = `https://api.whatsapp.com/send?phone=${telRaw}&text=${encodeURIComponent(txtMsg)}`;
                 }
 
                 const tituloOriginal = document.title; document.title = `${tipoTitulo}_${orcamento.osNumber || '001'}_${cliente.nome || 'Cliente'}`;
@@ -1408,23 +1411,6 @@
         }
         function fecharModalWhatsapp() { document.getElementById('whatsapp-modal').style.display = 'none'; }
         
-        function copiarLinkMagico() {
-            const orcIdEl = document.getElementById('os-orcamento'); 
-            if(!orcIdEl || !orcIdEl.value) {
-                return showToast('Selecione uma OS na lista acima primeiro!', 'error');
-            }
-            
-            // 👇 AQUI JÁ ESTÁ O SEU VERCEL LINCADO 👇
-            const baseUrlVercel = "https://sistema-sepia-six.vercel.app"; 
-            const link = `${baseUrlVercel}/?id=${orcIdEl.value}`;
-            
-            // Copia o link para o celular/pc
-            navigator.clipboard.writeText(link).then(() => {
-                showToast("Link Mágico copiado! Cole no WhatsApp.", "success");
-            }).catch(() => {
-                showToast("Erro ao copiar, tente novamente.", "error");
-            });
-        }
     </script>
 </body>
 </html>
