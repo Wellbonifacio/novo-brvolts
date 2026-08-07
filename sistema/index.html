@@ -1386,12 +1386,24 @@
                 if(cliente.tel) {
                     let telRaw = String(cliente.tel).replace(/\D/g, ''); if(telRaw.length === 10 || telRaw.length === 11) telRaw = "55" + telRaw;
                     
-                    // 👇 NOVA INTELIGÊNCIA DO LINK MÁGICO EMBUTIDA NA MENSAGEM DO PDF 👇
+                    // NOVA INTELIGÊNCIA DO WHATSAPP (MENSAGEM REFORMATADA E COM ESPAÇAMENTOS CORRETOS)
                     const baseUrlVercel = "https://sistema-sepia-six.vercel.app";
                     const linkProposta = `${baseUrlVercel}/?id=${orcamento.id}`;
                     let tipoDocText = tipo === 'Orçamento' ? 'orçamento' : tipo === 'Recibo' ? 'recibo' : 'ordem de serviço';
+                    
+                    const valorFormatado = valorTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+                    const osNumeroFinal = orcamento.osNumber || '001';
 
-                    const txtMsg = `🤖 *Mensagem Automática*\n\nOlá *${cliente.nome}*, tudo bem? Aqui é o Wellington da *BRvolts*.\n\nSegue o link interativo do seu ${tipoDocText} (OS: ${orcamento.osNumber || '001'}):\n🔗 ${linkProposta}\n\n*Valor Total:* R$ ${valorTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}\n\nVocê pode verificar todos os detalhes clicando no link acima ou visualizando o PDF que estou enviando logo abaixo.\n\n⭐ Se puder dar uma força, avalie nosso atendimento no Google:\nhttps://g.page/r/CbiafVBOu7JAEBM/review\n\nA BRvolts agradece a confiança!`;
+                    // Construção do texto com quebras de linha explícitas (\n) para evitar erros
+                    const txtMsg = 
+                    `Olá *${cliente.nome}*, tudo bem? Aqui é o Wellington da *BRvolts*.\n\n` +
+                    `Segue o seu ${tipoDocText} (OS: ${osNumeroFinal}).\n\n` +
+                    `🔗 *Acesse o link interativo:*\n${linkProposta}\n\n` +
+                    `💰 *Valor Total:* R$ ${valorFormatado}\n\n` +
+                    `Você pode conferir todos os detalhes clicando no link acima ou visualizando o PDF que estou enviando logo a seguir.\n\n` +
+                    `⭐ Se puder dar uma força, avalie nosso atendimento no Google:\nhttps://g.page/r/CbiafVBOu7JAEBM/review\n\n` +
+                    `A BRvolts agradece a confiança!\n\n` +
+                    `_🤖 Esta é uma mensagem automática gerada pelo sistema._`;
 
                     linkWhatsApp = `https://api.whatsapp.com/send?phone=${telRaw}&text=${encodeURIComponent(txtMsg)}`;
                 }
