@@ -451,6 +451,11 @@
                         <button onclick="imprimirEEnviar('Orçamento')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📄 Enviar Orçamento</button>
                         <button onclick="imprimirEEnviar('OS')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">📋 Enviar OS</button>
                         <button onclick="imprimirEEnviar('Recibo')" class="w-full bg-[#128C7E] hover:bg-[#075E54] text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow">💰 Enviar Recibo</button>
+                        
+                        <!-- BOTÃO DO LINK MÁGICO REINSERIDO AQUI -->
+                        <button onclick="copiarLinkMagico()" class="w-full col-span-1 md:col-span-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-4 rounded-lg flex justify-center items-center gap-2 transition shadow mt-3 border border-purple-500">
+                            🪄 Copiar Link Mágico para o Cliente
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1232,13 +1237,55 @@
             const lista = document.getElementById('lista-agenda'); if(!lista) return;
             const agendados = orcamentos.filter(o => o.status !== 'Concluído' && o.status !== 'Cancelado').sort((a,b) => { const da = a.data ? a.data.split('/').reverse().join('-') : '0000-00-00'; const db = b.data ? b.data.split('/').reverse().join('-') : '0000-00-00'; return db.localeCompare(da); });
             if(agendados.length === 0) { lista.innerHTML = '<p class="text-gray-500 text-sm">Nenhum serviço pendente.</p>'; return; }
+            
+            // ABA AGENDA: ADICIONADO OS BOTÕES DE LEMBRETE E ESTOU A CAMINHO
             lista.innerHTML = agendados.map(o => {
                 const c = clientes.find(cli => String(cli.id) === String(o.clienteId));
+                const cNome = c ? c.nome : 'Desconhecido';
+                const cEnd = c && c.end ? c.end : 'Sem endereço';
                 return `<li class="bg-zinc-900 p-4 rounded-xl border border-zinc-800 transition-colors hover:border-blue-900/50">
                     <div class="flex justify-between items-start mb-2"><p class="text-xs bg-blue-900/30 text-blue-400 px-2 py-1 rounded-full font-bold">📅 ${o.data}</p><span class="text-xs text-gray-500">OS: ${o.osNumber}</span></div>
-                    <p class="font-bold text-white text-lg">${c ? c.nome : 'Desconhecido'}</p><p class="text-sm text-gray-400 mt-1 line-clamp-2">${o.desc || 'Sem descrição'}</p><p class="text-sm text-gray-500 mt-1">📍 ${c && c.end ? c.end : 'Sem endereço'}</p>
+                    <p class="font-bold text-white text-lg">${cNome}</p>
+                    <p class="text-sm text-gray-400 mt-1 line-clamp-2">${o.desc || 'Sem descrição'}</p>
+                    <p class="text-sm text-gray-500 mt-1">📍 ${cEnd}</p>
+                    <div class="flex gap-2 mt-4 pt-3 border-t border-zinc-800">
+                        <button onclick="enviarLembrete(${o.id})" class="flex-1 bg-zinc-800 hover:bg-zinc-700 text-yellow-400 text-xs font-bold py-2 px-3 rounded-lg flex items-center justify-center gap-1 transition">💬 Lembrete</button>
+                        <button onclick="estouACaminho(${o.id})" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 px-3 rounded-lg flex items-center justify-center gap-1 transition">🚗 A Caminho</button>
+                    </div>
                 </li>`;
             }).join('');
+        }
+
+        // FUNÇÕES NOVAS DE DISPARO NO WHATSAPP
+        function enviarLembrete(id) {
+            const o = orcamentos.find(item => String(item.id) === String(id)); if(!o) return;
+            const c = clientes.find(cli => String(cli.id) === String(o.clienteId));
+            if(!c || !c.tel) return showToast("Cliente sem telefone cadastrado!", "error");
+            
+            let tel = c.tel.replace(/\D/g, '');
+            if(tel.length === 10 || tel.length === 11) tel = "55" + tel;
+            
+            const msg = encodeURIComponent(`Olá *${c.nome}*, tudo bem?\nAqui é o Wellington da *BRvolts*. Passando para confirmar nossa visita técnica agendada para o dia *${o.data}* (OS: ${o.osNumber}). Tudo certo por aí?`);
+            window.open(`https://api.whatsapp.com/send?phone=${tel}&text=${msg}`, '_blank');
+        }
+
+        function estouACaminho(id) {
+            const o = orcamentos.find(item => String(item.id) === String(id)); if(!o) return;
+            const c = clientes.find(cli => String(cli.id) === String(o.clienteId));
+            if(!c || !c.tel) return showToast("Cliente sem telefone cadastrado!", "error");
+            
+            let tel = c.tel.replace(/\D/g, '');
+            if(tel.length === 10 || tel.length === 11) tel = "55" + tel;
+            
+            if(c.end && c.end !== 'Sem endereço') {
+                const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.end)}`;
+                window.open(mapsUrl, '_blank');
+            }
+
+            const msg = encodeURIComponent(`Olá *${c.nome}*, tudo bem?\nWellington da *BRvolts* aqui. Estou saindo para o atendimento agora e a caminho do seu endereço! Chego em instantes. 🚗⚡`);
+            setTimeout(() => {
+                window.open(`https://api.whatsapp.com/send?phone=${tel}&text=${msg}`, '_blank');
+            }, 500);
         }
 
         function atualizarTelas() {
@@ -1366,7 +1413,10 @@
             if(!orcIdEl || !orcIdEl.value) {
                 return showToast('Selecione uma OS na lista acima primeiro!', 'error');
             }
-            const link = `https://brvolts.site/proposta.html?id=${orcIdEl.value}`;
+            
+            // 👇 AQUI JÁ ESTÁ O SEU VERCEL LINCADO 👇
+            const baseUrlVercel = "https://sistema-sepia-six.vercel.app"; 
+            const link = `${baseUrlVercel}/?id=${orcIdEl.value}`;
             
             // Copia o link para o celular/pc
             navigator.clipboard.writeText(link).then(() => {
