@@ -35,7 +35,7 @@
           "name": "A Wellington Técnico fornece documentação técnica?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sim. Emitimos laudos técnicos e documentação de responsabilidade técnica (ART/TRT) para projetos, condomínios e concessionárias."
+            "text": "Sim. Emitimos laudos técnicos, Nota Fiscal e documentação de responsabilidade técnica (TRT) pelo CFT RJ para condomínios e concessionárias."
           }
         }
       ]
@@ -73,45 +73,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eletricista em Maricá | Instalação e Manutenção | Wellington Técnico</title>
-    <meta name="description" content="Eletricista 24h em Maricá, Itaipuaçu e Inoã. Instalação elétrica, manutenção residencial e especialista em Wallbox (Carregador VE). Orçamento rápido!">
-    <meta name="keywords" content="eletricista em maricá, instalação de wallbox maricá, eletricista em itaipuaçu, eletricista em inoã, eletricista 24 horas maricá, serviços elétricos maricá, manutenção elétrica, wellington técnico eletricista">
+    <meta name="description" content="Eletricista 24h em Maricá, Itaipuaçu e Inoã. Empresa formalizada (Emissão de NF e TRT/CFT). Instalação elétrica, laudos técnicos e Wallbox. Orçamento rápido!">
+    <meta name="keywords" content="eletricista em maricá, instalação de wallbox maricá, eletricista em itaipuaçu, eletricista em inoã, eletricista 24 horas maricá, laudo elétrico maricá, emissão de trt, wellington técnico eletricista">
     <meta name="author" content="Wellington Técnico Eletricista">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.brvolts.site">
 
     <meta property="og:title" content="Wellington Técnico Eletricista em Maricá, RJ">
-    <meta property="og:description" content="Serviços elétricos completos, reparos 24h e infraestrutura para carregadores de veículos elétricos (Wallbox) em Maricá e região.">
+    <meta property="og:description" content="Serviços elétricos com emissão de Nota Fiscal e TRT. Reparos 24h e infraestrutura para carregadores veiculares (Wallbox) em Maricá e região.">
     <meta property="og:image" content="https://www.brvolts.site/logo1.png"> 
     <meta property="og:url" content="https://www.brvolts.site">
     <meta property="og:type" content="website">
 
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
     <link rel="preconnect" href="https://api.whatsapp.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop">
     <link rel="icon" href="logo1.png" type="image/png"> 
+    
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
+        html { scroll-padding-top: 80px; }
+        
         body { font-family: 'Inter', sans-serif; }
         details > summary::-webkit-details-marker { display: none; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Letreiro Animado */
-        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
-        .animate-marquee:hover { animation-play-state: paused; }
-        
-        /* Pulso CTA */
         .pulse-btn { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); animation: pulse-wa 2s infinite; }
         @keyframes pulse-wa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
-        /* Brilho dos Botões Principais */
         @keyframes shimmer { 0% { transform: translateX(-150%) skewX(-12deg); } 100% { transform: translateX(400%) skewX(-12deg); } }
         .animate-shimmer { animation: shimmer 2.5s infinite; }
+
+        @keyframes ringPhone {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30%, 50% { transform: rotate(-12deg); }
+            20%, 40% { transform: rotate(12deg); }
+            60% { transform: rotate(0deg); }
+        }
+        .animate-ring { animation: ringPhone 3s ease-in-out infinite; }
+        
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
+        
+        .brand-logo { filter: brightness(0) invert(1) opacity(0.4); transition: all 0.3s ease; }
+        .brand-logo:hover { filter: brightness(0) invert(1) opacity(1); }
+
+        /* ESTILOS DO SIMULADOR (CORRIGIDOS) */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: #27272a;
+            border-radius: 4px;
+            height: 8px;
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
     </style>
 </head>
 <body class="bg-black text-gray-200 pb-16 md:pb-0 relative">
@@ -121,8 +153,7 @@
     </div>
 
     <div class="sticky top-0 z-50 w-full shadow-2xl">
-        <!-- BARRA DE PLANTÃO ATIVO -->
-        <div class="bg-zinc-950 border-b border-zinc-900 text-center py-1 md:py-2 px-2 relative flex items-center justify-center gap-2 w-full">
+        <div class="bg-zinc-950 border-b border-zinc-900 text-center py-1.5 md:py-2 px-2 relative flex items-center justify-center gap-2 w-full">
             <span class="relative flex h-2.5 w-2.5 md:h-3 md:w-3">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2.5 w-2.5 md:h-3 md:w-3 bg-green-500"></span>
@@ -133,44 +164,39 @@
         </div>
 
         <header class="bg-black/95 backdrop-blur-sm border-b border-zinc-900 relative">
-            <nav class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center relative z-20">
+            <nav class="container mx-auto px-4 md:px-6 py-2.5 md:py-3 flex justify-between items-center relative z-20">
                 <a href="#" aria-label="Início">
-                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-10 md:h-14 w-auto object-contain haptic-btn" width="160" height="56">
+                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-8 sm:h-10 md:h-14 w-auto object-contain haptic-btn" width="160" height="56">
                 </a>
                 
-                <!-- Menu Desktop -->
-                <div class="hidden lg:flex items-center space-x-6">
-                    <a href="#inicio" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Início</a>
-                    <a href="#sobre" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Sobre</a>
-                    <a href="#servicos" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Serviços</a>
-                    <a href="#wallbox" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Wallbox</a>
-                    <a href="#portfolio" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Obras</a>
-                    <a href="#avaliacoes" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Avaliações</a>
-                    <a href="#contato" class="text-white hover:text-blue-500 transition duration-300 font-medium haptic-btn">Contato</a>
+                <div class="hidden lg:flex items-center space-x-5 xl:space-x-6">
+                    <a href="#inicio" class="text-white hover:text-blue-500 transition duration-300 text-sm font-medium haptic-btn">Início</a>
+                    <a href="#sobre" class="text-white hover:text-blue-500 transition duration-300 text-sm font-medium haptic-btn">Sobre</a>
+                    <a href="#servicos" class="text-white hover:text-blue-500 transition duration-300 text-sm font-medium haptic-btn">Serviços</a>
+                    <a href="#wallbox" class="text-white hover:text-blue-500 transition duration-300 text-sm font-medium haptic-btn">Wallbox</a>
+                    <a href="#documentacao" class="text-green-400 hover:text-green-300 text-sm font-bold transition duration-300 haptic-btn flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> TRT/NF</a>
+                    <a href="#portfolio" class="text-white hover:text-blue-500 transition duration-300 text-sm font-medium haptic-btn">Obras</a>
+                    <a href="#avaliacoes" class="text-white hover:text-blue-500 transition duration-300 text-sm font-medium haptic-btn">Avaliações</a>
                     
-                    <!-- BOTÃO DE ACESSO AO SISTEMA (DESKTOP) -->
-                    <a href="/sistema" target="_blank" class="text-blue-500 font-bold border border-blue-600/30 bg-blue-600/10 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors haptic-btn flex items-center gap-2">
+                    <a href="/sistema" target="_blank" class="text-blue-500 font-bold border border-blue-600/30 bg-blue-600/10 px-3 py-1.5 rounded-lg hover:bg-blue-600 hover:text-white transition-colors haptic-btn flex items-center gap-2 text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
-                        Acesso
+                        Sistema
                     </a>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <!-- Botão de Ligação Mobile (Esquerda do Sanduíche) -->
-                    <a href="tel:+5521976493932" aria-label="Ligar Agora" class="flex sm:hidden haptic-btn text-white p-2 focus:outline-none hover:text-blue-500 transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <a href="tel:+5521976493932" aria-label="Ligar Agora" class="flex lg:hidden haptic-btn text-white p-2 focus:outline-none hover:text-blue-500 transition-colors">
+                        <svg class="w-6 h-6 animate-ring" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                     </a>
 
-                    <!-- Botão Ligar Desktop -->
-                    <a href="tel:+5521976493932" aria-label="Ligar para Especialista" class="hidden sm:flex haptic-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg items-center gap-2 text-sm md:text-base transform hover:scale-105 transition-transform">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <a href="tel:+5521976493932" aria-label="Ligar para Especialista" class="hidden lg:flex haptic-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg items-center gap-2 text-sm transform hover:scale-105 transition-transform">
+                        <svg class="w-5 h-5 animate-ring" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                         </svg>
                         <span>(21) 97649-3932</span>
                     </a>
                     
-                    <!-- Botão Menu Mobile (Sanduíche) -->
-                    <button id="mobile-menu-btn" class="lg:hidden text-gray-200 hover:text-white haptic-btn p-2 focus:outline-none" aria-label="Abrir menu">
+                    <button id="mobile-menu-btn" class="lg:hidden text-gray-200 hover:text-white haptic-btn p-1 focus:outline-none" aria-label="Abrir menu">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -178,168 +204,129 @@
                 </div>
             </nav>
 
-            <!-- Menu Mobile Suspenso -->
             <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-zinc-950 border-b border-zinc-900 shadow-2xl transition-all duration-300 origin-top transform scale-y-0 opacity-0 z-10 flex flex-col">
-                <div class="px-6 py-4 flex flex-col space-y-4">
-                    <a href="#inicio" class="mobile-link text-white text-lg font-medium border-b border-zinc-800 pb-2">Início</a>
-                    <a href="#sobre" class="mobile-link text-white text-lg font-medium border-b border-zinc-800 pb-2">Sobre</a>
-                    <a href="#servicos" class="mobile-link text-white text-lg font-medium border-b border-zinc-800 pb-2">Serviços</a>
-                    <a href="#wallbox" class="mobile-link text-white text-lg font-medium border-b border-zinc-800 pb-2">Wallbox</a>
-                    <a href="#portfolio" class="mobile-link text-white text-lg font-medium border-b border-zinc-800 pb-2">Obras</a>
-                    <a href="#avaliacoes" class="mobile-link text-white text-lg font-medium border-b border-zinc-800 pb-2">Avaliações</a>
-                    <a href="#contato" class="mobile-link text-blue-500 text-lg font-bold pb-2">Solicitar Orçamento Formal</a>
+                <div class="px-5 py-4 flex flex-col space-y-3">
+                    <a href="#inicio" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Início</a>
+                    <a href="#sobre" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Sobre</a>
+                    <a href="#servicos" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Serviços</a>
+                    <a href="#wallbox" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Wallbox</a>
+                    <a href="#documentacao" class="mobile-link text-green-400 text-base font-bold border-b border-zinc-800 pb-2 flex items-center gap-2">TRT (CFT) e NF</a>
+                    <a href="#portfolio" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Obras</a>
+                    <a href="#avaliacoes" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Avaliações</a>
+                    <a href="#contato" class="mobile-link text-blue-500 text-base font-bold pb-1">Solicitar Orçamento Formal</a>
                     
-                    <!-- BOTÃO DE ACESSO AO SISTEMA (MOBILE) -->
-                    <a href="/sistema" target="_blank" class="mobile-link bg-blue-600/10 border border-blue-600/30 text-blue-500 text-lg font-bold py-3 mt-2 rounded-lg text-center flex items-center justify-center gap-2">
+                    <a href="/sistema" target="_blank" class="mobile-link bg-blue-600/10 border border-blue-600/30 text-blue-500 text-base font-bold py-2.5 mt-1 rounded-lg text-center flex items-center justify-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
                         Acesso ao Sistema
                     </a>
-                </div>
-            </div>
-            
-            <div class="bg-blue-600/10 py-2 border-b border-zinc-900 overflow-hidden relative flex items-center">
-                <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
-                <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
-                <div class="animate-marquee flex gap-10 px-4 text-xs sm:text-sm">
-                    <div class="flex gap-10 items-center">
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Técnico Certificado CFT/CREA</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Instalação de Wallbox em Maricá</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Itaipuaçu</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Chuveiro e Resistência</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Inoã</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Tomadas e Disjuntores</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista no Centro de Maricá</div>
-                    </div>
-                    <div class="flex gap-10 items-center pr-10">
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Técnico Certificado CFT/CREA</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Instalação de Wallbox em Maricá</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Itaipuaçu</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Chuveiro e Resistência</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista em Inoã</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Troca de Tomadas e Disjuntores</div>
-                        <div class="text-white font-bold whitespace-nowrap"><span class="text-blue-500" aria-hidden="true">✓</span> Eletricista no Centro de Maricá</div>
-                    </div>
                 </div>
             </div>
         </header>
     </div>
 
     <main>
-        <section id="inicio" class="relative pt-12 pb-16 md:pt-32 md:pb-32 flex flex-col justify-center min-h-[75vh] bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop');">
-            <div class="container mx-auto px-6 text-left">
-                
-                <span class="bg-red-600 text-white px-3 py-1 rounded-full text-xs md:text-sm font-bold tracking-wide mb-4 inline-block shadow-lg">
+        <section id="inicio" class="relative pt-10 pb-12 md:pt-24 md:pb-24 flex flex-col justify-center min-h-[70vh] md:min-h-[75vh] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop" alt="Eletricista Instalando Painel em Maricá" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/85 to-black/95 z-0 pointer-events-none"></div>
+
+            <div class="container mx-auto px-5 text-left relative z-10">
+                <span class="bg-red-600 text-white px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold tracking-wide mb-4 inline-block shadow-lg">
                     Eletricista em Maricá
                 </span>
 
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-white max-w-4xl tracking-tight">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-white max-w-4xl tracking-tight">
                     Eletricista 24 Horas com o melhor preço de <span class="text-blue-500">Maricá</span>
                 </h1>
                 
-                <div class="flex items-center gap-2.5 bg-zinc-900/90 p-2.5 rounded-lg border border-zinc-800 w-fit mb-6 shadow-xl backdrop-blur-sm">
-                    <div class="flex text-yellow-400 text-sm tracking-tighter" aria-hidden="true">★★★★★</div>
-                    <span class="text-gray-200 text-xs md:text-sm font-semibold">Avaliado com Nota 5 no Google</span>
+                <div class="flex items-center gap-2 bg-zinc-900/90 p-2 rounded-lg border border-zinc-800 w-fit mb-5 shadow-xl backdrop-blur-sm">
+                    <div class="flex text-yellow-400 text-xs sm:text-sm tracking-tighter" aria-hidden="true">★★★★★</div>
+                    <span class="text-gray-200 text-[11px] sm:text-xs font-semibold">Avaliado com Nota 5 no Google</span>
                 </div>
 
-                <p class="text-base md:text-xl font-light mb-6 max-w-2xl text-gray-300">
-                    Eletricista 24 Horas em Maricá especializado em instalação elétrica, manutenção elétrica residencial.
+                <p class="text-sm sm:text-base md:text-xl font-light mb-6 max-w-2xl text-gray-300">
+                    Eletricista 24 Horas em Maricá especializado em instalação elétrica, manutenção elétrica residencial e empresarial.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="dynamic-wa haptic-btn bg-blue-600 text-white font-extrabold py-4 px-6 rounded shadow-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] w-full sm:w-auto relative overflow-hidden" aria-label="Solicitar Orçamento">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="dynamic-wa haptic-btn bg-blue-600 text-white font-extrabold py-3.5 px-6 rounded shadow-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] w-full sm:w-auto relative overflow-hidden" aria-label="Solicitar Orçamento">
                         <div class="absolute inset-0 w-1/4 h-full bg-white/20 animate-shimmer"></div>
-                        <span class="relative z-10 flex items-center gap-2">Solicitar Visita Técnica</span>
+                        <span class="relative z-10 flex items-center gap-2 text-sm sm:text-base">Solicitar Visita Técnica</span>
                     </a>
-                    <a href="tel:+5521976493932" class="haptic-btn bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-extrabold py-4 px-6 rounded shadow-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto relative overflow-hidden" aria-label="Ligar Agora">
-                        <span class="relative z-10 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <a href="tel:+5521976493932" class="haptic-btn bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-extrabold py-3.5 px-6 rounded shadow-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto relative overflow-hidden" aria-label="Ligar Agora">
+                        <span class="relative z-10 flex items-center gap-2 text-sm sm:text-base">
+                            <svg class="w-5 h-5 animate-ring" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                             Ligar Agora
                         </span>
                     </a>
                 </div>
                 
-                <!-- Gatilho de Confiança -->
-                <p class="text-xs md:text-sm text-gray-400 mt-3 mb-6 font-medium">🔒 Garantia de 90 dias no serviço • Orçamento sem compromisso</p>
+                <p class="text-[11px] sm:text-xs text-gray-400 mt-4 mb-5 font-medium">🔒 Garantia de 90 dias no serviço • Empresa Formalizada</p>
 
-                <div class="flex overflow-x-auto gap-2.5 hide-scrollbar pb-4 mb-2 snap-x">
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20falta%20de%20luz/emergência." class="dynamic-wa haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
+                <div class="flex overflow-x-auto gap-2.5 hide-scrollbar pb-2 mb-2 snap-x">
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20falta%20de%20luz/emergência." class="dynamic-wa haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs font-semibold py-2 px-3.5 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
                         <span aria-hidden="true">⚡</span> Faltou Luz
                     </a>
-                    <a href="#wallbox" class="haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
+                    <a href="#wallbox" class="haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs font-semibold py-2 px-3.5 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
                         <span aria-hidden="true">🚗</span> Orçar Wallbox
                     </a>
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Meu%20chuveiro%20queimou." class="dynamic-wa haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
-                        <span aria-hidden="true">🚿</span> Chuveiro Queimado
+                    <a href="#documentacao" class="haptic-btn bg-zinc-800 hover:bg-zinc-700 text-green-400 text-xs font-semibold py-2 px-3.5 rounded-full border border-green-900/50 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
+                        <span aria-hidden="true">📄</span> Preciso de TRT / NF
                     </a>
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Preciso%20de%20revisão%20no%20meu%20quadro." class="dynamic-wa haptic-btn bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs md:text-sm font-semibold py-2 px-4 rounded-full border border-zinc-700 whitespace-nowrap shrink-0 snap-start transition-colors shadow-sm">
-                        <span aria-hidden="true">🎛️</span> Revisar Quadro
-                    </a>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-x-6 gap-y-3 opacity-90 mt-2">
-                    <div class="flex items-center gap-1.5 text-xs md:text-sm text-gray-300 font-medium">
-                        <span class="text-blue-500 text-lg" aria-hidden="true">👷‍♂️</span> Técnico Certificado
-                    </div>
-                    <div class="flex items-center gap-1.5 text-xs md:text-sm text-gray-300 font-medium">
-                        <span class="text-blue-500 text-lg" aria-hidden="true">💳</span> Aceitamos Cartões
-                    </div>
-                    <div class="flex items-center gap-1.5 text-xs md:text-sm text-gray-300 font-medium">
-                        <span class="text-blue-500 text-lg" aria-hidden="true">⚡</span> Padrão Enel/NBR
-                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="sobre" class="py-16 md:py-24 bg-zinc-950 border-b border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <!-- SEÇÃO SOBRE A EMPRESA E FOTO -->
+        <section id="sobre" class="py-12 md:py-20 bg-zinc-950 border-b border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
                     <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                        <span class="bg-blue-600/20 text-blue-500 px-3 py-1 rounded-full text-xs md:text-sm font-bold tracking-wide uppercase mb-4 inline-block">Sobre a Empresa</span>
-                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
-                            Referência em Instalações em <span class="text-blue-500">Maricá</span>
+                        <span class="bg-blue-600/20 text-blue-500 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wide uppercase mb-3 inline-block">Sobre a Empresa</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+                            Sua referência técnica em instalações em <span class="text-blue-500">Maricá</span>
                         </h2>
-                        <p class="text-gray-300 mb-6 text-base md:text-lg leading-relaxed">
-                            A <strong>Wellington Técnico Eletricista</strong> é especializada em serviços residenciais e comerciais. Contamos com uma equipe qualificada e atualizada, focada em transformar desde reparos simples até instalações complexas em projetos seguros e eficientes.
+                        <p class="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">
+                            A <strong>Wellington Técnico Eletricista</strong> é especializada em serviços residenciais e comerciais. Contamos com preparo técnico atualizado para transformar desde reparos simples até instalações complexas em projetos seguros, limpos e eficientes.
                         </p>
                         
-                        <div class="space-y-6 mb-8">
-                            <div class="flex items-start gap-4">
-                                <div class="bg-blue-600/20 p-3 rounded-lg text-blue-500 shrink-0">
-                                    <svg class="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div class="space-y-5 mb-6">
+                            <div class="flex items-start gap-3.5">
+                                <div class="bg-blue-600/20 p-2.5 rounded-lg text-blue-500 shrink-0">
+                                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold text-lg mb-1">Orçamento Detalhado</h4>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Entrega por escrito com valores justos e prazos definidos. Sem surpresas no final da obra.</p>
+                                    <h4 class="text-white font-bold text-base mb-1">Orçamento Detalhado</h4>
+                                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Entrega por escrito com valores justos e prazos definidos. Sem surpresas no final da obra.</p>
                                 </div>
                             </div>
                             
-                            <div class="flex items-start gap-4">
-                                <div class="bg-blue-600/20 p-3 rounded-lg text-blue-500 shrink-0">
-                                    <svg class="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <div class="flex items-start gap-3.5">
+                                <div class="bg-blue-600/20 p-2.5 rounded-lg text-blue-500 shrink-0">
+                                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold text-lg mb-1">Execução Impecável</h4>
-                                    <p class="text-sm text-gray-400 leading-relaxed">Serviço realizado com limpeza, respeito ao seu espaço e foco total nas normas de segurança.</p>
+                                    <h4 class="text-white font-bold text-base mb-1">Execução Impecável</h4>
+                                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Serviço realizado com limpeza, respeito ao seu espaço e foco total nas normas de segurança.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg inline-flex items-center justify-center gap-3 transition-colors w-full sm:w-auto">
-                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 px-6 rounded-lg shadow-lg inline-flex items-center justify-center gap-2 transition-colors w-full sm:w-auto text-sm">
+                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
                             Falar com um especialista
                         </a>
                     </div>
                     
-                    <div class="w-full lg:w-1/2 relative order-1 lg:order-2 px-4 md:px-0">
-                        <img src="wellington-foto.png" alt="Wellington Técnico Eletricista" width="400" height="400" class="w-full max-w-[280px] sm:max-w-md mx-auto rounded-2xl shadow-2xl object-cover aspect-square border-4 border-zinc-800" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop'">
+                    <div class="w-full lg:w-1/2 relative order-1 lg:order-2 px-2 sm:px-0 mt-6 lg:mt-0">
+                        <img src="wellington-foto.png" alt="Wellington Técnico Eletricista" width="400" height="400" class="w-full max-w-[260px] sm:max-w-sm mx-auto rounded-2xl shadow-2xl object-cover aspect-square border-4 border-zinc-800" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop'" decoding="async" loading="lazy">
                         
-                        <div class="absolute -bottom-6 md:-bottom-10 left-0 md:-left-8 bg-black border border-zinc-800 p-4 md:p-6 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
-                            <div class="bg-green-500/20 p-3 md:p-4 rounded-full text-green-500">
-                                <svg class="w-8 h-8 md:w-10 md:h-10" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <div class="absolute -bottom-5 sm:-bottom-8 left-0 sm:left-4 md:-left-4 bg-black border border-zinc-800 p-3 sm:p-5 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+                            <div class="bg-green-500/20 p-2 sm:p-3 rounded-full text-green-500">
+                                <svg class="w-6 h-6 sm:w-8 sm:h-8" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
                             <div>
-                                <p class="text-3xl md:text-4xl font-black text-white leading-none">99%</p>
-                                <p class="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-wider mt-1">Taxa de Satisfação</p>
+                                <p class="text-2xl sm:text-3xl font-black text-white leading-none">99%</p>
+                                <p class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider mt-0.5">Taxa de Satisfação</p>
                             </div>
                         </div>
                     </div>
@@ -347,160 +334,275 @@
             </div>
         </section>
 
-        <section id="servicos" class="py-16 md:py-24 bg-black border-b border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-white">Serviços de Eletricista 24 Horas em <span class="text-blue-500">Maricá</span></h2>
-                    <p class="text-base md:text-lg text-gray-400 max-w-3xl mx-auto">Instalações, manutenções e reparos elétricos em Maricá com atendimento rápido, segurança e garantia.</p>
+        <!-- SEÇÃO DE SERVIÇOS -->
+        <section id="servicos" class="py-12 md:py-20 bg-black border-b border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6">
+                <div class="text-center mb-10 md:mb-14">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 text-white">Nossos Serviços em <span class="text-blue-500">Maricá</span></h2>
+                    <p class="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">Instalações, manutenções e reparos elétricos com atendimento rápido, segurança e garantia.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-2">
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🏠</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Residenciais</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Instalação e manutenção elétrica residencial em Maricá para casas, apartamentos e condomínios com total segurança.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🏠</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Residenciais</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação e manutenção elétrica residencial para casas, apartamentos e condomínios com total segurança.</p>
                     </div>
                     
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🏢</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Comerciais</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Serviços elétricos comerciais em Maricá para lojas, empresas, escritórios e galpões com suporte técnico especializado.</p>
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🏢</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Comerciais</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Serviços elétricos comerciais para lojas, empresas e galpões com emissão de nota fiscal.</p>
                     </div>
                     
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-red-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🚨</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Manutenção 24h</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Eletricista 24 horas em Maricá para curto-circuito, falta de energia, queda de disjuntor e emergências elétricas.</p>
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-red-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🚨</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Manutenção 24h</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Eletricista 24 horas em Maricá para curto-circuito, falta de energia, queda de disjuntor e emergências.</p>
                     </div>
 
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-yellow-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">💡</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Iluminação</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Instalação de iluminação LED, lustres e projetos luminotécnicos em Maricá para ambientes modernos e econômicos.</p>
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-yellow-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">💡</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Iluminação</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação de iluminação LED, lustres e projetos luminotécnicos para ambientes modernos e econômicos.</p>
                     </div>
 
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🎛️</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Quadros (DR/DPS)</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Troca de disjuntores, instalação DR e DPS em Maricá para proteção elétrica contra surtos e choques.</p>
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🎛️</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Quadros (DR/DPS)</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Troca de disjuntores, adequação de quadro e instalação de DR e DPS em Maricá, seguindo a NBR 5410.</p>
                     </div>
 
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🚿</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Chuveiros</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Instalação e troca de chuveiro elétrico em Maricá com revisão completa da fiação e segurança da rede elétrica.</p>
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🚿</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Chuveiros</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação e troca de chuveiro elétrico em Maricá com revisão completa da fiação e segurança da rede.</p>
                     </div>
 
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🌀</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Ventiladores</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Instalação de ventiladores de teto em Maricá com montagem segura, balanceamento e acabamento profissional.</p>
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🌀</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Ventiladores</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação de ventiladores de teto com montagem segura, balanceamento e acabamento profissional.</p>
                     </div>
 
-                    <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default">
-                        <span class="text-4xl mb-4 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">❄️</span>
-                        <h3 class="text-xl font-bold mb-3 text-white">Ar-Condicionado</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed">Infraestrutura elétrica para ar-condicionado em Maricá com instalação 220V, disjuntores e adequação de carga.</p>
+                    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 hover:border-blue-500 transition-colors group cursor-default shadow-lg">
+                        <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">❄️</span>
+                        <h3 class="text-lg font-bold mb-2 text-white">Ar-Condicionado</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Infraestrutura elétrica para ar-condicionado com instalação 220V, disjuntores e adequação de carga.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="wallbox" class="py-16 bg-zinc-950 border-b border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6">
+        <!-- SEÇÃO WALLBOX (TURBINADA COM DETALHES TÉCNICOS E SIMULADOR) -->
+        <section id="wallbox" class="py-12 md:py-20 bg-zinc-950 border-b border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6">
                 
-                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase block w-fit mb-4">Especialidade Premium</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Instalação Especialista de Wallbox</h2>
-                <p class="text-gray-400 mb-8 max-w-2xl">Estrutura dedicada e em total conformidade com a NBR 17019 para carregar o seu veículo elétrico de forma rápida e segura na sua garagem.</p>
+                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase block w-fit mb-3">Especialidade Premium</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3">Instalação de Wallbox</h2>
+                <p class="text-sm sm:text-base text-gray-400 mb-4 max-w-2xl">Estrutura dedicada e em total conformidade com a NBR 17019 para carregar o seu veículo elétrico de forma rápida e segura na sua garagem.</p>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">⚡</span> <span class="text-xs font-bold text-white">Alta Velocidade</span></div>
-                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">🛡️</span> <span class="text-xs font-bold text-white">Proteção DR Tipo A</span></div>
-                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">🏡</span> <span class="text-xs font-bold text-white">Comodidade em Casa</span></div>
-                    <div class="bg-zinc-900 p-4 rounded border border-zinc-800 text-center"><span class="text-blue-500 text-xl block mb-1" aria-hidden="true">⚙️</span> <span class="text-xs font-bold text-white">Certificação Técnica</span></div>
-                </div>
+                <!-- Detalhes Técnicos -->
+                <ul class="text-sm sm:text-base text-gray-300 mb-6 space-y-2 max-w-2xl">
+                    <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Cabeamento dimensionado com isolação de 1kV.</li>
+                    <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Quadro de proteção com <strong>Disjuntor, DR e DPS</strong>.</li>
+                    <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Aterramento de acordo com a norma.</li>
+                </ul>
 
-                <h3 class="text-lg font-bold text-white mb-4 px-1">Tabela Comparativa de Infraestrutura</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div class="border border-zinc-800 p-5 rounded-lg bg-black">
-                        <h4 class="font-bold text-white text-lg mb-2">Opção Bifásica <span class="text-gray-500 text-sm font-normal">(Até 7.4 kW)</span></h4>
-                        <ul class="text-sm text-gray-400 space-y-2">
-                            <li><span class="text-green-500 mr-1" aria-hidden="true">✔</span> Infraestrutura elétrica simplificada</li>
-                            <li><span class="text-green-500 mr-1" aria-hidden="true">✔</span> Compatível com redes bifásicas residenciais</li>
-                            <li><span class="text-green-500 mr-1" aria-hidden="true">✔</span> Carga completa durante o período noturno</li>
-                        </ul>
+                <!-- QUADRO DE ALERTA DE PERDA DE GARANTIA -->
+                <div class="bg-red-950/30 border border-red-500/50 rounded-xl p-4 md:p-5 mb-8 flex items-start gap-4 max-w-3xl shadow-[0_0_15px_rgba(220,38,38,0.15)]">
+                    <div class="bg-red-600/20 p-2 rounded-full text-red-500 shrink-0 mt-0.5">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                     </div>
-                    <div class="border-2 border-blue-600 p-5 rounded-lg bg-zinc-900/60 relative shadow-[0_0_15px_rgba(59,130,246,0.15)]">
-                        <div class="absolute -top-3 right-4 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Mais Recomendado</div>
-                        <h4 class="font-bold text-white text-lg mb-2">Opção Trifásica <span class="text-gray-500 text-sm font-normal">(Até 22 kW)</span></h4>
-                        <ul class="text-sm text-gray-400 space-y-2">
-                            <li><span class="text-blue-500 mr-1" aria-hidden="true">✔</span> Carregamento em velocidade máxima</li>
-                            <li><span class="text-blue-500 mr-1" aria-hidden="true">✔</span> Carga completa acelerada (de 2h a 4h)</li>
-                            <li><span class="text-blue-500 mr-1" aria-hidden="true">✔</span> Ideal para novas redes trifásicas ou comércios</li>
-                        </ul>
+                    <div>
+                        <h4 class="text-red-500 font-bold text-sm md:text-base mb-1 uppercase tracking-wide">Atenção: Risco de Perda de Garantia</h4>
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">A má instalação (sem DR apropriado, bitola fina ou falta de aterramento) é a <strong>principal causa de perda de garantia do Wallbox</strong> e do próprio veículo elétrico pelas concessionárias.</p>
                     </div>
                 </div>
 
-                <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20instalação%20de%20Wallbox." target="_blank" class="dynamic-wa haptic-btn w-full md:w-auto md:px-12 block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-lg shadow-lg mb-10 transition-colors">
-                    Solicitar Orçamento do Carregador
-                </a>
+                <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                    <div class="w-full lg:w-1/2">
+                        <!-- SIMULADOR DE ECONOMIA -->
+                        <div class="bg-black border border-zinc-800 rounded-2xl p-5 md:p-6 mb-6 shadow-2xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-green-600 text-white text-[9px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-widest">Simulador</div>
+                            <h3 class="text-lg md:text-xl font-bold text-white mb-1 mt-1">Calculadora de Economia</h3>
+                            <p class="text-xs sm:text-sm text-gray-400 mb-5">Descubra o quanto você economiza recarregando em casa.</p>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="gasolina-slider" class="flex justify-between items-center text-xs font-semibold text-gray-300 mb-3">
+                                        <span>Gasto Mensal (Gasolina):</span>
+                                        <span class="text-white font-bold bg-zinc-900 px-3 py-1 rounded border border-zinc-700">R$ <span id="gasolina-valor">800</span></span>
+                                    </label>
+                                    <input type="range" id="gasolina-slider" min="200" max="3000" step="50" value="800" class="w-full">
+                                    <div class="flex justify-between text-[10px] text-gray-500 mt-2">
+                                        <span>R$ 200</span>
+                                        <span>R$ 3.000+</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3 pt-3 border-t border-zinc-800">
+                                    <div class="bg-zinc-900 border border-zinc-800 p-3 rounded-xl flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Gasto em Energia</span>
+                                        <span class="text-lg font-bold text-white">R$ <span id="energia-valor">224</span><span class="text-[10px] text-gray-500 font-normal"> /mês</span></span>
+                                    </div>
+                                    <div class="bg-green-500/10 border border-green-500/30 p-3 rounded-xl flex flex-col justify-center relative overflow-hidden">
+                                        <div class="absolute -right-2 -bottom-2 opacity-20"><svg class="w-12 h-12 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path></svg></div>
+                                        <span class="text-[10px] text-green-400 font-bold uppercase tracking-wider mb-0.5 relative z-10">Economia no Ano</span>
+                                        <span class="text-xl md:text-2xl font-black text-green-500 relative z-10">R$ <span id="economia-valor">6.912</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="bg-black border border-zinc-800 rounded-lg p-1 max-w-3xl">
-                    <details class="group haptic-btn">
-                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                            Quais dispositivos de proteção são obrigatórios na instalação?
-                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
-                        </summary>
-                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Conforme a norma NBR 17019, é obrigatório um circuito exclusivo partindo do quadro, composto por disjuntor termomagnético dimensionado e interruptor DR do Tipo A, protegendo o veículo e o imóvel contra surtos e fugas.</p>
-                    </details>
-                    <details class="group mt-2 haptic-btn">
-                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                            Qual é o tempo médio de instalação?
-                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
-                        </summary>
-                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Geralmente, concluímos a passagem do cabeamento e a fixação do Wallbox entre 2 a 4 horas, dependendo da distância entre o seu quadro de energia e a garagem.</p>
-                    </details>
-                    <details class="group mt-2 haptic-btn">
-                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                            Atendem condomínios fechados?
-                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
-                        </summary>
-                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Sim. Fornecemos toda a documentação técnica (TRT/ART) exigida pelas administrações de condomínios em Maricá e região para a liberação do serviço.</p>
-                    </details>
+                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20instalação%20de%20Wallbox." target="_blank" class="dynamic-wa haptic-btn w-full block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 sm:py-4 rounded-lg shadow-lg transition-colors text-sm sm:text-base">
+                            Solicitar Orçamento Seguro do Carregador
+                        </a>
+                    </div>
+
+                    <div class="w-full lg:w-1/2 mt-8 lg:mt-0">
+                        <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl relative">
+                            <img src="wallboxcarro.png" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox" class="w-full h-full object-cover min-h-[300px] lg:min-h-[500px]" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&q=80'">
+                            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-16">
+                                <h3 class="text-white font-bold text-xl mt-2">Wallbox</h3>
+                                <p class="text-gray-300 text-sm mt-1">Quadro de proteção (Disjuntor, DR e DPS), aterramento e documentação técnica (se necessário).</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="py-16 bg-black border-b border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6">
-                <h2 class="text-2xl md:text-4xl font-bold mb-3 text-white">Nossas Obras Executadas</h2>
-                <p class="text-sm text-gray-400 mb-8 max-w-xl">Veja registros reais de instalações e manutenções feitas por nós na região de Maricá.</p>
+        <!-- SEÇÃO: RESPONSABILIDADE TÉCNICA (TRT), CFT E NF -->
+        <section id="documentacao" class="py-12 md:py-20 bg-[#0a0a0a] border-b border-zinc-900 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50"></div>
+            <div class="container mx-auto px-5 md:px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+                    
+                    <!-- Box do Profissional -->
+                    <div class="w-full lg:w-1/2 relative order-2 lg:order-1 mt-6 lg:mt-0">
+                        <div class="bg-zinc-900 border border-zinc-800 p-6 md:p-8 rounded-2xl shadow-2xl relative z-10">
+                            <div class="flex justify-between items-start mb-5 border-b border-zinc-800 pb-5">
+                                <div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-white">BRvolts</h3>
+                                    <p class="text-gray-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">Técnico Eletrotécnico</p>
+                                </div>
+                                <div class="bg-green-500/20 text-green-500 p-2 sm:p-3 rounded-xl shrink-0">
+                                    <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center border-b border-zinc-800/50 pb-3">
+                                    <span class="text-gray-400 font-medium text-[11px] sm:text-xs uppercase tracking-wider">CNPJ</span>
+                                    <button onclick="copiarCNPJ()" class="group flex items-center gap-1.5 text-white font-bold text-xs sm:text-sm tracking-wider hover:text-blue-400 transition-colors haptic-btn bg-zinc-800 hover:bg-zinc-700 px-2 py-1 rounded border border-zinc-700">
+                                        <span id="cnpj-text">68.694.956/0001-74</span>
+                                        <svg class="w-3.5 h-3.5 text-zinc-400 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 002 2z"></path></svg>
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-zinc-800/50 pb-3">
+                                    <span class="text-gray-400 font-medium text-[11px] sm:text-xs uppercase tracking-wider">Nota Fiscal</span>
+                                    <span class="bg-green-600/30 border border-green-600 text-green-400 text-[10px] sm:text-xs font-bold px-2 py-1 rounded">SIM (NF-e)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-400 font-medium text-[11px] sm:text-xs uppercase tracking-wider">Órgão Regulador</span>
+                                    <span class="text-white font-bold text-xs sm:text-sm bg-zinc-800 px-2 py-1 rounded border border-zinc-700">CFT RJ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-green-500/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
+                    </div>
+                    
+                    <!-- Textos -->
+                    <div class="w-full lg:w-1/2 order-1 lg:order-2">
+                        <span class="bg-zinc-800 text-green-400 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 inline-block border border-green-900/50">Responsabilidade Técnica</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+                            Legalidade e segurança para o seu <span class="text-green-500">Condomínio e Empresa</span>
+                        </h2>
+                        <p class="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">
+                            A segurança do seu patrimônio começa pela legalidade do profissional. Somos uma <strong>empresa regularizada</strong>, garantindo total transparência e conformidade com as normas da ABNT.
+                        </p>
+                        
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-3">
+                                <div class="text-green-500 mt-0.5 shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                                <div>
+                                    <h4 class="text-white font-bold text-base mb-1">Emissão de Nota Fiscal</h4>
+                                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Apresentação de Notas Fiscais detalhadas para facilitar a prestação de contas de síndicos, gestores comerciais e administradoras.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-3">
+                                <div class="text-green-500 mt-0.5 shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                                <div>
+                                    <h4 class="text-white font-bold text-base mb-1">Laudos e TRT (CFT)</h4>
+                                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Assinatura de Termo de Responsabilidade Técnica (TRT). Respaldo legal obrigatório para liberação de obras em condomínios e aprovações na concessionária (Enel).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SELOS VISUAIS DE AUTORIDADE -->
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <div class="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700 px-2.5 py-1 rounded text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide">
+                                <svg class="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                REGISTRO CFT
+                            </div>
+                            <div class="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700 px-2.5 py-1 rounded text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide">
+                                <svg class="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                NBR 5410 / 17019
+                            </div>
+                            <div class="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700 px-2.5 py-1 rounded text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide">
+                                <svg class="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A12.01 12.01 0 012.167 5C2.056 5.65 2 6.32 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944a11.956 11.956 0 011.3-.898z" clip-rule="evenodd"></path></svg>
+                                PADRÃO ENEL
+                            </div>
+                        </div>
+
+                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Sou%20síndico/gestor%20e%20gostaria%20de%20solicitar%20um%20serviço%20com%20Nota%20Fiscal%20e%20TRT." target="_blank" class="dynamic-wa haptic-btn mt-6 sm:mt-8 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-bold py-3.5 px-6 rounded-lg flex items-center justify-center sm:inline-flex gap-2 transition-colors text-sm sm:text-base">
+                            Atendimento para Síndicos e CNPJ
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: OBRAS (PORTFÓLIO) -->
+        <section id="portfolio" class="py-12 md:py-20 bg-black border-b border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6">
+                <div class="text-center md:text-left mb-8">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white">Nossas Obras Executadas</h2>
+                    <p class="text-sm md:text-base text-gray-400">Veja registros reais de instalações e manutenções feitas por nós na região de Maricá.</p>
+                </div>
                 
                 <div id="portfolio-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3">
-                    <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center">
-                        <img src="qdc.jpg" loading="lazy" alt="Obra de Quadro de Distribuição" width="500" height="300" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=500&q=80'">
-                        <div class="p-4 bg-zinc-900">
-                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block">📸 Instalação Real</span>
-                            <p class="font-bold text-white leading-tight">Montagem e Organização de QDC</p>
-                            <p class="text-xs text-gray-400 mt-1">📍 Serviço feito em Condomínio - Itaipuaçu</p>
+                    
+                    <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg">
+                        <img src="wallbox-pindobas.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox em Pindobas" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 bg-zinc-900 border-t border-zinc-800">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                            <p class="font-bold text-white text-base leading-tight mb-1">Infraestrutura Exclusiva para Wallbox</p>
+                            <p class="text-xs text-gray-400">📍 Condomínio em Pindobas</p>
                         </div>
                     </div>
-                    <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center">
-                        <img src="wallboxcarro.png" loading="lazy" alt="Obra de Carregador Elétrico" width="500" height="300" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
-                        <div class="p-4 bg-zinc-900">
-                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block">📸 Instalação Real</span>
-                            <p class="font-bold text-white leading-tight">Infraestrutura Exclusiva para Wallbox</p>
-                            <p class="text-xs text-gray-400 mt-1">📍 Residência de Alto Padrão - Maricá</p>
+                    
+                    <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg">
+                        <img src="wallbox-caxito2.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox no Caxito" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 bg-zinc-900 border-t border-zinc-800">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                            <p class="font-bold text-white text-base leading-tight mb-1">Infraestrutura Exclusiva para Wallbox</p>
+                            <p class="text-xs text-gray-400">📍 Caxito, Maricá</p>
                         </div>
                     </div>
-                    <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 shrink-0 w-[78vw] md:w-full snap-center">
-                        <img src="manutencao-eletrica.jpg" loading="lazy" alt="Manutenção e Diagnóstico Técnico" width="500" height="300" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&q=80'">
-                        <div class="p-4 bg-zinc-900">
-                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block">📸 Instalação Real</span>
-                            <p class="font-bold text-white leading-tight">Diagnóstico e Resolução de Pane</p>
-                            <p class="text-xs text-gray-400 mt-1">📍 Manutenção Comercial - Inoã</p>
+                    
+                    <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg">
+                        <img src="wallbox-barra-de-marica2.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox na Barra de Maricá" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 bg-zinc-900 border-t border-zinc-800">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                            <p class="font-bold text-white text-base leading-tight mb-1">Infraestrutura Exclusiva para Wallbox</p>
+                            <p class="text-xs text-gray-400">📍 Barra de Maricá</p>
                         </div>
                     </div>
+
                 </div>
                 
                 <div class="flex justify-center items-center gap-2 mt-5 md:hidden" id="portfolio-dots">
@@ -511,49 +613,28 @@
             </div>
         </section>
 
-        <section id="faq" class="py-16 bg-zinc-950 border-b border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6 max-w-3xl">
-                <h2 class="text-2xl md:text-4xl font-bold mb-8 text-white text-center">Dúvidas Frequentes</h2>
-                <div class="space-y-4">
-                    <details class="group bg-black border border-zinc-800 rounded-lg haptic-btn">
-                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                            Qual é o horário de atendimento?
-                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
-                        </summary>
-                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Atendemos 24 horas por dia, 7 dias por semana em toda Maricá.</p>
-                    </details>
-                    <details class="group bg-black border border-zinc-800 rounded-lg haptic-btn">
-                        <summary class="flex justify-between items-center p-4 font-semibold text-sm cursor-pointer text-white">
-                            A Wellington Técnico fornece documentação técnica?
-                            <span class="text-blue-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true">▼</span>
-                        </summary>
-                        <p class="p-4 text-xs md:text-sm text-gray-400 border-t border-zinc-800 bg-zinc-900/40">Sim. Emitimos laudos técnicos e documentação de responsabilidade técnica (ART/TRT) para projetos, condomínios e concessionárias.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
         <!-- SEÇÃO AVERSÃO À PERDA -->
-        <section class="py-12 bg-black border-b border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6 max-w-4xl">
-                <div class="bg-red-950/20 border border-red-900/50 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
-                    <div class="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center text-red-500 shrink-0 shadow-[0_0_20px_rgba(220,38,38,0.2)]">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        <section id="aversao" class="py-10 md:py-16 bg-black border-b border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6 max-w-4xl">
+                <div class="bg-red-950/20 border border-red-900/50 rounded-2xl p-5 md:p-8 flex flex-col md:flex-row items-center gap-5 md:gap-6 shadow-xl">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-red-600/20 rounded-full flex items-center justify-center text-red-500 shrink-0 shadow-[0_0_20px_rgba(220,38,38,0.2)]">
+                        <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-red-500 mb-2">Não arrisque o seu patrimônio</h3>
-                        <p class="text-sm md:text-base text-gray-300 leading-relaxed">Instalações elétricas mal dimensionadas são a principal causa de curtos e queima de eletrodomésticos. Valorize a segurança da sua família contratando um técnico credenciado e evite que o "barato saia muito caro".</p>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-lg md:text-xl font-bold text-red-500 mb-2">Não arrisque o seu patrimônio</h3>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed">Instalações elétricas mal dimensionadas são a principal causa de curtos e queima de eletrodomésticos. Valorize a segurança da sua família contratando um técnico credenciado e evite que o "barato saia muito caro".</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="avaliacoes" class="py-16 md:py-20 bg-[#121212] border-b border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6">
+        <!-- SEÇÃO DE AVALIAÇÕES -->
+        <section id="avaliacoes" class="py-12 md:py-20 bg-[#121212] border-b border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6">
                 
-                <div class="flex items-center gap-4 mb-4">
+                <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
                     <div class="bg-white p-2 rounded-full shadow-lg shrink-0">
-                        <svg class="w-8 h-8" aria-hidden="true" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8" aria-hidden="true" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                             <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                             <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                             <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
@@ -561,156 +642,156 @@
                         </svg>
                     </div>
                     <div>
-                        <h2 class="text-2xl md:text-4xl font-bold text-white">Avaliações do Google</h2>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="text-white font-bold">5.0</span>
+                        <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white leading-tight">Avaliações do Google</h2>
+                        <div class="flex items-center gap-1.5 mt-0.5 sm:mt-1">
+                            <span class="text-white font-bold text-sm sm:text-base">5.0</span>
                             <div class="flex text-[#FBBC05]">
-                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
                         </div>
                     </div>
                 </div>
-                <p class="text-sm text-gray-400 mb-8 ml-1">Opiniões de clientes reais baseadas na satisfação com os nossos serviços pela região.</p>
+                <p class="text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8 ml-1">Opiniões de clientes reais baseadas na satisfação com os nossos serviços pela região.</p>
                 
-                <div id="avaliacoes-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3">
+                <div id="avaliacoes-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3">
                     
-                    <div class="bg-[#202124] p-6 rounded-xl border border-zinc-800 shrink-0 w-[85vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                    <div class="bg-[#202124] p-5 sm:p-6 rounded-xl border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg">K</div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">K</div>
                                 <div>
-                                    <p class="font-bold text-white text-sm">Karine Guedes</p>
-                                    <p class="text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Karine Guedes</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
-                            <p class="text-sm text-gray-300">"Precisava de um <strong>eletricista em Itaipuaçu</strong> urgente para a minha casa. Cumprimento de prazo, atendimento excelente e preço justo na manutenção. Total transparência com o cliente. Obrigada!"</p>
+                            <p class="text-xs sm:text-sm text-gray-300">"Precisava de um eletricista em Itaipuaçu urgente para a minha casa. Cumprimento de prazo, atendimento excelente e preço justo na manutenção. Total transparência com o cliente. Obrigada!"</p>
                         </div>
                     </div>
 
-                    <div class="bg-[#202124] p-6 rounded-xl border border-zinc-800 shrink-0 w-[85vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                    <div class="bg-[#202124] p-5 sm:p-6 rounded-xl border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-full bg-[#EA4335] flex items-center justify-center text-white font-bold text-lg">V</div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">V</div>
                                 <div>
-                                    <p class="font-bold text-white text-sm">Vinicius Lopes</p>
-                                    <p class="text-xs text-gray-400">📍 Inoã, Maricá</p>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Vinicius Lopes</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Inoã, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
-                            <p class="text-sm text-gray-300">"Eletricista extremamente técnico e pontual. Fez uma <strong>instalação de padrão elétrico em Inoã</strong> impecável. Recomendo com toda a certeza a Wellington Tecnico Eletricista."</p>
+                            <p class="text-xs sm:text-sm text-gray-300">"Eletricista extremamente técnico e pontual. Fez uma instalação de padrão elétrico em Inoã impecável. Recomendo com toda a certeza a Wellington Tecnico Eletricista."</p>
                         </div>
                     </div>
 
-                    <div class="bg-[#202124] p-6 rounded-xl border border-zinc-800 shrink-0 w-[85vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                    <div class="bg-[#202124] p-5 sm:p-6 rounded-xl border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-full bg-[#34A853] flex items-center justify-center text-white font-bold text-lg">T</div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">T</div>
                                 <div>
-                                    <p class="font-bold text-white text-sm">Telma Costa</p>
-                                    <p class="text-xs text-gray-400">📍 Centro, Maricá</p>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Telma Costa</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Centro, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
-                            <p class="text-sm text-gray-300">"Foi uma experiência surpreendente. Tive um problema de madrugada e achei um <strong>eletricista 24 horas em Maricá</strong>. É muito difícil encontrar profissionais com tanta capacidade."</p>
+                            <p class="text-xs sm:text-sm text-gray-300">"Foi uma experiência surpreendente. Tive um problema de madrugada e achei um eletricista 24 horas em Maricá. É muito difícil encontrar profissionais com tanta capacidade."</p>
                         </div>
                     </div>
 
-                    <div class="bg-[#202124] p-6 rounded-xl border border-zinc-800 shrink-0 w-[85vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                    <div class="bg-[#202124] p-5 sm:p-6 rounded-xl border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-full bg-[#EA4335] flex items-center justify-center text-white font-bold text-lg">R</div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">R</div>
                                 <div>
-                                    <p class="font-bold text-white text-sm">Ricardo Silva</p>
-                                    <p class="text-xs text-gray-400">📍 São José do Imbassaí</p>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Ricardo Silva</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 São José do Imbassaí</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
-                            <p class="text-sm text-gray-300">"Excelente trabalho na <strong>instalação de Wallbox em Maricá</strong> para o meu carregador BYD. Conhece muito as normas técnicas e deixou o quadro protegido com DR."</p>
+                            <p class="text-xs sm:text-sm text-gray-300">"Excelente trabalho na instalação de Wallbox em Maricá para o meu carregador BYD. Conhece muito as normas técnicas e deixou o quadro protegido com DR."</p>
                         </div>
                     </div>
 
-                    <div class="bg-[#202124] p-6 rounded-xl border border-zinc-800 shrink-0 w-[85vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                    <div class="bg-[#202124] p-5 sm:p-6 rounded-xl border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-full bg-[#FBBC05] flex items-center justify-center text-white font-bold text-lg">M</div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">M</div>
                                 <div>
-                                    <p class="font-bold text-white text-sm">Mariana Costa</p>
-                                    <p class="text-xs text-gray-400">📍 Ponta Negra, Maricá</p>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Mariana Costa</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Ponta Negra, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
-                            <p class="text-sm text-gray-300">"Estávamos com um problema de superaquecimento e o <strong>eletricista em Ponta Negra</strong> resolveu de forma cirúrgica. Excelente serviço de manutenção em Maricá!"</p>
+                            <p class="text-xs sm:text-sm text-gray-300">"Estávamos com um problema de superaquecimento e o eletricista em Ponta Negra resolveu de forma cirúrgica. Excelente serviço de manutenção em Maricá!"</p>
                         </div>
                     </div>
 
-                    <div class="bg-[#202124] p-6 rounded-xl border border-zinc-800 shrink-0 w-[85vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                    <div class="bg-[#202124] p-5 sm:p-6 rounded-xl border border-zinc-800 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-full bg-[#4285F4] flex items-center justify-center text-white font-bold text-lg">C</div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">C</div>
                                 <div>
-                                    <p class="font-bold text-white text-sm">Carlos Eduardo</p>
-                                    <p class="text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Carlos Eduardo</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
-                            <p class="text-sm text-gray-300">"Muito caprichoso! Precisava <strong>instalar chuveiro elétrico</strong> e arrumar a fiação do quadro de disjuntores. Preço justo pela alta qualidade. Um baita <strong>eletricista em Itaipuaçu</strong>."</p>
+                            <p class="text-xs sm:text-sm text-gray-300">"Muito caprichoso! Precisava instalar chuveiro elétrico e arrumar a fiação do quadro de disjuntores. Preço justo pela alta qualidade. Um baita eletricista em Itaipuaçu."</p>
                         </div>
                     </div>
 
                 </div>
                 
                 <div class="flex justify-center items-center gap-2 mt-6 md:hidden" id="avaliacoes-dots">
-                    <div class="w-2 h-2 rounded-full bg-blue-500 transition-colors duration-300"></div>
-                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
-                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
-                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
-                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
-                    <div class="w-2 h-2 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-blue-500 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                 </div>
 
-                <div class="text-center mt-12 mb-4">
-                    <button id="shareBtn" class="haptic-btn bg-zinc-900 border border-zinc-800 hover:border-blue-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-lg transition-colors w-full sm:w-auto">
+                <div class="text-center mt-10 md:mt-12 mb-4">
+                    <button id="shareBtn" class="haptic-btn bg-zinc-900 border border-zinc-800 hover:border-blue-500 text-white font-semibold py-3.5 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-lg transition-colors w-full sm:w-auto text-sm md:text-base">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
                         Gostou? Indique o Wellington Eletricista
                     </button>
@@ -719,48 +800,50 @@
         </section>
 
         <!-- Formulário de Contato -->
-        <section id="contato" class="py-16 bg-zinc-950 border-t border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6 max-w-5xl">
-                <div class="bg-black border border-zinc-800 rounded-2xl p-6 md:p-10 shadow-2xl flex flex-col md:flex-row gap-10">
-                    <div class="md:w-1/2">
-                        <span class="bg-blue-600/20 text-blue-500 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-4 inline-block">Atendimento Digital</span>
-                        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Solicite um Orçamento Formal</h2>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Prefere formalizar seu pedido? Preencha os dados abaixo e retornaremos rapidamente com as informações necessárias para o seu condomínio, residência ou empresa.</p>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3 text-gray-300 text-sm"><span class="text-blue-500 text-lg">📞</span> Resposta rápida via WhatsApp ou Ligação</div>
-                            <div class="flex items-center gap-3 text-gray-300 text-sm"><span class="text-blue-500 text-lg">🏢</span> Atendimento exclusivo para CNPJ e Condomínios</div>
+        <section id="contato" class="py-12 md:py-20 bg-zinc-950 border-t border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6 max-w-5xl">
+                <div class="bg-black border border-zinc-800 rounded-2xl p-6 md:p-10 shadow-2xl flex flex-col md:flex-row gap-8 md:gap-10">
+                    <div class="w-full md:w-1/2">
+                        <span class="bg-blue-600/20 text-blue-500 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 inline-block">Atendimento Digital</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3">Solicite um Orçamento</h2>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Prefere formalizar seu pedido? Preencha os dados abaixo e retornaremos com as informações para o seu condomínio, residência ou empresa.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-gray-300 text-xs sm:text-sm"><span class="text-blue-500 text-lg">📞</span> Resposta rápida via WhatsApp ou Ligação</div>
+                            <div class="flex items-center gap-3 text-gray-300 text-xs sm:text-sm"><span class="text-blue-500 text-lg">🏢</span> Atendimento exclusivo para CNPJ e Condomínios</div>
                         </div>
                     </div>
                     
-                    <div class="md:w-1/2 relative">
+                    <div class="w-full md:w-1/2 relative">
                         <div id="form-success-msg" class="hidden absolute inset-0 bg-zinc-900 border border-green-500/50 rounded-xl flex-col items-center justify-center p-6 text-center z-10">
-                            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center text-green-500 mb-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-green-500/20 rounded-full flex items-center justify-center text-green-500 mb-4">
+                                <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Mensagem Enviada!</h3>
-                            <p class="text-sm text-gray-400">Recebemos sua solicitação e entraremos em contato com você o mais rápido possível.</p>
+                            <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Mensagem Enviada!</h3>
+                            <p class="text-xs sm:text-sm text-gray-400">Recebemos sua solicitação e entraremos em contato com você o mais rápido possível.</p>
                         </div>
 
                         <div id="form-wrapper">
                             <form id="contato-form" action="https://formspree.io/f/xnjkgwby" method="POST" class="space-y-4">
                                 <div>
-                                    <label for="nome" class="block text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Seu Nome / Empresa</label>
-                                    <input type="text" id="nome" name="nome" required class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-600" placeholder="Ex: Síndico João">
+                                    <label for="nome" class="block text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Seu Nome / Empresa</label>
+                                    <input type="text" id="nome" name="nome" required class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-600" placeholder="Ex: Síndico João">
                                 </div>
                                 <div>
-                                    <label for="telefone" class="block text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">WhatsApp ou Telefone</label>
-                                    <input type="tel" id="telefone" name="telefone" required class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-600" placeholder="(21) 90000-0000">
+                                    <label for="telefone" class="block text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">WhatsApp ou Telefone</label>
+                                    <input type="tel" id="telefone" name="telefone" required oninput="maskPhone(event)" maxlength="15" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors placeholder-gray-600" placeholder="(21) 90000-0000">
                                 </div>
                                 <div>
-                                    <label for="servico" class="block text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Tipo de Serviço</label>
-                                    <select id="servico" name="servico" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors appearance-none">
+                                    <label for="servico" class="block text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Tipo de Serviço</label>
+                                    <select id="servico" name="servico" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors appearance-none">
                                         <option value="wallbox">Instalação de Wallbox (Carregador VE)</option>
                                         <option value="manutencao">Manutenção Elétrica Geral</option>
-                                        <option value="projetos">Projetos / Laudos (ART/TRT)</option>
+                                        <option value="projetos">Laudos e TRT (CFT)</option>
                                         <option value="outro">Outros Serviços</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="haptic-btn w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-lg transition-colors shadow-lg mt-2 tracking-wide uppercase text-sm">Enviar Solicitação</button>
+                                <button type="submit" class="haptic-btn w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-lg transition-colors shadow-lg mt-2 tracking-wide uppercase text-sm flex justify-center items-center">
+                                    Enviar Solicitação
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -768,17 +851,17 @@
             </div>
         </section>
 
-        <section id="atuacao" class="py-16 bg-black border-t border-zinc-900">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl md:text-4xl font-bold text-white">Atendemos em <span class="text-blue-500">Toda Maricá</span></h2>
-                    <p class="text-sm md:text-lg text-gray-400 mt-2">Pronta resposta técnica com frota própria para residências, condomínios e comércios locais.</p>
+        <section id="atuacao" class="py-12 md:py-16 bg-black border-t border-zinc-900">
+            <div class="container mx-auto px-5 md:px-6">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white">Atendemos em <span class="text-blue-500">Toda Maricá</span></h2>
+                    <p class="text-xs sm:text-sm md:text-lg text-gray-400 mt-2">Pronta resposta técnica com frota própria para residências, condomínios e comércios locais.</p>
                 </div>
-                <div class="w-full max-w-5xl mx-auto bg-zinc-900 rounded-lg shadow-xl p-4 border border-zinc-800">
+                <div class="w-full max-w-5xl mx-auto bg-zinc-900 rounded-lg shadow-xl p-3 border border-zinc-800">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117688.37535198811!2d-42.89531940984869!3d-22.92477380905953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9901458b68a623%3A0x861348505527a2b2!2sMaric%C3%A1%2C%20RJ!5e0!3m2!1spt-BR!2sbr!4v1716490895360!5m2!1spt-BR!2sbr" 
                         width="100%" 
-                        height="400" 
+                        height="350" 
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
@@ -786,48 +869,33 @@
                         class="rounded-lg opacity-85 hover:opacity-100 transition-opacity">
                     </iframe>
                 </div>
-                <p class="text-center mt-6 text-xs md:text-sm text-gray-400">Cobrimos 100% da região: de <strong>Itaipuaçu</strong> e <strong>Inoã</strong> ao <strong>Centro de Maricá</strong>, <strong>São José do Imbassaí</strong> e <strong>Ponta Negra</strong>.</p>
             </div>
         </section>
 
-        <!-- SEÇÃO DE MARCAS (AUTORIDADE) MOVIDA PARA ANTES DO RODAPÉ -->
+        <!-- SEÇÃO DE MARCAS (ROLAGEM ANIMADA) -->
         <div class="bg-[#0a0a0a] py-8 border-t border-zinc-900 overflow-hidden relative">
             <div class="container mx-auto px-4 mb-5 text-center">
-                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Especialista nas principais marcas do mercado</p>
+                <p class="text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-widest">Especialista nas principais marcas do mercado</p>
             </div>
             <div class="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
             <div class="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
             
             <div class="animate-marquee flex gap-12 md:gap-16 items-center px-4">
-                <style>
-                    /* Filtro CSS para transformar as logos originais em cinza escuro/claro perfeito para fundo preto */
-                    .brand-logo { filter: brightness(0) invert(1) opacity(0.4); transition: all 0.3s ease; }
-                    .brand-logo:hover { filter: brightness(0) invert(1) opacity(1); }
-                </style>
-                <!-- Grupo 1 -->
-                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-10 w-auto object-contain brand-logo" loading="lazy">
-                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-12 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="LogoElgin.svg" alt="Elgin" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="logo-enerbras.svg" alt="Enerbras" class="h-5 md:h-7 w-auto object-contain brand-logo" loading="lazy">
-                <img src="BYD_Auto_2022_logo.svg" alt="BYD" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="GWM_2025_logo.svg" alt="GWM" class="h-5 md:h-7 w-auto object-contain brand-logo" loading="lazy">
-                <!-- Grupo 2 (Duplicado para efeito contínuo infinito) -->
-                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-10 w-auto object-contain brand-logo" loading="lazy">
-                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-12 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="LogoElgin.svg" alt="Elgin" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="logo-enerbras.svg" alt="Enerbras" class="h-5 md:h-7 w-auto object-contain brand-logo" loading="lazy">
-                <img src="BYD_Auto_2022_logo.svg" alt="BYD" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy">
-                <img src="GWM_2025_logo.svg" alt="GWM" class="h-5 md:h-7 w-auto object-contain brand-logo" loading="lazy">
+                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-10 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-12 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                
+                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-10 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-12 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
             </div>
         </div>
     </main>
@@ -836,91 +904,116 @@
         <div class="container mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 <div>
-                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-14 w-auto object-contain mx-auto md:mx-0 mb-4 opacity-95" width="160" height="56" loading="lazy">
-                    <p class="text-gray-400 text-sm">Wellington Técnico Eletricista - Sua escolha certa em engenharia e manutenção elétrica comercial ou residencial de alto padrão.</p>
+                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-12 sm:h-14 w-auto object-contain mx-auto md:mx-0 mb-4 opacity-95" width="160" height="56" loading="lazy" decoding="async">
+                    <p class="text-gray-400 text-xs sm:text-sm">BRvolts - Sua escolha certa em técnica e manutenção elétrica comercial ou residencial de alto padrão.</p>
                 </div>
                 <div>
-                    <h4 class="font-bold text-base mb-3 text-blue-500">Links Rápidos</h4>
-                    <ul class="text-sm space-y-1.5 text-gray-400">
-                        <li><a href="#sobre" class="hover:text-white haptic-btn">Sobre a Empresa</a></li>
+                    <h4 class="font-bold text-sm sm:text-base mb-3 text-blue-500">Links Rápidos</h4>
+                    <ul class="text-xs sm:text-sm space-y-1.5 text-gray-400">
+                        <li><a href="#documentacao" class="hover:text-white haptic-btn">Documentação / NF</a></li>
                         <li><a href="#servicos" class="hover:text-white haptic-btn">Nossos Serviços</a></li>
                         <li><a href="#wallbox" class="hover:text-white haptic-btn">Instalação de Wallbox</a></li>
                         <li><a href="#portfolio" class="hover:text-white haptic-btn">Portfólio Real</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-base mb-3 text-blue-500">Áreas Atendidas</h4>
-                    <p class="text-xs text-zinc-400 font-bold mb-1.5">Atendimento em Toda Maricá - RJ</p>
-                    <ul class="text-sm space-y-1.5 text-gray-400">
+                    <h4 class="font-bold text-sm sm:text-base mb-3 text-blue-500">Áreas Atendidas</h4>
+                    <p class="text-[10px] sm:text-xs text-zinc-400 font-bold mb-1.5">Atendimento em Toda Maricá - RJ</p>
+                    <ul class="text-xs sm:text-sm space-y-1.5 text-gray-400">
                         <li><a href="eletricista-itaipuacu.html" class="hover:text-white haptic-btn">Eletricista em Itaipuaçu</a></li>
                         <li><a href="eletricista-inoa.html" class="hover:text-white haptic-btn">Eletricista em Inoã</a></li>
                         <li><a href="eletricista-ponta-negra.html" class="hover:text-white haptic-btn">Eletricista em Ponta Negra</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-base mb-3 text-blue-500">Contato</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <h4 class="font-bold text-sm sm:text-base mb-3 text-blue-500">Contato</h4>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
                         <strong>WhatsApp:</strong> (21) 97649-3932<br>
-                        <strong>Instagram:</strong> <a href="https://instagram.com/brvolts" target="_blank" class="haptic-btn">@brvolts</a><br>
+                        <strong>CNPJ:</strong> 68.694.956/0001-74<br>
                         <strong>Base de Atendimento:</strong> Maricá - RJ, CEP: 24900-000
                     </p>
                 </div>
             </div>
-            <div class="border-t border-zinc-900 mt-8 pt-6 text-center text-gray-500 text-xs">
-                <p>© <span id="current-year"></span> Wellington Técnico Eletricista. Todos os direitos reservados.</p>
+            <div class="border-t border-zinc-900 mt-8 pt-6 text-center text-gray-500 text-[10px] sm:text-xs">
+                <p>© <span id="current-year"></span> BRvolts | Wellington Técnico Eletricista. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <!-- Modal Exit Intent -->
     <div id="exit-intent-popup" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 px-4">
-        <div class="bg-[#121212] border border-zinc-800 p-8 rounded-2xl shadow-2xl max-w-sm w-full relative transform scale-95 transition-transform duration-300" id="exit-popup-card">
-            <button id="close-exit-popup" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors haptic-btn" aria-label="Fechar">
+        <div class="bg-[#121212] border border-zinc-800 p-6 sm:p-8 rounded-2xl shadow-2xl max-w-sm w-full relative transform scale-95 transition-transform duration-300" id="exit-popup-card">
+            <button id="close-exit-popup" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors haptic-btn" aria-label="Fechar">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center text-blue-500 mb-6 mx-auto">
-                <svg class="w-8 h-8 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-600/20 rounded-full flex items-center justify-center text-blue-500 mb-5 sm:mb-6 mx-auto">
+                <svg class="w-7 h-7 sm:w-8 sm:h-8 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
-            <h3 class="text-2xl font-extrabold text-white text-center mb-3">Precisa de ajuda agora?</h3>
-            <p class="text-gray-400 text-center text-sm mb-8 leading-relaxed">Não saia com problemas elétricos! Fale direto com o especialista e tire sua dúvida agora no WhatsApp.</p>
-            <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estava%20saindo%20do%20site,%20mas%20decidi%20tirar%20uma%20dúvida." target="_blank" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-colors w-full text-sm uppercase tracking-wide">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white text-center mb-3">Precisa de ajuda agora?</h3>
+            <p class="text-gray-400 text-center text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">Não saia com problemas elétricos! Fale direto com o especialista e tire sua dúvida agora no WhatsApp.</p>
+            <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estava%20saindo%20do%20site,%20mas%20decidi%20tirar%20uma%20dúvida." target="_blank" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-xl flex justify-center items-center gap-2 shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-colors w-full text-xs sm:text-sm uppercase tracking-wide">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
                 Tirar Dúvida Direto no WhatsApp
             </a>
-            <button id="close-exit-text" class="text-zinc-500 hover:text-zinc-300 text-xs text-center w-full mt-5 font-medium underline-offset-4 hover:underline transition-colors haptic-btn">Não, prefiro continuar com o problema</button>
+            <button id="close-exit-text" class="text-zinc-500 hover:text-zinc-300 text-[11px] sm:text-xs text-center w-full mt-4 font-medium underline-offset-4 hover:underline transition-colors haptic-btn">Não, prefiro continuar com o problema</button>
         </div>
     </div>
 
     <!-- Toast de Prova Social -->
-    <div id="social-proof-toast" class="fixed bottom-28 md:bottom-5 left-4 md:left-5 bg-zinc-900 border border-zinc-800 text-white p-3 rounded-xl shadow-2xl z-40 transform translate-y-32 opacity-0 transition-all duration-700 flex items-center gap-3">
-        <div class="bg-blue-600/20 text-blue-500 p-2 rounded-lg"><svg class="w-5 h-5 animate-pulse" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+    <div id="social-proof-toast" class="fixed bottom-24 md:bottom-5 left-4 md:left-5 bg-zinc-900 border border-zinc-800 text-white p-2.5 sm:p-3 rounded-xl shadow-2xl z-40 transform translate-y-32 opacity-0 transition-all duration-700 flex items-center gap-3">
+        <div class="bg-blue-600/20 text-blue-500 p-2 rounded-lg"><svg class="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
         <div>
-            <p id="social-proof-text" class="text-xs font-medium text-gray-200">⚡ Orçamentos rápidos em Maricá</p>
+            <p id="social-proof-text" class="text-[11px] sm:text-xs font-medium text-gray-200">⚡ Orçamentos rápidos em Maricá</p>
         </div>
     </div>
 
-    <button id="backToTop" class="haptic-btn fixed bottom-28 right-4 md:bottom-5 md:right-5 bg-zinc-800 border border-zinc-700 hover:bg-blue-600 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-2xl z-40 opacity-0 pointer-events-none transition-all duration-300" aria-label="Voltar ao topo">
-        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
+    <button id="backToTop" class="haptic-btn fixed bottom-24 right-4 md:bottom-5 md:right-5 bg-zinc-800 border border-zinc-700 hover:bg-blue-600 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-2xl z-40 opacity-0 pointer-events-none transition-all duration-300" aria-label="Voltar ao topo">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
     </button>
 
     <!-- Botão Fixo Mobile -->
     <div class="fixed bottom-0 left-0 w-full z-50 md:hidden bg-green-500 shadow-[0_-10px_30px_rgba(34,197,94,0.35)] border-t border-green-400">
-        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20atendimento." class="dynamic-wa haptic-btn flex justify-center items-center w-full py-4 text-white font-extrabold text-[15px] tracking-wide uppercase gap-2 relative overflow-hidden" aria-label="Solicitar orçamento pelo WhatsApp">
+        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20atendimento." class="dynamic-wa haptic-btn flex justify-center items-center w-full py-3.5 text-white font-extrabold text-[14px] tracking-wide uppercase gap-2 relative overflow-hidden" aria-label="Solicitar orçamento pelo WhatsApp">
             <div class="absolute inset-0 w-1/4 h-full bg-white/20 animate-shimmer"></div>
-            <svg class="w-5 h-5 relative z-10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <svg class="w-4 h-4 relative z-10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
             </svg>
-            <span class="relative z-10">Falar com Eletricista Agora</span>
+            <span class="relative z-10">Falar com Eletricista</span>
         </a>
     </div>
 
+    <!-- Botão Fixo Flutuante Desktop -->
     <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20atendimento." target="_blank" class="dynamic-wa haptic-btn hidden md:flex fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full items-center justify-center pulse-btn z-50 transform transition-transform duration-300 hover:scale-110" aria-label="Solicitar orçamento pelo WhatsApp">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
             <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
         </svg>
     </a>
 
     <script>
+        function copiarCNPJ() {
+            navigator.clipboard.writeText("68694956000174").then(() => {
+                const toast = document.getElementById('social-proof-toast');
+                const toastText = document.getElementById('social-proof-text');
+                const originalText = toastText.innerHTML;
+                toastText.innerHTML = "✅ CNPJ copiado com sucesso!";
+                toast.classList.remove('translate-y-32', 'opacity-0');
+                setTimeout(() => { 
+                    toast.classList.add('translate-y-32', 'opacity-0'); 
+                    setTimeout(() => { toastText.innerHTML = originalText; }, 700);
+                }, 3000);
+            });
+        }
+
+        // MÁSCARA DE TELEFONE 
+        function maskPhone(e) { 
+            let v = e.target.value.replace(/\D/g, ""); 
+            if (v.length > 11) v = v.slice(0, 11); 
+            if (v.length > 10) v = v.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3"); 
+            else if (v.length > 5) v = v.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3"); 
+            else if (v.length > 2) v = v.replace(/^(\d\d)(\d{0,5})/, "($1) $2"); 
+            e.target.value = v; 
+        }
+
         // FEEDBACK TÁTIL
         document.querySelectorAll('.haptic-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -951,7 +1044,7 @@
             });
         });
 
-        // RASTREAMENTO DE CONVERSÃO
+        // RASTREAMENTO DE CONVERSÃO (Google Ads)
         document.querySelectorAll('a[href^="https://api.whatsapp.com"], a[href^="tel:"]').forEach(btn => {
             btn.addEventListener('click', () => {
                 if (typeof trackContatoConversion === "function") {
@@ -960,7 +1053,7 @@
             });
         });
 
-        // SUBMISSÃO AJAX FORMSPREE
+        // SUBMISSÃO AJAX FORMSPREE COM LIMPEZA E LOADING
         const contatoForm = document.getElementById('contato-form');
         const formWrapper = document.getElementById('form-wrapper');
         const formSuccessMsg = document.getElementById('form-success-msg');
@@ -968,46 +1061,40 @@
         if(contatoForm) {
             contatoForm.addEventListener('submit', (e) => {
                 e.preventDefault(); 
+                
+                const submitBtn = contatoForm.querySelector('button[type="submit"]');
+                const btnOriginalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Enviando...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
                 const formData = new FormData(contatoForm);
                 
                 fetch(contatoForm.action, {
                     method: "POST",
                     body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 }).then(response => {
                     if (response.ok) {
                         formWrapper.classList.add('hidden');
                         formSuccessMsg.classList.remove('hidden');
                         formSuccessMsg.classList.add('flex');
-                        if (typeof trackContatoConversion === "function") {
-                            trackContatoConversion();
-                        }
+                        contatoForm.reset(); 
+                        if (typeof trackContatoConversion === "function") trackContatoConversion();
                     } else {
-                        console.error('Erro na submissão ao Formspree');
+                        console.error('Erro na submissão');
+                        submitBtn.innerHTML = 'Erro! Chame no WhatsApp';
                     }
-                }).catch((error) => console.error('Erro no envio:', error));
-            });
-        }
-
-        // COMPARTILHAMENTO
-        const shareBtn = document.getElementById('shareBtn');
-        if (shareBtn) {
-            shareBtn.addEventListener('click', async () => {
-                if (navigator.share) {
-                    try {
-                        await navigator.share({
-                            title: 'Wellington Técnico Eletricista em Maricá',
-                            text: 'Pessoal, precisando de eletricista na região, recomendo muito o trabalho:',
-                            url: window.location.href
-                        });
-                    } catch (err) {
-                        console.log('Compartilhamento cancelado', err);
-                    }
-                } else {
-                    alert('Copie o link do site no seu navegador e envie para os amigos!');
-                }
+                }).catch((error) => {
+                    console.error('Erro no envio:', error);
+                    submitBtn.innerHTML = 'Erro de Conexão';
+                }).finally(() => {
+                    setTimeout(() => {
+                        submitBtn.innerHTML = btnOriginalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                    }, 3000);
+                });
             });
         }
 
@@ -1023,11 +1110,8 @@
                 let index = Math.round(scrollPercent * (dots.length - 1));
                 
                 Array.from(dots).forEach((dot, i) => {
-                    if(i === index) {
-                        dot.classList.replace('bg-zinc-700', 'bg-blue-500');
-                    } else {
-                        dot.classList.replace('bg-blue-500', 'bg-zinc-700');
-                    }
+                    if(i === index) dot.classList.replace('bg-zinc-700', 'bg-blue-500');
+                    else dot.classList.replace('bg-blue-500', 'bg-zinc-700');
                 });
             });
         }
@@ -1057,7 +1141,7 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        // SAUDAÇÃO DINÂMICA
+        // SAUDAÇÃO DINÂMICA & RASTREADOR (Vim pelo site)
         function updateWhatsAppLinks() {
             const hour = new Date().getHours();
             let greeting = "Olá";
@@ -1068,7 +1152,10 @@
             document.querySelectorAll('.dynamic-wa').forEach(link => {
                 const url = new URL(link.href);
                 let text = url.searchParams.get('text') || "";
-                text = text.replace(/^Olá!\s*/i, ""); 
+                
+                text = text.replace(/^(Olá|Bom dia|Boa tarde|Boa noite)!\s*/i, ""); 
+                if (!text.includes("[Vim pelo site]")) text = `${text} [Vim pelo site]`;
+                
                 url.searchParams.set('text', `${greeting}! ${text}`);
                 link.href = url.toString();
             });
@@ -1125,26 +1212,62 @@
             if(e.target === exitPopup) closeExitPopup();
         });
 
-        // PROVA SOCIAL TOAST
+        // SIMULADOR DE ECONOMIA WALLBOX
+        const gasSlider = document.getElementById('gasolina-slider');
+        const gasValor = document.getElementById('gasolina-valor');
+        const energiaValor = document.getElementById('energia-valor');
+        const economiaValor = document.getElementById('economia-valor');
+
+        if(gasSlider) {
+            function atualizarSimulador() {
+                const val = parseInt(gasSlider.value);
+                gasValor.innerText = val.toLocaleString('pt-BR');
+                
+                const gastoEnergia = val * 0.28;
+                energiaValor.innerText = gastoEnergia.toLocaleString('pt-BR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+                
+                const economiaMes = val - gastoEnergia;
+                const economiaAno = economiaMes * 12;
+                
+                economiaValor.innerText = economiaAno.toLocaleString('pt-BR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+                
+                const min = gasSlider.min || 200;
+                const max = gasSlider.max || 3000;
+                const percent = ((val - min) / (max - min)) * 100;
+                gasSlider.style.background = `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${percent}%, #27272a ${percent}%, #27272a 100%)`;
+            }
+
+            gasSlider.addEventListener('input', atualizarSimulador);
+            atualizarSimulador();
+        }
+
+        // PROVA SOCIAL TOAST (Embaralhado Aleatoriamente)
         const toast = document.getElementById('social-proof-toast');
         const toastText = document.getElementById('social-proof-text');
-        const notifications = [
+        let notifications = [
             "⚡ Wellington acabou de iniciar um atendimento no Centro.",
             "🔧 2 pessoas de Itaipuaçu estão solicitando orçamento agora.",
             "⭐ Avaliação de 5 estrelas recebida de Inoã!",
             "⚡ Novo orçamento para Wallbox na região!",
             "🚨 Plantão 24h acionado há 10 minutos."
         ];
+        
+        notifications.sort(() => Math.random() - 0.5);
         let currentIndex = 0;
 
         function showNotification() {
             if (!toast) return;
-            toastText.innerHTML = notifications[currentIndex];
-            toast.classList.remove('translate-y-32', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-32', 'opacity-0');
-                currentIndex = (currentIndex + 1) % notifications.length;
-            }, 8000);
+            // Só sobrescreve se não estiver exibindo a mensagem do CNPJ (que começa com ✅)
+            if(!toastText.innerHTML.includes("CNPJ copiado")) {
+                toastText.innerHTML = notifications[currentIndex];
+                toast.classList.remove('translate-y-32', 'opacity-0');
+                
+                setTimeout(() => {
+                    toast.classList.add('translate-y-32', 'opacity-0');
+                    currentIndex = (currentIndex + 1) % notifications.length;
+                    if(currentIndex === 0) notifications.sort(() => Math.random() - 0.5);
+                }, 8000);
+            }
         }
         setTimeout(() => { showNotification(); setInterval(showNotification, 35000); }, 8000);
 
