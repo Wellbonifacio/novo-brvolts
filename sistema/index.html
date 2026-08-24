@@ -18,9 +18,7 @@
     
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #000; color: #e5e7eb; -webkit-tap-highlight-color: transparent; transition: background-color 0.3s, color 0.3s; overflow-x: hidden; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
+        
         .section { display: none; animation: fadeIn 0.3s ease-in-out; padding-bottom: 90px; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -62,11 +60,19 @@
         .toggle-checkbox:checked { right: 0; border-color: #3b82f6; }
         .toggle-checkbox:checked + .toggle-label { background-color: #3b82f6; }
 
-        .kanban-board { display: flex; overflow-x: auto; gap: 1rem; padding-bottom: 1rem; scroll-snap-type: x mandatory; }
-        .kanban-col { min-width: 280px; width: 280px; background: rgba(24, 24, 27, 0.5); border-radius: 0.75rem; padding: 0.75rem; display: flex; flex-direction: column; max-height: 70vh; scroll-snap-align: center; }
-        .kanban-cards { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem; padding-right: 0.25rem; }
+        /* KANBAN SEM SCROLL HORIZONTAL */
+        .kanban-board { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 1rem; }
+        .kanban-col { width: 100%; min-width: 100%; background: rgba(24, 24, 27, 0.5); border-radius: 0.75rem; padding: 0.75rem; display: flex; flex-direction: column; }
+        .kanban-cards { display: flex; flex-direction: column; gap: 0.75rem; }
         .kanban-card { background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem; padding: 0.75rem; transition: transform 0.2s, box-shadow 0.2s; }
         .kanban-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); }
+
+        /* Em telas grandes, vira um Grid perfeito lado a lado */
+        @media (min-width: 1024px) {
+            .kanban-board { flex-direction: row; display: grid; grid-template-columns: repeat(4, 1fr); align-items: start; }
+            .kanban-col { min-width: 0; max-height: 80vh; }
+            .kanban-cards { overflow-y: auto; flex-grow: 1; padding-right: 0.25rem; }
+        }
 
         body.light-mode { background-color: #f3f4f6; color: #1f2937; }
         body.light-mode header { background-color: #ffffff; border-bottom-color: #e5e7eb; }
@@ -122,7 +128,6 @@
             .doc-section h3 { margin: 0 0 5px 0; font-size: 12pt; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; color: #0f172a; }
             .doc-section p { margin: 0; font-size: 10pt; line-height: 1.4; text-align: justify; white-space: pre-wrap; }
             
-            /* LAYOUT FOTOS ANTES E DEPOIS */
             .print-fotos-wrapper { display: flex; justify-content: space-between; gap: 15px; margin-top: 10px; }
             .print-fotos-col { width: 48%; }
             .print-fotos-col h4 { text-align: center; text-transform: uppercase; font-size: 10pt; margin: 0 0 8px 0; padding-bottom: 4px; border-bottom: 2px solid #e2e8f0; }
@@ -160,7 +165,7 @@
 </head>
 <body>
 
-    <!-- NOVO SISTEMA DE LOGIN SEGURO (E-MAIL + SENHA + RECAPTCHA) -->
+    <!-- SISTEMA DE LOGIN SEGURO (E-MAIL + SENHA + RECAPTCHA REATIVADO) -->
     <div id="login-screen">
         <img src="https://www.brvolts.site/logo1.png" alt="BRvolts Logo" class="h-16 object-contain mb-8">
         <h2 class="text-white text-xl font-bold mb-2">Acesso Restrito</h2>
@@ -170,7 +175,7 @@
             <input type="email" id="login-email" class="w-full bg-zinc-900 border-zinc-700 text-white p-3 rounded-lg" placeholder="Seu E-mail" required>
             <input type="password" id="login-password" class="w-full bg-zinc-900 border-zinc-700 text-white p-3 rounded-lg" placeholder="Sua Senha" required>
             
-            <!-- CAIXA DO RECAPTCHA -->
+            <!-- CAIXA DO RECAPTCHA REATIVADA -->
             <div class="g-recaptcha" data-sitekey="6Ld1jnctAAAAACYonu6H7-ngQzbOu3wpgkg9BW5I" data-theme="dark"></div>
             
             <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-lg">Autenticar</button>
@@ -238,23 +243,29 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
                     <div id="alerta-followup" class="hidden">
                         <h3 class="text-sm font-bold text-orange-400 mb-2 uppercase flex items-center gap-2">💰 Negócios na Mesa</h3>
                         <div class="bg-orange-900/20 border border-orange-700/50 rounded-xl overflow-hidden">
-                            <ul id="lista-followup" class="divide-y divide-orange-900/30 text-sm"></ul>
+                            <ul id="lista-followup" class="divide-y divide-orange-900/30 text-sm p-1"></ul>
                         </div>
                     </div>
                     <div id="alerta-manutencao" class="hidden">
                         <h3 class="text-sm font-bold text-yellow-500 mb-2 uppercase flex items-center gap-2">⚠️ Revisão (1 Ano)</h3>
                         <div class="bg-yellow-900/20 border border-yellow-700/50 rounded-xl overflow-hidden">
-                            <ul id="lista-alertas" class="divide-y divide-yellow-900/30 text-sm"></ul>
+                            <ul id="lista-alertas" class="divide-y divide-yellow-900/30 text-sm p-1"></ul>
                         </div>
                     </div>
                     <div id="alerta-garantia" class="hidden">
                         <h3 class="text-sm font-bold text-blue-400 mb-2 uppercase flex items-center gap-2">🛡️ Garantia (90 dias)</h3>
                         <div class="bg-blue-900/20 border border-blue-700/50 rounded-xl overflow-hidden">
-                            <ul id="lista-garantias" class="divide-y divide-blue-900/30 text-sm"></ul>
+                            <ul id="lista-garantias" class="divide-y divide-blue-900/30 text-sm p-1"></ul>
+                        </div>
+                    </div>
+                    <div id="alerta-wallbox" class="hidden">
+                        <h3 class="text-sm font-bold text-teal-400 mb-2 uppercase flex items-center gap-2">🔌 Wallbox Mensal</h3>
+                        <div class="bg-teal-900/20 border border-teal-700/50 rounded-xl overflow-hidden">
+                            <ul id="lista-wallbox" class="divide-y divide-teal-900/30 text-sm p-1"></ul>
                         </div>
                     </div>
                 </div>
@@ -270,7 +281,7 @@
                     </div>
                 </div>
 
-                <div class="kanban-board hide-scrollbar">
+                <div class="kanban-board">
                     <div class="kanban-col border-t-4 border-yellow-500">
                         <h3 class="font-bold text-gray-300 mb-3 flex justify-between items-center text-sm">ORÇAMENTOS <span class="bg-yellow-500/20 text-yellow-500 px-2 py-0.5 rounded-full text-xs" id="kb-count-pendente">0</span></h3>
                         <div class="kanban-cards" id="kb-pendente"></div>
@@ -344,7 +355,7 @@
                 </div>
             </div>
 
-            <!-- SERVIÇO (ORÇAMENTOS) COM FOTOS ANTES E DEPOIS -->
+            <!-- SERVIÇO (ORÇAMENTOS) -->
             <div id="orcamentos" class="section">
                 <h2 class="text-xl font-bold text-white mb-4" id="titulo-aba-servico">Descrever Serviço</h2>
                 <div class="space-y-4 max-w-2xl">
@@ -370,7 +381,6 @@
                     
                     <div><label>Observações Técnicas</label><textarea id="orc-obs" rows="2" spellcheck="true" lang="pt-BR" placeholder="O serviço exige desmontagem..."></textarea></div>
                     
-                    <!-- NOVO SISTEMA FOTOGRÁFICO ANTES/DEPOIS -->
                     <div class="bg-zinc-900 p-4 rounded-xl border border-zinc-800 transition-colors">
                         <h3 class="font-bold text-sm text-white mb-3 flex items-center gap-2">📸 Relatório Fotográfico (Nuvem 24h)</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -399,13 +409,24 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-zinc-900 p-4 rounded-xl border border-zinc-800 transition-colors mt-4">
+                        <h3 class="font-bold text-sm text-white mb-3">🚗 Veículo Elétrico</h3>
+                        <label class="flex items-center gap-3 text-sm text-gray-300">
+                            <input type="checkbox" id="orc-wallbox" class="chk-custom"> 
+                            Serviço inclui Wallbox (Ativar lembretes mensais de acompanhamento)
+                        </label>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                         <div>
                             <label>Valor Total do Serviço (R$)</label>
                             <input type="tel" id="orc-valor" placeholder="R$ 0,00" oninput="maskCurrency(event)">
                         </div>
                         <div>
-                            <label class="text-red-500">Suas Despesas Internas (R$)</label>
+                            <label class="text-red-500 flex justify-between items-center">
+                                Suas Despesas Internas (R$)
+                                <button onclick="abrirModalDeslocamento()" type="button" class="text-[10px] bg-red-900/50 hover:bg-red-800 text-white px-2 py-1 rounded transition border border-red-500/50">⛽ Calc Manual</button>
+                            </label>
                             <input type="tel" id="orc-despesas" placeholder="R$ 0,00" oninput="maskCurrency(event)" class="border-red-900/50 bg-red-900/10 focus:border-red-500 text-red-500 font-bold">
                         </div>
                         
@@ -457,7 +478,7 @@
         </div>
     </div>
 
-    <!-- MODAIS E PRINT AREA OCULTOS ABAIXO -->
+    <!-- MODAIS E PRINT AREA OCULTOS -->
     <div id="modal-calculadora" class="modal-overlay">
         <div class="modal-content">
             <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">🧮 Calculadora de Campo</h3>
@@ -482,6 +503,27 @@
             <div class="flex gap-3 mt-6">
                 <button onclick="fecharCalculadora()" class="flex-1 bg-zinc-700 hover:bg-zinc-600 text-white py-3 rounded-lg font-bold transition">Fechar</button>
                 <button onclick="calcularDimensionamento()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold shadow-lg transition">Calcular</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOVO MODAL: CALCULADORA MANUAL DE DESLOCAMENTO -->
+    <div id="modal-deslocamento" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">⛽ Calculadora de Deslocamento</h3>
+            <div class="space-y-4">
+                <div>
+                    <label>Distância Total (Ida e Volta em KM)</label>
+                    <input type="number" id="calc-km" placeholder="Ex: 25">
+                </div>
+                <div>
+                    <label>Valor por KM (R$)</label>
+                    <input type="number" id="calc-valor-km" placeholder="Ex: 0.80" value="0.80" step="0.01">
+                </div>
+            </div>
+            <div class="flex gap-3 mt-6">
+                <button onclick="fecharModalDeslocamento()" class="flex-1 bg-zinc-700 hover:bg-zinc-600 text-white py-3 rounded-lg font-bold transition">Cancelar</button>
+                <button onclick="aplicarDeslocamento()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold shadow-lg transition">Aplicar</button>
             </div>
         </div>
     </div>
@@ -525,10 +567,8 @@
         </div>
     </div>
 
-    <!-- ÁREA DE IMPRESSÃO (PDF) -->
     <div id="print-area">
         <div id="carimbo-pago-print" class="carimbo-pago-css">PAGO</div>
-        
         <div class="doc-header">
             <div class="doc-logo"><img src="logo_pdf.png" alt="BRvolts Logo"><h2>Soluções em Eletricidade</h2><p>CNPJ: 68.694.956/0001-74</p><p>Rua Nilo Ribeiro N° 44</p><p>Ubatiba - Maricá</p></div>
             <div class="doc-contacts">
@@ -537,17 +577,13 @@
                 <p><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> wellington.bonifacio@proton.me</p>
             </div>
         </div>
-
         <div class="doc-info" id="print-info"></div>
         <div class="doc-section"><h3>Serviços e Mão de Obra</h3><p id="print-servicos"></p></div>
         <div class="doc-section" id="print-section-materiais"><h3>Materiais</h3><p id="print-materiais"></p></div>
-        
         <div class="doc-section" id="print-section-laudo" style="display: none; background-color: #f8fafc; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
             <h3 style="margin-top: 0; color: #1e293b;">Laudo de Conformidade Técnica</h3>
             <ul class="laudo-list" id="print-laudo-lista"></ul>
         </div>
-
-        <!-- RELATÓRIO FOTOGRÁFICO ANTES E DEPOIS -->
         <div class="doc-section" id="print-section-fotos" style="display: none;">
             <h3>Relatório Fotográfico</h3>
             <div class="print-fotos-wrapper" id="print-fotos-wrapper">
@@ -560,12 +596,9 @@
                     <div class="print-fotos-grid" id="print-fotos-depois-container"></div>
                 </div>
             </div>
-            <!-- Container caso seja apenas um tipo de foto (para preencher 100% da tela) -->
             <div class="print-fotos-full" id="print-fotos-full-container" style="display: none; margin-top: 10px;"></div>
         </div>
-
         <div class="doc-section"><h3>Observações</h3><p id="print-obs"></p></div>
-        
         <div class="doc-section">
             <div class="payment-grid">
                 <div class="payment-conditions"></div>
@@ -579,28 +612,18 @@
                 </div>
             </div>
         </div>
-
         <div class="doc-total">TOTAL GERAL: R$ <span id="print-valor-total">0,00</span></div>
         <div class="clearfix"></div>
-
         <div class="doc-termos">
             <p><strong>Termo de Responsabilidade:</strong> A BRvolts não se responsabiliza por tubulações obstruídas ou danos estruturais ocultos na alvenaria do imóvel não sinalizados previamente.</p>
             <p><strong>Garantia de Qualidade:</strong> Garantia de 90 dias para a mão de obra prestada, conforme art. 26 do Código de Defesa do Consumidor (CDC).</p>
         </div>
-
         <div class="doc-footer">
             <p id="print-rodape-data" style="font-size: 11pt; font-weight: 600; margin-bottom: 12px;"></p>
             <p id="print-validade" style="margin-bottom: 15px; color: #dc2626;"></p>
             <a href="https://g.page/r/CbiafVBOu7JAEBM/review" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background-color: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; text-decoration: none; padding: 10px 18px; border-radius: 8px; font-weight: bold; font-size: 10pt; margin-top: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
                 <svg viewBox="0 0 48 48" style="width: 18px; height: 18px; margin-right: 8px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                 Avalie-nos no Google
-                <div style="display: flex; margin-left: 8px; gap: 2px;">
-                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg viewBox="0 0 20 20" style="width: 14px; height: 14px; fill: #FBBC05; margin: 0;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                </div>
             </a>
         </div>
     </div>
@@ -633,6 +656,23 @@
             document.getElementById('calc-resultado').classList.remove('hidden');
         }
 
+        // FUNÇÕES DO MODAL DE DESLOCAMENTO (MANUAL)
+        function abrirModalDeslocamento() { document.getElementById('modal-deslocamento').style.display = 'flex'; }
+        function fecharModalDeslocamento() { document.getElementById('modal-deslocamento').style.display = 'none'; }
+        function aplicarDeslocamento() {
+            const km = parseFloat(document.getElementById('calc-km').value) || 0;
+            const valorKm = parseFloat(document.getElementById('calc-valor-km').value) || 0;
+            if(km <= 0) return showToast("Insira uma distância válida", "error");
+
+            const custoTotal = km * valorKm;
+            const despesaAtual = parseDinheiro(document.getElementById('orc-despesas').value);
+            const novaDespesa = despesaAtual + custoTotal;
+
+            document.getElementById('orc-despesas').value = formatarDinheiroInput(novaDespesa);
+            showToast(`Adicionado R$ ${custoTotal.toFixed(2)} às despesas!`, "success");
+            fecharModalDeslocamento();
+        }
+
         function maskPhone(e) { let v = e.target.value.replace(/\D/g, ""); if (v.length > 11) v = v.slice(0, 11); if (v.length > 10) v = v.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3"); else if (v.length > 5) v = v.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3"); else if (v.length > 2) v = v.replace(/^(\d\d)(\d{0,5})/, "($1) $2"); e.target.value = v; }
         function maskCEP(e) { let v = e.target.value.replace(/\D/g, ""); if (v.length > 8) v = v.slice(0, 8); if (v.length > 5) v = v.replace(/^(\d{5})(\d{1,3}).*/, "$1-$2"); e.target.value = v; }
         function maskCurrency(e) { let value = e.target.value.replace(/\D/g, ""); if(!value) { e.target.value = ""; return; } value = (parseInt(value) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); e.target.value = value; }
@@ -647,6 +687,11 @@
             return null;
         }
 
+        function getEnderecoVisivel(endCompleto) {
+            if(!endCompleto) return '';
+            return endCompleto.split('|||')[0];
+        }
+
         function exportarJSON() {
             if (clientes.length === 0 && orcamentos.length === 0) return showToast("Nenhum dado.", "error");
             const data = { clientes: clientes, orcamentos: orcamentos, tracker: timeTrackerMeta };
@@ -656,7 +701,6 @@
 
         async function forcarSincronizacao() { document.getElementById('global-loader').style.display = 'flex'; await initApp(); showToast("Sincronizado!", "success"); }
 
-        // --- INÍCIO: NOVO SISTEMA DE LOGIN SUPABASE + RECAPTCHA ---
         let supabaseClient = null;
         try { 
             if (window.supabase) supabaseClient = window.supabase.createClient('https://mflvwscgghdvtxasgmdd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mbHZ3c2NnZ2hkdnR4YXNnbWRkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0ODgyNjQsImV4cCI6MjA5ODA2NDI2NH0.tB34mGuyV-Y4xGwnF-1UANJl-p534yEmvsPPcDUA4sk'); 
@@ -674,15 +718,10 @@
 
         async function realizarLogin(e) {
             e.preventDefault();
-            
-            if(!supabaseClient) {
-                alert("Erro interno: Supabase não conectado.");
-                return;
-            }
-
+            if(!supabaseClient) { alert("Erro interno: Supabase não conectado."); return; }
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
-            
+
             const captchaResponse = grecaptcha.getResponse();
             if (!captchaResponse) {
                 alert("Por favor, confirme que você não é um robô.");
@@ -690,25 +729,17 @@
             }
 
             document.getElementById('global-loader').style.display = 'flex';
-
-            const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
             if (error) {
                 document.getElementById('global-loader').style.display = 'none';
                 alert("Erro ao entrar: Verifique seu e-mail e senha."); 
-                grecaptcha.reset(); 
+                grecaptcha.reset();
             } else {
                 desbloquearApp();
             }
         }
 
-        async function fazerLogout() {
-            if(supabaseClient) await supabaseClient.auth.signOut();
-            window.location.reload();
-        }
+        async function fazerLogout() { if(supabaseClient) await supabaseClient.auth.signOut(); window.location.reload(); }
 
         function desbloquearApp() {
             document.getElementById('login-screen').style.opacity = '0';
@@ -723,9 +754,7 @@
             }, 500);
         }
 
-        // Chama verificação de sessão assim que a página carregar
         checkSession();
-        // --- FIM: NOVO SISTEMA DE LOGIN SUPABASE ---
 
         let clientes = []; let orcamentos = []; let editandoOSId = null;
         let fotosAntesTemporarias = []; let fotosDepoisTemporarias = [];
@@ -745,7 +774,7 @@
 
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); const active = document.querySelector('.section.active').id; if(active === 'orcamentos') salvarOrcamento(); else if(active === 'clientes') salvarCliente(); }
-            if (e.key === 'Escape') { fecharHistorico(); fecharModalWhatsapp(); fecharModalEdicaoCliente(); fecharCalculadora(); }
+            if (e.key === 'Escape') { fecharHistorico(); fecharModalWhatsapp(); fecharModalEdicaoCliente(); fecharCalculadora(); fecharModalDeslocamento(); }
         });
 
         document.addEventListener('DOMContentLoaded', async () => { if(localStorage.getItem('brvolts-theme') === 'light') toggleTheme(); });
@@ -760,7 +789,9 @@
                             id: s.id, osNumber: s.os_number || '', clienteId: s.cliente_id, desc: s.descricao || '', obs: s.observacoes || '',
                             materiaisStatus: s.materiais_status || '', materiaisLista: s.materiais_lista || '', valor: s.valor_servico || 0,
                             despesas: s.despesas || 0, status: s.status || 'Pendente', data: s.data_servico || '', fotos: s.fotos || [], pago: s.pago || false,
-                            laudoAterramento: s.laudo_aterramento || false, laudoBornes: s.laudo_bornes || false, laudoIsolacao: s.laudo_isolacao || false, laudoInstrucao: s.laudo_instrucao || false
+                            laudoAterramento: s.laudo_aterramento || false, laudoBornes: s.laudo_bornes || false, laudoIsolacao: s.laudo_isolacao || false, laudoInstrucao: s.laudo_instrucao || false,
+                            isWallbox: s.is_wallbox || false, ultimoContatoWallbox: s.ultimo_contato_wallbox || null,
+                            contatoFollowup: s.contato_followup || null, contatoGarantia: s.contato_garantia || null, contatoManutencao: s.contato_manutencao || null
                         }));
                     }
                 } catch(e) { console.error(e) }
@@ -791,17 +822,21 @@
             const nome = document.getElementById('cli-nome').value; const tel = document.getElementById('cli-tel').value;
             const rua = document.getElementById('cli-rua').value; const num = document.getElementById('cli-num').value;
             const comp = document.getElementById('cli-comp').value; const bairro = document.getElementById('cli-bairro').value; const cidUf = document.getElementById('cli-cidade_uf').value;
-            let end = ''; if(rua) end = `${rua}, ${num || 'S/N'}${comp ? ' - ' + comp : ''} - ${bairro}, ${cidUf}`;
             if(!nome) return showToast('Preencha o nome!', 'error');
-            const tempId = Date.now(); clientes.push({ id: tempId, nome, tel, end }); atualizarTelas();
+
+            let end = ''; if(rua) end = `${rua}, ${num || 'S/N'}${comp ? ' - ' + comp : ''} - ${bairro}, ${cidUf}`;
+            
+            const tempId = Date.now(); clientes.push({ id: tempId, nome, tel, end }); 
+            
             if(supabaseClient) {
                 const { data, error } = await supabaseClient.from('clientes').insert([{ nome, telefone: tel, endereco: end }]).select();
                 if (error) {
                     alert("⚠️ ERRO DO SUPABASE AO SALVAR CLIENTE:\n" + error.message);
-                } else if(data && data.length > 0) { const idx = clientes.findIndex(c => c.id === tempId); if(idx > -1) clientes[idx].id = data[0].id; atualizarTelas(); }
+                } else if(data && data.length > 0) { const idx = clientes.findIndex(c => c.id === tempId); if(idx > -1) clientes[idx].id = data[0].id; }
             }
             document.getElementById('cli-nome').value = ''; document.getElementById('cli-tel').value = ''; 
-            ['cli-cep', 'cli-rua', 'cli-num', 'cli-comp', 'cli-bairro', 'cli-cidade_uf'].forEach(id => { document.getElementById(id).value = ''; }); showToast('Cliente cadastrado!');
+            ['cli-cep', 'cli-rua', 'cli-num', 'cli-comp', 'cli-bairro', 'cli-cidade_uf'].forEach(id => { document.getElementById(id).value = ''; }); 
+            atualizarTelas(); showToast('Cliente cadastrado!');
         }
 
         function renderizarListaClientes() {
@@ -824,20 +859,22 @@
         function abrirModalEdicaoCliente(id) {
             const cliente = clientes.find(c => String(c.id) === String(id)); if(!cliente) return;
             document.getElementById('edit-cli-id').value = cliente.id; document.getElementById('edit-cli-nome').value = cliente.nome || '';
-            document.getElementById('edit-cli-tel').value = cliente.tel || ''; document.getElementById('edit-cli-end').value = cliente.end || '';
+            document.getElementById('edit-cli-tel').value = cliente.tel || ''; document.getElementById('edit-cli-end').value = getEnderecoVisivel(cliente.end);
             document.getElementById('modal-editar-cliente').style.display = 'flex';
         }
         function fecharModalEdicaoCliente() { document.getElementById('modal-editar-cliente').style.display = 'none'; }
+        
         async function salvarEdicaoCliente() {
             const id = document.getElementById('edit-cli-id').value; const nome = document.getElementById('edit-cli-nome').value;
-            const tel = document.getElementById('edit-cli-tel').value; const end = document.getElementById('edit-cli-end').value;
+            const tel = document.getElementById('edit-cli-tel').value; const endText = document.getElementById('edit-cli-end').value;
             if(!nome) return showToast("Nome é obrigatório", "error");
             const cliente = clientes.find(c => String(c.id) === String(id));
             if(cliente) {
-                cliente.nome = nome; cliente.tel = tel; cliente.end = end; atualizarTelas(); showToast("Atualizado!"); fecharModalEdicaoCliente();
-                if(supabaseClient) await supabaseClient.from('clientes').update({ nome, telefone: tel, endereco: end }).eq('id', id);
+                cliente.nome = nome; cliente.tel = tel; cliente.end = endText; atualizarTelas(); showToast("Atualizado!"); fecharModalEdicaoCliente();
+                if(supabaseClient) await supabaseClient.from('clientes').update({ nome, telefone: tel, endereco: endText }).eq('id', id);
             }
         }
+        
         async function excluirCliente(id) {
             if(!confirm("Deseja realmente EXCLUIR este cliente?")) return;
             clientes = clientes.filter(c => String(c.id) !== String(id)); atualizarTelas(); showToast("Excluído.", "info");
@@ -873,7 +910,6 @@
         }
         function fecharHistorico() { document.getElementById('historico-modal').style.display = 'none'; }
 
-        // FOTOS ANTES E DEPOIS
         async function processarFotos(event, tipo) {
             const files = event.target.files; if(!files.length) return;
             showToast("Enviando imagens (24h)...", "info"); document.getElementById('global-loader').style.display = 'flex';
@@ -929,10 +965,10 @@
             const chkBornes = document.getElementById('chk-laudo-bornes').checked;
             const chkIsolacao = document.getElementById('chk-laudo-isolacao').checked;
             const chkInstrucao = document.getElementById('chk-laudo-instrucao').checked;
+            const isWallbox = document.getElementById('orc-wallbox').checked;
 
             if(!clienteId || !desc) return showToast('Selecione cliente e preencha descrição!', 'error');
             
-            // Junta as fotos no formato para o BD (prefixando)
             const fotosEstruturadas = [
                 ...fotosAntesTemporarias.map(f => 'antes|||' + f),
                 ...fotosDepoisTemporarias.map(f => 'depois|||' + f)
@@ -944,21 +980,26 @@
                     os.clienteId = parseInt(clienteId); os.desc = desc; os.obs = obs; os.materiaisStatus = materiaisStatus;
                     os.materiaisLista = materiaisLista; os.valor = valor; os.despesas = despesas; os.fotos = fotosEstruturadas;
                     os.pago = pago; os.data = dataServ; os.laudoAterramento = chkAterramento; os.laudoBornes = chkBornes;
-                    os.laudoIsolacao = chkIsolacao; os.laudoInstrucao = chkInstrucao;
+                    os.laudoIsolacao = chkIsolacao; os.laudoInstrucao = chkInstrucao; os.isWallbox = isWallbox;
                 }
                 if(supabaseClient) {
                     const { error } = await supabaseClient.from('servicos').update({
                         cliente_id: parseInt(clienteId), descricao: desc, observacoes: obs, materiais_status: materiaisStatus,
                         materiais_lista: materiaisLista, valor_servico: valor, despesas: despesas, fotos: fotosEstruturadas,
                         pago: pago, data_servico: dataServ, laudo_aterramento: chkAterramento, laudo_bornes: chkBornes,
-                        laudo_isolacao: chkIsolacao, laudo_instrucao: chkInstrucao
+                        laudo_isolacao: chkIsolacao, laudo_instrucao: chkInstrucao, is_wallbox: isWallbox
                     }).eq('id', idProtegido);
-                    if (error) alert("❌ O SUPABASE RECUSOU A ATUALIZAÇÃO:\n" + error.message);
                 }
                 atualizarTelas(); showToast('Atualizado!'); limparFormularioOS(); mudarAba('os');
             } else {
                 const numOs = gerarNumeroOS(); const tempId = Date.now();
-                const novaOs = { id: tempId, osNumber: numOs, clienteId: parseInt(clienteId), desc, obs, materiaisStatus, materiaisLista, valor: valor, despesas: despesas, data: dataServ, status: 'Pendente', fotos: fotosEstruturadas, pago: pago, laudoAterramento: chkAterramento, laudoBornes: chkBornes, laudoIsolacao: chkIsolacao, laudoInstrucao: chkInstrucao };
+                const novaOs = { 
+                    id: tempId, osNumber: numOs, clienteId: parseInt(clienteId), desc, obs, materiaisStatus, materiaisLista, 
+                    valor: valor, despesas: despesas, data: dataServ, status: 'Pendente', fotos: fotosEstruturadas, 
+                    pago: pago, laudoAterramento: chkAterramento, laudoBornes: chkBornes, laudoIsolacao: chkIsolacao, 
+                    laudoInstrucao: chkInstrucao, isWallbox: isWallbox, ultimoContatoWallbox: null,
+                    contatoFollowup: null, contatoGarantia: null, contatoManutencao: null
+                };
                 
                 orcamentos.push(novaOs); atualizarTelas(); limparFormularioOS(); mudarAba('os');
                 
@@ -967,13 +1008,11 @@
                         cliente_id: parseInt(clienteId), os_number: numOs, descricao: desc, observacoes: obs, materiais_status: materiaisStatus,
                         materiais_lista: materiaisLista, valor_servico: valor, despesas: despesas, data_servico: dataServ, status: 'Pendente',
                         fotos: fotosEstruturadas, pago: pago, laudo_aterramento: chkAterramento, laudo_bornes: chkBornes,
-                        laudo_isolacao: chkIsolacao, laudo_instrucao: chkInstrucao
+                        laudo_isolacao: chkIsolacao, laudo_instrucao: chkInstrucao, is_wallbox: isWallbox, ultimo_contato_wallbox: null,
+                        contato_followup: null, contato_garantia: null, contato_manutencao: null
                     }]).select();
                     
-                    if (error) {
-                        alert("❌ O SUPABASE RECUSOU SALVAR A OS:\n" + error.message);
-                        console.error(error);
-                    } else if(data && data.length > 0) { 
+                    if(data && data.length > 0) { 
                         const idx = orcamentos.findIndex(o => o.id === tempId); 
                         if(idx > -1) orcamentos[idx].id = data[0].id; 
                         atualizarTelas();
@@ -992,13 +1031,14 @@
             document.getElementById('orc-despesas').value = formatarDinheiroInput(os.despesas); document.getElementById('orc-pago').checked = os.pago || false;
             document.getElementById('chk-laudo-aterramento').checked = os.laudoAterramento || false; document.getElementById('chk-laudo-bornes').checked = os.laudoBornes || false;
             document.getElementById('chk-laudo-isolacao').checked = os.laudoIsolacao || false; document.getElementById('chk-laudo-instrucao').checked = os.laudoInstrucao || false;
+            document.getElementById('orc-wallbox').checked = os.isWallbox || false;
             if(os.data && os.data.includes('/')) document.getElementById('orc-data').value = os.data.split('/').reverse().join('-');
             
             fotosAntesTemporarias = []; fotosDepoisTemporarias = [];
             (os.fotos || []).forEach(f => {
                 if(f.startsWith('antes|||')) fotosAntesTemporarias.push(f.replace('antes|||',''));
                 else if(f.startsWith('depois|||')) fotosDepoisTemporarias.push(f.replace('depois|||',''));
-                else fotosDepoisTemporarias.push(f); // Legacy cai no depois
+                else fotosDepoisTemporarias.push(f); 
             });
             atualizarPreviewFotos();
             showToast("Clonada! Salve para criar uma nova.", "info"); mudarAba('orcamentos');
@@ -1013,13 +1053,14 @@
             document.getElementById('orc-despesas').value = formatarDinheiroInput(os.despesas); document.getElementById('orc-pago').checked = os.pago || false;
             document.getElementById('chk-laudo-aterramento').checked = os.laudoAterramento || false; document.getElementById('chk-laudo-bornes').checked = os.laudoBornes || false;
             document.getElementById('chk-laudo-isolacao').checked = os.laudoIsolacao || false; document.getElementById('chk-laudo-instrucao').checked = os.laudoInstrucao || false;
+            document.getElementById('orc-wallbox').checked = os.isWallbox || false;
             if(os.data && os.data.includes('/')) document.getElementById('orc-data').value = os.data.split('/').reverse().join('-');
             
             fotosAntesTemporarias = []; fotosDepoisTemporarias = [];
             (os.fotos || []).forEach(f => {
                 if(f.startsWith('antes|||')) fotosAntesTemporarias.push(f.replace('antes|||',''));
                 else if(f.startsWith('depois|||')) fotosDepoisTemporarias.push(f.replace('depois|||',''));
-                else fotosDepoisTemporarias.push(f); // Legacy cai no depois
+                else fotosDepoisTemporarias.push(f); 
             });
             atualizarPreviewFotos();
 
@@ -1038,7 +1079,7 @@
             ['orc-desc', 'orc-obs', 'orc-materiais', 'orc-valor', 'orc-despesas', 'orc-data'].forEach(id => { document.getElementById(id).value = ''; });
             ['orc-fotos-antes', 'orc-fotos-depois'].forEach(id => { document.getElementById(id).value = ''; });
             document.getElementById('orc-pago').checked = false;
-            ['chk-laudo-aterramento','chk-laudo-bornes','chk-laudo-isolacao','chk-laudo-instrucao'].forEach(id => { document.getElementById(id).checked = false; });
+            ['chk-laudo-aterramento','chk-laudo-bornes','chk-laudo-isolacao','chk-laudo-instrucao', 'orc-wallbox'].forEach(id => { document.getElementById(id).checked = false; });
             fotosAntesTemporarias = []; fotosDepoisTemporarias = []; atualizarPreviewFotos();
         }
 
@@ -1060,7 +1101,6 @@
             document.body.appendChild(link); link.click(); document.body.removeChild(link);
         }
 
-        // TIME TRACKING LÓGICA
         function toggleTimer(id) {
             const os = orcamentos.find(o => String(o.id) === String(id)); if(!os) return;
             if(!timeTrackerMeta[id]) timeTrackerMeta[id] = { totalMinutos: 0, startedAt: null };
@@ -1072,6 +1112,25 @@
             }
             saveTimeTracker(); atualizarTelas();
         }
+        
+        window.registrarContato = async function(id, tipo) {
+            const os = orcamentos.find(o => String(o.id) === String(id));
+            if(os) {
+                const now = new Date().toISOString();
+                let updateObj = {};
+                
+                if(tipo === 'wallbox') { os.ultimoContatoWallbox = now; updateObj = { ultimo_contato_wallbox: now }; }
+                else if(tipo === 'followup') { os.contatoFollowup = now; updateObj = { contato_followup: now }; }
+                else if(tipo === 'garantia') { os.contatoGarantia = now; updateObj = { contato_garantia: now }; }
+                else if(tipo === 'manutencao') { os.contatoManutencao = now; updateObj = { contato_manutencao: now }; }
+
+                atualizarTelas();
+                showToast("Contato registrado! Alerta ocultado.", "success");
+                if(supabaseClient) {
+                    await supabaseClient.from('servicos').update(updateObj).eq('id', id);
+                }
+            }
+        };
 
         function atualizarDashboard() {
             const dashFat = document.getElementById('dash-faturamento'); const pLucro = document.getElementById('dash-lucro');
@@ -1079,13 +1138,17 @@
             
             let faturamento = 0, despesas = 0; let clientesStats = {}; const hojeData = new Date();
             const kanbanLists = { 'Pendente': [], 'Aprovado': [], 'Em Andamento': [], 'Concluído': [] };
-            const followups = []; const alertas = []; const garantias = [];
+            const followups = []; const alertas = []; const garantias = []; const wallboxAlerts = [];
 
             (orcamentos || []).forEach(o => {
                 let st = o.status || 'Pendente'; if(st === 'Cancelado') return; if(!kanbanLists[st]) st = 'Pendente'; kanbanLists[st].push(o);
                 const d = extrairData(o.data); let dataOS = null; if(d) dataOS = new Date(d.ano, parseInt(d.mes) - 1, d.dia);
 
-                if (st === 'Pendente' && dataOS) { const diffDays = Math.ceil((hojeData - dataOS) / (1000 * 60 * 60 * 24)); if(diffDays >= 3) followups.push({os: o, dias: diffDays}); }
+                if (st === 'Pendente' && dataOS && !o.contatoFollowup) { 
+                    const diffDays = Math.ceil((hojeData - dataOS) / (1000 * 60 * 60 * 24)); 
+                    if(diffDays >= 3) followups.push({os: o, dias: diffDays}); 
+                }
+                
                 if (st === 'Concluído' || st === 'concluido') {
                     if (d) {
                         const matchMes = (filtroMes === 'ALL' || d.mes === filtroMes); const matchAno = (filtroAno === 'ALL' || d.ano === filtroAno);
@@ -1094,9 +1157,19 @@
                             if(!clientesStats[o.clienteId]) clientesStats[o.clienteId] = { total: 0, count: 0 };
                             clientesStats[o.clienteId].total += val; clientesStats[o.clienteId].count += 1;
                         }
+                        
                         const diffDays = Math.ceil((hojeData - dataOS) / (1000 * 60 * 60 * 24));
-                        if(diffDays >= 330 && diffDays <= 390) alertas.push(o);
-                        if(diffDays >= 80 && diffDays <= 90) garantias.push({os: o, dias: diffDays});
+                        
+                        if(diffDays >= 330 && diffDays <= 390 && !o.contatoManutencao) alertas.push(o);
+                        if(diffDays >= 80 && diffDays <= 90 && !o.contatoGarantia) garantias.push({os: o, dias: diffDays});
+                        
+                        if (o.isWallbox) {
+                            const dataRefContato = o.ultimoContatoWallbox ? new Date(o.ultimoContatoWallbox) : dataOS;
+                            const diffDaysWallbox = Math.ceil((hojeData - dataRefContato) / (1000 * 60 * 60 * 24));
+                            if (diffDaysWallbox >= 30) {
+                                wallboxAlerts.push({os: o, dias: diffDaysWallbox});
+                            }
+                        }
                     }
                 }
             });
@@ -1111,7 +1184,13 @@
                     document.getElementById('lista-followup').innerHTML = followups.slice(0, 5).map(item => {
                         const c = clientes.find(cli => String(cli.id) === String(item.os.clienteId)); if(!c) return '';
                         const txt = encodeURIComponent(`Olá ${c.nome}, tudo bem?\nEnviamos o orçamento da OS ${item.os.osNumber} há alguns dias. Ficou alguma dúvida técnica sobre o dimensionamento ou valores? Estou à disposição!`);
-                        return `<li class="p-3 flex justify-between items-center"><p class="text-orange-400 font-bold text-xs truncate">${c.nome} <span class="text-orange-600 font-normal ml-1">Há ${item.dias} d</span></p><a href="https://api.whatsapp.com/send?phone=55${c.tel.replace(/\D/g, '')}&text=${txt}" target="_blank" class="bg-orange-600 text-white text-[10px] px-2 py-1 rounded shrink-0">Cobrar</a></li>`;
+                        return `<li class="p-3 flex flex-col gap-2">
+                            <p class="text-orange-400 font-bold text-xs truncate">${c.nome} <span class="text-orange-600 font-normal ml-1">Há ${item.dias} d</span></p>
+                            <div class="flex gap-2 w-full">
+                                <a href="https://api.whatsapp.com/send?phone=55${c.tel.replace(/\D/g, '')}&text=${txt}" target="_blank" class="flex-1 text-center bg-orange-600 text-white font-bold text-[10px] px-2 py-2 rounded transition hover:bg-orange-500">💬 Cobrar</a>
+                                <button onclick="registrarContato(${item.os.id}, 'followup')" class="flex-1 bg-zinc-700 text-white text-[10px] font-bold px-2 py-2 rounded transition hover:bg-zinc-600">✅ Já Contatei</button>
+                            </div>
+                        </li>`;
                     }).join('');
                 } else divFollow.classList.add('hidden');
             }
@@ -1123,7 +1202,13 @@
                     document.getElementById('lista-alertas').innerHTML = alertas.slice(0, 5).map(o => {
                         const c = clientes.find(cli => String(cli.id) === String(o.clienteId)); if(!c) return '';
                         const txt = encodeURIComponent(`Olá ${c.nome}! Aqui é o Wellington da BRvolts. Nosso sistema avisou que faz cerca de 1 ano desde a nossa última manutenção.\nGostaria de agendar uma revisão preventiva?`);
-                        return `<li class="p-3 flex justify-between items-center"><p class="text-yellow-500 font-bold text-xs truncate">${c.nome}</p><a href="https://api.whatsapp.com/send?phone=55${c.tel.replace(/\D/g, '')}&text=${txt}" target="_blank" class="bg-yellow-600 text-white text-[10px] px-2 py-1 rounded shrink-0">Chamar</a></li>`;
+                        return `<li class="p-3 flex flex-col gap-2">
+                            <p class="text-yellow-500 font-bold text-xs truncate">${c.nome}</p>
+                            <div class="flex gap-2 w-full">
+                                <a href="https://api.whatsapp.com/send?phone=55${c.tel.replace(/\D/g, '')}&text=${txt}" target="_blank" class="flex-1 text-center bg-yellow-600 text-white font-bold text-[10px] px-2 py-2 rounded transition hover:bg-yellow-500">💬 Chamar</a>
+                                <button onclick="registrarContato(${o.id}, 'manutencao')" class="flex-1 bg-zinc-700 text-white text-[10px] font-bold px-2 py-2 rounded transition hover:bg-zinc-600">✅ Já Contatei</button>
+                            </div>
+                        </li>`;
                     }).join('');
                 } else divAlerta.classList.add('hidden');
             }
@@ -1136,16 +1221,42 @@
                         const c = clientes.find(cli => String(cli.id) === String(item.os.clienteId)); if(!c) return '';
                         const dias = 90 - item.dias;
                         const txt = encodeURIComponent(`Olá *${c.nome}*, tudo bem?\nPassando pra lembrar que a garantia do serviço vence em ${dias} dia(s). Tudo operando nos conformes por aí?`);
-                        return `<li class="p-3 flex justify-between items-center"><p class="text-blue-400 font-bold text-xs truncate">${c.nome} <span class="text-blue-600 font-normal">(${dias}d)</span></p><a href="https://api.whatsapp.com/send?phone=55${c.tel.replace(/\D/g, '')}&text=${txt}" target="_blank" class="bg-blue-600 text-white text-[10px] px-2 py-1 rounded shrink-0">Chamar</a></li>`;
+                        return `<li class="p-3 flex flex-col gap-2">
+                            <p class="text-blue-400 font-bold text-xs truncate">${c.nome} <span class="text-blue-600 font-normal">(${dias}d)</span></p>
+                            <div class="flex gap-2 w-full">
+                                <a href="https://api.whatsapp.com/send?phone=55${c.tel.replace(/\D/g, '')}&text=${txt}" target="_blank" class="flex-1 text-center bg-blue-600 text-white font-bold text-[10px] px-2 py-2 rounded transition hover:bg-blue-500">💬 Chamar</a>
+                                <button onclick="registrarContato(${item.os.id}, 'garantia')" class="flex-1 bg-zinc-700 text-white text-[10px] font-bold px-2 py-2 rounded transition hover:bg-zinc-600">✅ Já Contatei</button>
+                            </div>
+                        </li>`;
                     }).join('');
                 } else divGarantia.classList.add('hidden');
+            }
+
+            const divWallbox = document.getElementById('alerta-wallbox');
+            if(divWallbox) {
+                if(wallboxAlerts.length > 0) {
+                    divWallbox.classList.remove('hidden');
+                    document.getElementById('lista-wallbox').innerHTML = wallboxAlerts.slice(0, 5).map(item => {
+                        const c = clientes.find(cli => String(cli.id) === String(item.os.clienteId)); if(!c) return '';
+                        const txt = encodeURIComponent(`Olá *${c.nome}*, tudo bem? Aqui é o Wellington da *BRvolts*.\n\nPassando para saber como está o funcionamento do seu carregador veicular (Wallbox) e se ele está precisando de alguma verificação técnica preventiva este mês. ⚡🚘`);
+                        return `<li class="p-3 flex flex-col gap-2">
+                            <p class="text-teal-400 font-bold text-xs truncate">${c.nome} <span class="text-teal-600 font-normal ml-1">(${item.dias}d)</span></p>
+                            <div class="flex gap-2 w-full">
+                                <a href="https://api.whatsapp.com/send?phone=55${c.tel.replace(/\D/g, '')}&text=${txt}" target="_blank" class="flex-1 text-center bg-teal-600 text-white font-bold text-[10px] px-2 py-2 rounded transition hover:bg-teal-500">💬 Chamar</a>
+                                <button onclick="registrarContato(${item.os.id}, 'wallbox')" class="flex-1 bg-zinc-700 text-white text-[10px] font-bold px-2 py-2 rounded transition hover:bg-zinc-600">✅ Já Contatei</button>
+                            </div>
+                        </li>`;
+                    }).join('');
+                } else divWallbox.classList.add('hidden');
             }
 
             const renderKanbanCard = (o) => {
                 const c = clientes.find(cli => String(cli.id) === String(o.clienteId)); const cNome = c ? c.nome : 'Desconhecido';
                 const total = parseFloat(o.valor || 0); const lucro = total - parseFloat(o.despesas || 0);
                 
-                let badges = ''; if(o.pago) badges += `<span class="bg-green-900/50 text-green-400 text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">Pago</span>`;
+                let badges = ''; 
+                if(o.pago) badges += `<span class="bg-green-900/50 text-green-400 text-[10px] px-2 py-0.5 rounded-full font-bold ml-1">Pago</span>`;
+                if(o.isWallbox) badges += `<span class="bg-teal-900/50 text-teal-400 text-[10px] px-2 py-0.5 rounded-full font-bold ml-1" title="Instalação Wallbox">🔌 WB</span>`;
                 
                 let trackerBtn = ''; let rentabilidadeHtml = '';
                 if(o.status === 'Aprovado') trackerBtn = `<button onclick="toggleTimer(${o.id})" class="w-full mt-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded-lg flex items-center justify-center gap-1 transition">▶ Iniciar Serviço</button>`;
@@ -1175,7 +1286,6 @@
 
             const sortFn = (a,b) => { const da = a.data ? a.data.split('/').reverse().join('-') : '0000'; const db = b.data ? b.data.split('/').reverse().join('-') : '0000'; return db.localeCompare(da); };
             
-            // CORREÇÃO DOS NOMES DAS COLUNAS
             const statusMap = {
                 'Pendente': 'pendente',
                 'Aprovado': 'aprovado',
@@ -1202,9 +1312,16 @@
         function gerarRotaDoDia() {
             const hojeStr = new Date().toLocaleDateString('pt-BR'); const osHoje = orcamentos.filter(o => o.data === hojeStr && o.status !== 'Concluído' && o.status !== 'Cancelado');
             if(osHoje.length === 0) return showToast("Nenhum serviço agendado para hoje.", "error");
-            let waypoints = []; osHoje.forEach(o => { const c = clientes.find(cli => String(cli.id) === String(o.clienteId)); if(c && c.end) waypoints.push(encodeURIComponent(c.end)); });
+            
+            let waypoints = []; 
+            osHoje.forEach(o => { 
+                const c = clientes.find(cli => String(cli.id) === String(o.clienteId)); 
+                if(c && c.end) waypoints.push(encodeURIComponent(getEnderecoVisivel(c.end))); 
+            });
             if(waypoints.length === 0) return showToast("Os clientes de hoje não possuem endereço cadastrado.", "error");
-            const destination = waypoints.pop(); let url = `https://www.google.com/maps/dir/?api=1&destination=${destination}`; if(waypoints.length > 0) url += `&waypoints=${waypoints.join('|')}`;
+            
+            const destination = waypoints.pop(); let url = `https://www.google.com/maps/dir/?api=1&destination=${destination}`; 
+            if(waypoints.length > 0) url += `&waypoints=${waypoints.join('|')}`;
             window.open(url, '_blank');
         }
 
@@ -1233,11 +1350,10 @@
             const agendados = orcamentos.filter(o => o.status !== 'Concluído' && o.status !== 'Cancelado').sort((a,b) => { const da = a.data ? a.data.split('/').reverse().join('-') : '0000-00-00'; const db = b.data ? b.data.split('/').reverse().join('-') : '0000-00-00'; return db.localeCompare(da); });
             if(agendados.length === 0) { lista.innerHTML = '<p class="text-gray-500 text-sm">Nenhum serviço pendente.</p>'; return; }
             
-            // ABA AGENDA: ADICIONADO OS BOTÕES DE LEMBRETE E ESTOU A CAMINHO
             lista.innerHTML = agendados.map(o => {
                 const c = clientes.find(cli => String(cli.id) === String(o.clienteId));
                 const cNome = c ? c.nome : 'Desconhecido';
-                const cEnd = c && c.end ? c.end : 'Sem endereço';
+                const cEnd = c && c.end ? getEnderecoVisivel(c.end) : 'Sem endereço';
                 return `<li class="bg-zinc-900 p-4 rounded-xl border border-zinc-800 transition-colors hover:border-blue-900/50">
                     <div class="flex justify-between items-start mb-2"><p class="text-xs bg-blue-900/30 text-blue-400 px-2 py-1 rounded-full font-bold">📅 ${o.data}</p><span class="text-xs text-gray-500">OS: ${o.osNumber}</span></div>
                     <p class="font-bold text-white text-lg">${cNome}</p>
@@ -1251,7 +1367,6 @@
             }).join('');
         }
 
-        // FUNÇÕES NOVAS DE DISPARO NO WHATSAPP
         function enviarLembrete(id) {
             const o = orcamentos.find(item => String(item.id) === String(id)); if(!o) return;
             const c = clientes.find(cli => String(cli.id) === String(o.clienteId));
@@ -1273,7 +1388,7 @@
             if(tel.length === 10 || tel.length === 11) tel = "55" + tel;
             
             if(c.end && c.end !== 'Sem endereço') {
-                const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.end)}`;
+                const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(getEnderecoVisivel(c.end))}`;
                 window.open(mapsUrl, '_blank');
             }
 
@@ -1318,7 +1433,7 @@
                 const estaPago = orcamento.pago || false; const valorTotal = parseFloat(orcamento.valor || 0);
 
                 const pInfo = document.getElementById('print-info');
-                pInfo.innerHTML = `<div><p><strong>${tipoTitulo === 'Recibo' ? 'Recibo de Pagamento' : tipoTitulo}:</strong> ${orcamento.osNumber || '001'}</p><p><strong>Cliente:</strong> ${cliente.nome}</p>${cliente.end ? `<p><strong>Endereço:</strong> ${cliente.end}</p>` : ''}</div><div style="text-align: right;"><p><strong>Data de Emissão:</strong> ${new Date().toLocaleDateString('pt-BR')}</p><p><strong>Data Prevista:</strong> ${orcamento.data || ''}</p><p><strong>Telefone:</strong> ${cliente.tel}</p></div>`;
+                pInfo.innerHTML = `<div><p><strong>${tipoTitulo === 'Recibo' ? 'Recibo de Pagamento' : tipoTitulo}:</strong> ${orcamento.osNumber || '001'}</p><p><strong>Cliente:</strong> ${cliente.nome}</p>${cliente.end ? `<p><strong>Endereço:</strong> ${getEnderecoVisivel(cliente.end)}</p>` : ''}</div><div style="text-align: right;"><p><strong>Data de Emissão:</strong> ${new Date().toLocaleDateString('pt-BR')}</p><p><strong>Data Prevista:</strong> ${orcamento.data || ''}</p><p><strong>Telefone:</strong> ${cliente.tel}</p></div>`;
                 
                 document.getElementById('print-servicos').innerText = orcamento.desc || ''; document.getElementById('print-obs').innerText = orcamento.obs || "Sem observações adicionais.";
                 let htmlMateriais = `<strong>Fornecimento:</strong> ${orcamento.materiaisStatus || ''}`; if (orcamento.materiaisLista && String(orcamento.materiaisLista).trim() !== '') htmlMateriais += `<br><br><strong>Lista detalhada:</strong><br>${orcamento.materiaisLista}`;
@@ -1328,12 +1443,11 @@
                 if(tipo === 'Orçamento' && dEmissao) { const dataObj = new Date(dEmissao.ano, parseInt(dEmissao.mes) - 1, dEmissao.dia); dataObj.setDate(dataObj.getDate() + 10); validadeStr = dataObj.toLocaleDateString('pt-BR'); }
                 document.getElementById('print-validade').innerHTML = validadeStr ? `Válido até <strong>${validadeStr}</strong>.` : '';
 
-                // SEPARAR FOTOS ANTES E DEPOIS
                 let fAntes = []; let fDepois = [];
                 (orcamento.fotos || []).forEach(f => {
                     if(f.startsWith('antes|||')) fAntes.push(f.replace('antes|||',''));
                     else if(f.startsWith('depois|||')) fDepois.push(f.replace('depois|||',''));
-                    else fDepois.push(f); // Legado
+                    else fDepois.push(f); 
                 });
 
                 const secFotos = document.getElementById('print-section-fotos');
@@ -1345,7 +1459,6 @@
 
                 if (chkFotos && (fAntes.length > 0 || fDepois.length > 0)) {
                     secFotos.style.display = 'block';
-
                     if (fAntes.length > 0 && fDepois.length > 0) {
                         wrapper.style.display = 'flex'; fullContainer.style.display = 'none';
                         colAntes.style.display = 'block'; colDepois.style.display = 'block';
@@ -1385,25 +1498,21 @@
                 let linkWhatsApp = null;
                 if(cliente.tel) {
                     let telRaw = String(cliente.tel).replace(/\D/g, ''); if(telRaw.length === 10 || telRaw.length === 11) telRaw = "55" + telRaw;
-                    
-                    // NOVA INTELIGÊNCIA DO WHATSAPP (MENSAGEM REFORMATADA E COM ESPAÇAMENTOS CORRETOS)
                     const baseUrlVercel = "https://sistema-sepia-six.vercel.app";
                     const linkProposta = `${baseUrlVercel}/?id=${orcamento.id}`;
                     let tipoDocText = tipo === 'Orçamento' ? 'orçamento' : tipo === 'Recibo' ? 'recibo' : 'ordem de serviço';
-                    
                     const valorFormatado = valorTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2});
                     const osNumeroFinal = orcamento.osNumber || '001';
 
-                    // Construção do texto com quebras de linha explícitas (\n) para evitar erros
                     const txtMsg = 
                     `Olá *${cliente.nome}*, tudo bem? Aqui é o Wellington da *BRvolts*.\n\n` +
                     `Segue o seu ${tipoDocText} (OS: ${osNumeroFinal}).\n\n` +
-                    `🔗 *Acesse o link interativo:*\n${linkProposta}\n\n` +
-                    `💰 *Valor Total:* R$ ${valorFormatado}\n\n` +
+                    `*Acesse o link interativo:*\n${linkProposta}\n\n` +
+                    `*Valor Total:* R$ ${valorFormatado}\n\n` +
                     `Você pode conferir todos os detalhes clicando no link acima ou visualizando o PDF que estou enviando logo a seguir.\n\n` +
-                    `⭐ Se puder dar uma força, avalie nosso atendimento no Google:\nhttps://g.page/r/CbiafVBOu7JAEBM/review\n\n` +
+                    `⭐⭐⭐⭐⭐ Se puder dar uma força, avalie nosso atendimento no Google:\nhttps://g.page/r/CbiafVBOu7JAEBM/review\n\n` +
                     `A BRvolts agradece a confiança!\n\n` +
-                    `_🤖 Esta é uma mensagem automática gerada pelo sistema._`;
+                    `_Esta é uma mensagem automática gerada pelo sistema._`;
 
                     linkWhatsApp = `https://api.whatsapp.com/send?phone=${telRaw}&text=${encodeURIComponent(txtMsg)}`;
                 }
