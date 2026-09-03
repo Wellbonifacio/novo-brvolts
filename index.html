@@ -65,7 +65,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
-        "reviewCount": "24"
+        "reviewCount": "28"
       }
     }
     </script>
@@ -107,7 +107,7 @@
             overflow-x: hidden; 
         }
 
-        /* AURA ATMOSFÉRICA ESTÁTICA (ZERO CONSUMO DE PROCESSAMENTO) */
+        /* AURA ESTÁTICA LEVE */
         .ambient-glow-static {
             position: fixed;
             top: 0;
@@ -123,7 +123,7 @@
             transform: translateZ(0);
         }
 
-        /* ANIMAÇÃO MEXENDO AS CORES EXCLUSIVAMENTE NO MARICÁ DA FRASE PRINCIPAL */
+        /* ANIMAÇÃO MEXENDO AS CORES SOMENTE NO MARICÁ DA FRASE HOME */
         .marica-gradient {
             background: linear-gradient(120deg, #3b82f6 0%, #06b6d4 25%, #10b981 50%, #8b5cf6 75%, #3b82f6 100%);
             background-size: 250% auto;
@@ -137,34 +137,20 @@
             100% { background-position: 250% center; }
         }
 
-        /* EFEITO GLASS (VIDRO TRANSLÚCIDO COM BLUR OTIMIZADO) */
+        /* CARTÕES GLASS OTIMIZADOS */
         .glass-card {
             background: rgba(20, 20, 26, 0.70);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 1.25rem;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
             transform: translateZ(0);
         }
         .glass-card:hover {
             border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.6);
-        }
-
-        /* DESFOQUE INTENSO ATIVADO SOMENTE NO MOMENTO DO POP-UP */
-        #exit-intent-popup {
-            background-color: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(0px);
-            -webkit-backdrop-filter: blur(0px);
-            transition: opacity 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, background-color 0.3s ease;
-        }
-        #exit-intent-popup.popup-blur-active {
-            backdrop-filter: blur(24px) saturate(160%);
-            -webkit-backdrop-filter: blur(24px) saturate(160%);
-            background-color: rgba(0, 0, 0, 0.85);
         }
 
         .hide-scrollbar::-webkit-scrollbar { display: none; }
@@ -213,7 +199,6 @@
 </head>
 <body class="pb-16 md:pb-0 relative">
 
-    <!-- FUNDO ESTÁTICO -->
     <div class="ambient-glow-static"></div>
 
     <div class="fixed top-0 left-0 w-full h-[3px] z-[60] bg-zinc-900">
@@ -221,17 +206,7 @@
     </div>
 
     <div class="sticky top-0 z-50 w-full shadow-2xl">
-        <div class="bg-zinc-950/90 border-b border-zinc-900 text-center py-1.5 md:py-2 px-2 relative flex items-center justify-center gap-2 w-full">
-            <span class="relative flex h-2.5 w-2.5 md:h-3 md:w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2.5 w-2.5 md:h-3 md:w-3 bg-green-500"></span>
-            </span>
-            <p class="text-[10px] sm:text-xs text-gray-300 font-medium tracking-wide uppercase leading-tight">
-                Plantão Técnico <strong class="text-white">Ativo em Maricá</strong> — Resposta média: <strong class="text-green-500">2 minutos</strong>
-            </p>
-        </div>
-
-        <header class="bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900 relative">
+        <header class="bg-zinc-950/85 backdrop-blur-md border-b border-zinc-900 relative">
             <nav class="container mx-auto px-4 md:px-6 py-2.5 md:py-3 flex justify-between items-center relative z-20">
                 <a href="#" aria-label="Início">
                     <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-8 sm:h-10 md:h-14 w-auto object-contain haptic-btn" width="160" height="56">
@@ -302,7 +277,7 @@
                     Eletricista em Maricá
                 </span>
 
-                <!-- FRASE PRINCIPAL DA HOME COM EFEITO NO MARICÁ -->
+                <!-- FRASE PRINCIPAL COM GRADIENTE EXCLUSIVO EM MARICÁ -->
                 <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-white max-w-4xl tracking-tight">
                     Eletricista 24 Horas com o melhor preço de <span class="marica-gradient">Maricá</span>
                 </h1>
@@ -626,7 +601,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO: OBRAS (PORTFÓLIO) -->
+        <!-- SEÇÃO: OBRAS (PORTFÓLIO) ATUALIZADO COM NOVO SERVIÇO -->
         <section id="portfolio" class="py-12 md:py-20 bg-black border-b border-zinc-900">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="text-center md:text-left mb-8">
@@ -634,7 +609,7 @@
                     <p class="text-sm md:text-base text-gray-400">Veja registros reais de instalações e manutenções feitas por nós na região de Maricá.</p>
                 </div>
                 
-                <div id="portfolio-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3">
+                <div id="portfolio-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4">
                     <div class="glass-card rounded-xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center shadow-lg">
                         <img src="wallbox-pindobas.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox em Pindobas" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
                         <div class="p-4 sm:p-5 bg-zinc-900/90 border-t border-zinc-800">
@@ -661,10 +636,21 @@
                             <p class="text-xs text-gray-400">📍 Barra de Maricá</p>
                         </div>
                     </div>
+
+                    <!-- NOVO SERVIÇO ADICIONADO -->
+                    <div class="glass-card rounded-xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center shadow-lg">
+                        <img src="quadro_wallbox_saojose.jpg" loading="lazy" decoding="async" alt="Quadro de Proteção Wallbox em São José do Imbassaí" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 bg-zinc-900/90 border-t border-zinc-800">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                            <p class="font-bold text-white text-base leading-tight mb-1">Quadro Proteção Wallbox</p>
+                            <p class="text-xs text-gray-400">📍 São José do Imbassaí, Maricá</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="flex justify-center items-center gap-2 mt-5 md:hidden" id="portfolio-dots">
                     <div class="w-2.5 h-2.5 rounded-full bg-blue-500 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                     <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                     <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                 </div>
@@ -686,7 +672,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DE AVALIAÇÕES -->
+        <!-- SEÇÃO DE AVALIAÇÕES ATUALIZADA -->
         <section id="avaliacoes" class="py-12 md:py-20 bg-[#121212] border-b border-zinc-900">
             <div class="container mx-auto px-5 md:px-6">
                 
@@ -716,6 +702,92 @@
                 <p class="text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8 ml-1">Opiniões de clientes reais baseadas na satisfação com os nossos serviços pela região.</p>
                 
                 <div id="avaliacoes-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3">
+                    
+                    <!-- AVALIAÇÃO: MYLENE -->
+                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">M</div>
+                                <div>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Mylene</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
+                                </div>
+                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300">"Excelente profissional. Pontual, atencioso, educado, eficiente, prestativo e caprichoso. Trabalho excelente e limpo. Deixou toda a fiação organizada (estava muito ruim) e explicava tudo que estava fazendo. Analisou e explicou toda a fiação do quadro de luz antes de iniciar o trabalho. Passa muita segurança no que faz. Indico, com certeza! Não é o valor de um 'faz tudo', mas vale a pena porque é de excelência."</p>
+                        </div>
+                    </div>
+
+                    <!-- AVALIAÇÃO: PATRICIA -->
+                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">P</div>
+                                <div>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Patricia</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Centro, Maricá</p>
+                                </div>
+                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300">"Excelente trabalho, atendimento impecável. Ótimo profissional.. está de parabéns pelos serviços prestados realmente vale cada centavo."</p>
+                        </div>
+                    </div>
+
+                    <!-- AVALIAÇÃO: VALDO NOBREGA -->
+                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">V</div>
+                                <div>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Valdo Nobrega</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
+                                </div>
+                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300">"O serviço foi feito com maestria e paciência. Indico"</p>
+                        </div>
+                    </div>
+
+                    <!-- AVALIAÇÃO: CHRISTIAN BARROS -->
+                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">C</div>
+                                <div>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Christian Barros</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Barra de Maricá</p>
+                                </div>
+                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300">"Fiquei muito satisfeito com a pontualidade, clareza nas explicações e profissionalismo. Com certeza guardarei seu contato para os próximos serviços e vou te indicar para os amigos. Sucesso!"</p>
+                        </div>
+                    </div>
+
+                    <!-- AVALIAÇÃO: KARINE GUEDES -->
                     <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-3 mb-3 sm:mb-4">
@@ -732,10 +804,32 @@
                                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
+                            <p class="text-xs sm:text-sm text-gray-300">"Precisava de um eletricista em Itaipuaçu urgente para a minha casa. Cumprimento de prazo, atendimento excelente e preço justo na manutenção. Total transparência com o cliente. Obrigada!"</p>
+                        </div>
+                    </div>
+
+                    <!-- AVALIAÇÃO: VINICIUS LOPES -->
+                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">V</div>
+                                <div>
+                                    <p class="font-bold text-white text-xs sm:text-sm">Vinicius Lopes</p>
+                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Inoã, Maricá</p>
+                                </div>
+                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            </div>
                             <p class="text-xs sm:text-sm text-gray-300">"Eletricista extremamente técnico e pontual. Fez uma instalação de padrão elétrico em Inoã impecável. Recomendo com toda a certeza a Wellington Tecnico Eletricista."</p>
                         </div>
                     </div>
 
+                    <!-- AVALIAÇÃO: TELMA COSTA -->
                     <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-3 mb-3 sm:mb-4">
@@ -756,6 +850,7 @@
                         </div>
                     </div>
 
+                    <!-- AVALIAÇÃO: RICARDO SILVA -->
                     <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-3 mb-3 sm:mb-4">
@@ -776,6 +871,7 @@
                         </div>
                     </div>
 
+                    <!-- AVALIAÇÃO: MARIANA COSTA -->
                     <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-3 mb-3 sm:mb-4">
@@ -796,6 +892,7 @@
                         </div>
                     </div>
 
+                    <!-- AVALIAÇÃO: CARLOS EDUARDO -->
                     <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-3 mb-3 sm:mb-4">
@@ -819,6 +916,10 @@
                 
                 <div class="flex justify-center items-center gap-2 mt-6 md:hidden" id="avaliacoes-dots">
                     <div class="w-2.5 h-2.5 rounded-full bg-blue-500 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                     <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                     <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
                     <div class="w-2.5 h-2.5 rounded-full bg-zinc-700 transition-colors duration-300"></div>
@@ -976,33 +1077,6 @@
         </div>
     </footer>
 
-    <!-- Modal Exit Intent com Desfoque Intenso -->
-    <div id="exit-intent-popup" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none px-4">
-        <div class="glass-card p-6 sm:p-8 max-w-sm w-full relative transform scale-95 transition-transform duration-300" id="exit-popup-card">
-            <button id="close-exit-popup" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors haptic-btn" aria-label="Fechar">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-600/20 rounded-full flex items-center justify-center text-blue-500 mb-5 sm:mb-6 mx-auto">
-                <svg class="w-7 h-7 sm:w-8 sm:h-8 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-white text-center mb-3">Precisa de ajuda agora?</h3>
-            <p class="text-gray-400 text-center text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">Não saia com problemas elétricos! Fale direto com o especialista e tire sua dúvida agora no WhatsApp.</p>
-            <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estava%20saindo%20do%20site,%20mas%20decidi%20tirar%20uma%20dúvida." target="_blank" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-xl flex justify-center items-center gap-2 shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-colors w-full text-xs sm:text-sm uppercase tracking-wide">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
-                Tirar Dúvida Direto no WhatsApp
-            </a>
-            <button id="close-exit-text" class="text-zinc-500 hover:text-zinc-300 text-[11px] sm:text-xs text-center w-full mt-4 font-medium underline-offset-4 hover:underline transition-colors haptic-btn">Não, prefiro continuar com o problema</button>
-        </div>
-    </div>
-
-    <!-- Toast de Prova Social -->
-    <div id="social-proof-toast" class="fixed bottom-24 md:bottom-5 left-4 md:left-5 glass-card text-white p-2.5 sm:p-3 shadow-2xl z-40 transform translate-y-32 opacity-0 transition-all duration-500 flex items-center gap-3">
-        <div class="bg-blue-600/20 text-blue-500 p-2 rounded-lg"><svg class="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
-        <div>
-            <p id="social-proof-text" class="text-[11px] sm:text-xs font-medium text-gray-200">⚡ Orçamentos rápidos em Maricá</p>
-        </div>
-    </div>
-
     <button id="backToTop" class="haptic-btn fixed bottom-24 right-4 md:bottom-5 md:right-5 bg-zinc-800 border border-zinc-700 hover:bg-blue-600 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-2xl z-40 opacity-0 pointer-events-none transition-all duration-300" aria-label="Voltar ao topo">
         <svg class="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
     </button>
@@ -1012,7 +1086,8 @@
         <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20atendimento." class="dynamic-wa haptic-btn flex justify-center items-center w-full py-3.5 text-white font-extrabold text-[14px] tracking-wide uppercase gap-2 relative overflow-hidden" aria-label="Solicitar orçamento pelo WhatsApp">
             <div class="absolute inset-0 w-1/4 h-full bg-white/20 animate-shimmer"></div>
             <svg class="w-4 h-4 relative z-10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+            </svg>
             <span class="relative z-10">Falar com Eletricista</span>
         </a>
     </div>
@@ -1027,15 +1102,10 @@
     <script>
         function copiarCNPJ() {
             navigator.clipboard.writeText("68694956000174").then(() => {
-                const toast = document.getElementById('social-proof-toast');
-                const toastText = document.getElementById('social-proof-text');
-                const originalText = toastText.innerHTML;
-                toastText.innerHTML = "✅ CNPJ copiado com sucesso!";
-                toast.classList.remove('translate-y-32', 'opacity-0');
-                setTimeout(() => { 
-                    toast.classList.add('translate-y-32', 'opacity-0'); 
-                    setTimeout(() => { toastText.innerHTML = originalText; }, 700);
-                }, 3000);
+                const el = document.getElementById('cnpj-text');
+                const original = el.innerText;
+                el.innerText = "Copiado!";
+                setTimeout(() => { el.innerText = original; }, 2000);
             });
         }
 
@@ -1145,25 +1215,32 @@
         updateCarouselDots('portfolio-carousel', 'portfolio-dots');
         updateCarouselDots('avaliacoes-carousel', 'avaliacoes-dots');
 
+        // SCROLL LEVE
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            const progressBar = document.getElementById('scroll-progress');
-            if (progressBar) progressBar.style.width = scrolled + '%';
-        }, { passive: true });
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrolled = (winScroll / height) * 100;
+                    const progressBar = document.getElementById('scroll-progress');
+                    if (progressBar) progressBar.style.width = scrolled + '%';
 
-        const backToTopBtn = document.getElementById("backToTop");
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 500) {
-                backToTopBtn.classList.remove("opacity-0", "pointer-events-none");
-                backToTopBtn.classList.add("opacity-100", "pointer-events-auto");
-            } else {
-                backToTopBtn.classList.remove("opacity-100", "pointer-events-auto");
-                backToTopBtn.classList.add("opacity-0", "pointer-events-none");
+                    const backToTopBtn = document.getElementById("backToTop");
+                    if (winScroll > 500) {
+                        backToTopBtn.classList.remove("opacity-0", "pointer-events-none");
+                        backToTopBtn.classList.add("opacity-100", "pointer-events-auto");
+                    } else {
+                        backToTopBtn.classList.remove("opacity-100", "pointer-events-auto");
+                        backToTopBtn.classList.add("opacity-0", "pointer-events-none");
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
         }, { passive: true });
-        backToTopBtn.addEventListener("click", () => {
+
+        document.getElementById("backToTop").addEventListener("click", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
@@ -1186,55 +1263,6 @@
             });
         }
         updateWhatsAppLinks();
-
-        let exitIntentTriggered = false;
-        const exitPopup = document.getElementById('exit-intent-popup');
-        const exitPopupCard = document.getElementById('exit-popup-card');
-        
-        function showExitPopup() {
-            if (exitIntentTriggered || !exitPopup) return;
-            exitIntentTriggered = true;
-            exitPopup.classList.remove('opacity-0', 'pointer-events-none');
-            exitPopup.classList.add('opacity-100', 'pointer-events-auto', 'popup-blur-active');
-            exitPopupCard.classList.remove('scale-95');
-            exitPopupCard.classList.add('scale-100');
-        }
-
-        function closeExitPopup() {
-            exitPopup.classList.remove('opacity-100', 'pointer-events-auto', 'popup-blur-active');
-            exitPopup.classList.add('opacity-0', 'pointer-events-none');
-            exitPopupCard.classList.remove('scale-100');
-            exitPopupCard.classList.add('scale-95');
-        }
-
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY <= 0) showExitPopup();
-        });
-
-        let lastScrollY = window.scrollY;
-        let lastScrollTime = Date.now();
-        window.addEventListener('scroll', () => {
-            if (exitIntentTriggered) return;
-            const currentScrollY = window.scrollY;
-            const currentTime = Date.now();
-            const timeDiff = currentTime - lastScrollTime;
-            const scrollDiff = lastScrollY - currentScrollY; 
-            
-            if (timeDiff > 0 && scrollDiff > 60) {
-                const speed = scrollDiff / timeDiff;
-                if (speed > 1.8 && currentScrollY < 1500) { 
-                    showExitPopup();
-                }
-            }
-            lastScrollY = currentScrollY;
-            lastScrollTime = currentTime;
-        }, { passive: true });
-
-        document.getElementById('close-exit-popup')?.addEventListener('click', closeExitPopup);
-        document.getElementById('close-exit-text')?.addEventListener('click', closeExitPopup);
-        exitPopup?.addEventListener('click', (e) => {
-            if(e.target === exitPopup) closeExitPopup();
-        });
 
         const gasSlider = document.getElementById('gasolina-slider');
         const gasValor = document.getElementById('gasolina-valor');
@@ -1263,34 +1291,6 @@
             gasSlider.addEventListener('input', atualizarSimulador);
             atualizarSimulador();
         }
-
-        const toast = document.getElementById('social-proof-toast');
-        const toastText = document.getElementById('social-proof-text');
-        let notifications = [
-            "⚡ Wellington acabou de iniciar um atendimento no Centro.",
-            "🔧 2 pessoas de Itaipuaçu estão solicitando orçamento agora.",
-            "⭐ Avaliação de 5 estrelas recebida de Inoã!",
-            "⚡ Novo orçamento para Wallbox na região!",
-            "🚨 Plantão 24h acionado há 10 minutos."
-        ];
-        
-        notifications.sort(() => Math.random() - 0.5);
-        let currentIndex = 0;
-
-        function showNotification() {
-            if (!toast) return;
-            if(!toastText.innerHTML.includes("CNPJ copiado")) {
-                toastText.innerHTML = notifications[currentIndex];
-                toast.classList.remove('translate-y-32', 'opacity-0');
-                
-                setTimeout(() => { 
-                    toast.classList.add('translate-y-32', 'opacity-0'); 
-                    currentIndex = (currentIndex + 1) % notifications.length;
-                    if(currentIndex === 0) notifications.sort(() => Math.random() - 0.5);
-                }, 8000);
-            }
-        }
-        setTimeout(() => { showNotification(); setInterval(showNotification, 35000); }, 8000);
 
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
