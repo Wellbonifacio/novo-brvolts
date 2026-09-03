@@ -107,8 +107,8 @@
             overflow-x: hidden; 
         }
 
-        /* FUNDO ATMOSFÉRICO ULTRA LEVE (SEM LAG DE GPU) */
-        .ambient-glow-fast {
+        /* AURA ATMOSFÉRICA ESTÁTICA (ZERO CONSUMO DE PROCESSAMENTO) */
+        .ambient-glow-static {
             position: fixed;
             top: 0;
             left: 0;
@@ -117,13 +117,13 @@
             pointer-events: none;
             z-index: 0;
             background: 
-                radial-gradient(circle 450px at 15% 10%, rgba(37, 99, 235, 0.12), transparent 70%),
-                radial-gradient(circle 500px at 85% 35%, rgba(124, 58, 237, 0.10), transparent 70%),
-                radial-gradient(circle 450px at 50% 90%, rgba(16, 185, 129, 0.08), transparent 70%);
+                radial-gradient(circle 500px at 15% 10%, rgba(37, 99, 235, 0.12), transparent 75%),
+                radial-gradient(circle 550px at 85% 35%, rgba(124, 58, 237, 0.10), transparent 75%),
+                radial-gradient(circle 450px at 50% 90%, rgba(16, 185, 129, 0.08), transparent 75%);
             transform: translateZ(0);
         }
 
-        /* ANIMAÇÃO MEXENDO AS CORES NO NOME MARICÁ */
+        /* ANIMAÇÃO MEXENDO AS CORES EXCLUSIVAMENTE NO MARICÁ DA FRASE PRINCIPAL */
         .marica-gradient {
             background: linear-gradient(120deg, #3b82f6 0%, #06b6d4 25%, #10b981 50%, #8b5cf6 75%, #3b82f6 100%);
             background-size: 250% auto;
@@ -137,18 +137,34 @@
             100% { background-position: 250% center; }
         }
 
-        /* CARTÕES OTIMIZADOS COM PERFORMANCE MÁXIMA */
+        /* EFEITO GLASS (VIDRO TRANSLÚCIDO COM BLUR OTIMIZADO) */
         .glass-card {
-            background: rgba(20, 20, 25, 0.75);
+            background: rgba(20, 20, 26, 0.70);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            transition: transform 0.25s ease, border-color 0.25s ease;
+            border-radius: 1.25rem;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
             transform: translateZ(0);
         }
         .glass-card:hover {
             border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
+            box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* DESFOQUE INTENSO ATIVADO SOMENTE NO MOMENTO DO POP-UP */
+        #exit-intent-popup {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            transition: opacity 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, background-color 0.3s ease;
+        }
+        #exit-intent-popup.popup-blur-active {
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            background-color: rgba(0, 0, 0, 0.85);
         }
 
         .hide-scrollbar::-webkit-scrollbar { display: none; }
@@ -197,7 +213,8 @@
 </head>
 <body class="pb-16 md:pb-0 relative">
 
-    <div class="ambient-glow-fast"></div>
+    <!-- FUNDO ESTÁTICO -->
+    <div class="ambient-glow-static"></div>
 
     <div class="fixed top-0 left-0 w-full h-[3px] z-[60] bg-zinc-900">
         <div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-600 via-cyan-400 to-green-500 w-0 rounded-r-full transition-all duration-150"></div>
@@ -210,11 +227,11 @@
               <span class="relative inline-flex rounded-full h-2.5 w-2.5 md:h-3 md:w-3 bg-green-500"></span>
             </span>
             <p class="text-[10px] sm:text-xs text-gray-300 font-medium tracking-wide uppercase leading-tight">
-                Plantão Técnico <strong class="text-white">Ativo em <span class="marica-gradient font-bold">Maricá</span></strong> — Resposta média: <strong class="text-green-500">2 minutos</strong>
+                Plantão Técnico <strong class="text-white">Ativo em Maricá</strong> — Resposta média: <strong class="text-green-500">2 minutos</strong>
             </p>
         </div>
 
-        <header class="bg-zinc-950/90 border-b border-zinc-900 relative">
+        <header class="bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900 relative">
             <nav class="container mx-auto px-4 md:px-6 py-2.5 md:py-3 flex justify-between items-center relative z-20">
                 <a href="#" aria-label="Início">
                     <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-8 sm:h-10 md:h-14 w-auto object-contain haptic-btn" width="160" height="56">
@@ -282,9 +299,10 @@
 
             <div class="container mx-auto px-5 text-left relative z-10">
                 <span class="bg-red-600 text-white px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold tracking-wide mb-4 inline-block shadow-lg">
-                    Eletricista em <span class="text-white font-bold">Maricá</span>
+                    Eletricista em Maricá
                 </span>
 
+                <!-- FRASE PRINCIPAL DA HOME COM EFEITO NO MARICÁ -->
                 <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-white max-w-4xl tracking-tight">
                     Eletricista 24 Horas com o melhor preço de <span class="marica-gradient">Maricá</span>
                 </h1>
@@ -295,7 +313,7 @@
                 </div>
 
                 <p class="text-sm sm:text-base md:text-xl font-light mb-6 max-w-2xl text-gray-300">
-                    Eletricista 24 Horas em <span class="marica-gradient font-semibold">Maricá</span> especializado em instalação elétrica, manutenção elétrica residencial e empresarial.
+                    Eletricista 24 Horas em Maricá especializado em instalação elétrica, manutenção elétrica residencial e empresarial.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-3">
@@ -334,7 +352,7 @@
                     <div class="w-full lg:w-1/2 order-2 lg:order-1">
                         <span class="bg-blue-600/20 text-blue-500 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wide uppercase mb-3 inline-block">Sobre a Empresa</span>
                         <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
-                            Sua referência técnica em instalações em <span class="marica-gradient">Maricá</span>
+                            Sua referência técnica em instalações em <span class="text-blue-500">Maricá</span>
                         </h2>
                         <p class="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">
                             A <strong>Wellington Técnico Eletricista</strong> é especializada em serviços residenciais e comerciais. Contamos com preparo técnico atualizado para transformar desde reparos simples até instalações complexas em projetos seguros, limpos e eficientes.
@@ -389,7 +407,7 @@
         <section id="servicos" class="py-12 md:py-20 bg-black border-b border-zinc-900">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="text-center mb-10 md:mb-14">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 text-white">Nossos Serviços em <span class="marica-gradient">Maricá</span></h2>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 text-white">Nossos Serviços em <span class="text-blue-500">Maricá</span></h2>
                     <p class="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">Instalações, manutenções e reparos elétricos com atendimento rápido, segurança e garantia.</p>
                 </div>
                 
@@ -453,14 +471,12 @@
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3">Instalação de Wallbox</h2>
                 <p class="text-sm sm:text-base text-gray-400 mb-4 max-w-2xl">Estrutura dedicada e em total conformidade com a NBR 17019 para carregar o seu veículo elétrico de forma rápida e segura na sua garagem.</p>
 
-                <!-- Detalhes Técnicos -->
                 <ul class="text-sm sm:text-base text-gray-300 mb-6 space-y-2 max-w-2xl">
                     <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Cabeamento dimensionado com isolação de 1kV.</li>
                     <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Quadro de proteção com <strong>Disjuntor, DR e DPS</strong>.</li>
                     <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Aterramento de acordo com a norma.</li>
                 </ul>
 
-                <!-- QUADRO DE ALERTA DE PERDA DE GARANTIA -->
                 <div class="glass-card border-red-500/50 p-4 md:p-5 mb-8 flex items-start gap-4 max-w-3xl">
                     <div class="bg-red-600/20 p-2 rounded-full text-red-500 shrink-0 mt-0.5">
                         <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
@@ -473,7 +489,6 @@
 
                 <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
                     <div class="w-full lg:w-1/2">
-                        <!-- SIMULADOR DE ECONOMIA -->
                         <div class="glass-card p-5 md:p-6 mb-6 relative overflow-hidden">
                             <div class="absolute top-0 right-0 bg-green-600 text-white text-[9px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-widest">Simulador</div>
                             <h3 class="text-lg md:text-xl font-bold text-white mb-1 mt-1">Calculadora de Economia</h3>
@@ -616,7 +631,7 @@
             <div class="container mx-auto px-5 md:px-6">
                 <div class="text-center md:text-left mb-8">
                     <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white">Nossas Obras Executadas</h2>
-                    <p class="text-sm md:text-base text-gray-400">Veja registros reais de instalações e manutenções feitas por nós na região de <span class="marica-gradient font-bold">Maricá</span>.</p>
+                    <p class="text-sm md:text-base text-gray-400">Veja registros reais de instalações e manutenções feitas por nós na região de Maricá.</p>
                 </div>
                 
                 <div id="portfolio-carousel" class="flex overflow-x-auto gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3">
@@ -690,10 +705,10 @@
                             <span class="text-white font-bold text-sm sm:text-base">5.0</span>
                             <div class="flex text-[#FBBC05]">
                                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             </div>
                         </div>
                     </div>
@@ -708,26 +723,6 @@
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Karine Guedes</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
-                                </div>
-                            </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
-                            <p class="text-xs sm:text-sm text-gray-300">"Precisava de um eletricista em Itaipuaçu urgente para a minha casa. Cumprimento de prazo, atendimento excelente e preço justo na manutenção. Total transparência com o cliente. Obrigada!"</p>
-                        </div>
-                    </div>
-
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center shadow-lg relative flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">V</div>
-                                <div>
-                                    <p class="font-bold text-white text-xs sm:text-sm">Vinicius Lopes</p>
-                                    <p class="text-[10px] sm:text-xs text-gray-400">📍 Inoã, Maricá</p>
                                 </div>
                             </div>
                             <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
@@ -895,7 +890,7 @@
         <section id="atuacao" class="py-12 md:py-16 bg-black border-t border-zinc-900">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white">Atendemos em <span class="marica-gradient font-extrabold">Toda Maricá</span></h2>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white">Atendemos em <span class="text-blue-500">Toda Maricá</span></h2>
                     <p class="text-xs sm:text-sm md:text-lg text-gray-400 mt-2">Pronta resposta técnica com frota própria para residências, condomínios e comércios locais.</p>
                 </div>
                 <div class="w-full max-w-5xl mx-auto glass-card p-2.5">
@@ -981,8 +976,8 @@
         </div>
     </footer>
 
-    <!-- Modal Exit Intent -->
-    <div id="exit-intent-popup" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 opacity-0 pointer-events-none transition-opacity duration-300 px-4">
+    <!-- Modal Exit Intent com Desfoque Intenso -->
+    <div id="exit-intent-popup" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none px-4">
         <div class="glass-card p-6 sm:p-8 max-w-sm w-full relative transform scale-95 transition-transform duration-300" id="exit-popup-card">
             <button id="close-exit-popup" class="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors haptic-btn" aria-label="Fechar">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -1017,8 +1012,7 @@
         <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20atendimento." class="dynamic-wa haptic-btn flex justify-center items-center w-full py-3.5 text-white font-extrabold text-[14px] tracking-wide uppercase gap-2 relative overflow-hidden" aria-label="Solicitar orçamento pelo WhatsApp">
             <div class="absolute inset-0 w-1/4 h-full bg-white/20 animate-shimmer"></div>
             <svg class="w-4 h-4 relative z-10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-            </svg>
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
             <span class="relative z-10">Falar com Eletricista</span>
         </a>
     </div>
@@ -1201,13 +1195,13 @@
             if (exitIntentTriggered || !exitPopup) return;
             exitIntentTriggered = true;
             exitPopup.classList.remove('opacity-0', 'pointer-events-none');
-            exitPopup.classList.add('opacity-100', 'pointer-events-auto');
+            exitPopup.classList.add('opacity-100', 'pointer-events-auto', 'popup-blur-active');
             exitPopupCard.classList.remove('scale-95');
             exitPopupCard.classList.add('scale-100');
         }
 
         function closeExitPopup() {
-            exitPopup.classList.remove('opacity-100', 'pointer-events-auto');
+            exitPopup.classList.remove('opacity-100', 'pointer-events-auto', 'popup-blur-active');
             exitPopup.classList.add('opacity-0', 'pointer-events-none');
             exitPopupCard.classList.remove('scale-100');
             exitPopupCard.classList.add('scale-95');
