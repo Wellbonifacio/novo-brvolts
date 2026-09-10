@@ -95,295 +95,263 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-neu: #191b22;
-            --shadow-light: #252934;
-            --shadow-dark: #0d0e12;
-            --neu-border: rgba(255, 255, 255, 0.03);
+            --bg-base: #07090e;
+            --surface-card: rgba(14, 19, 32, 0.65);
+            --surface-elevated: rgba(20, 27, 45, 0.75);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(59, 130, 246, 0.35);
         }
 
         * { -webkit-tap-highlight-color: transparent; }
-        html { scroll-padding-top: 80px; }
+        html { scroll-padding-top: 90px; }
+        
         body { 
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; 
-            background-color: var(--bg-neu) !important; 
-            color: #f4f4f5; 
-            overflow-x: hidden; 
+            background-color: var(--bg-base);
+            color: #f8fafc; 
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 15% 15%, rgba(37, 99, 235, 0.12) 0px, transparent 50%),
+                radial-gradient(at 85% 35%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 85%, rgba(6, 182, 212, 0.06) 0px, transparent 60%);
+            background-attachment: fixed;
         }
 
-        /* SOBREPOSIÇÃO DE FUNDO DAS SEÇÕES PARA O TEMA NEUMORPHIC */
-        section, footer, header, div[class*="bg-black"], div[class*="bg-[#"], section[class*="bg-"] {
-            background-color: transparent !important;
+        /* GRID SUBTIL DE ALTA TECNOLOGIA */
+        .tech-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
 
-        /* FIX MENU MOBILE OPACO */
-        #mobile-menu {
-            background-color: #191b22 !important;
-            background: #191b22 !important;
-            box-shadow: 0 15px 30px var(--shadow-dark), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-        }
-
-        /* AURA ATMOSFÉRICA */
-        .ambient-glow-static {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-            background: 
-                radial-gradient(circle 600px at 15% 10%, rgba(37, 99, 235, 0.08), transparent 75%),
-                radial-gradient(circle 650px at 85% 35%, rgba(16, 185, 129, 0.06), transparent 75%),
-                radial-gradient(circle 500px at 50% 90%, rgba(37, 99, 235, 0.05), transparent 75%);
-            transform: translateZ(0);
-        }
-
-        /* ANIMAÇÃO MARICÁ */
-        .marica-gradient {
-            background: linear-gradient(120deg, #3b82f6 0%, #10b981 25%, #60a5fa 50%, #34d399 75%, #3b82f6 100%);
-            background-size: 250% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: moveColorsLogo 4s linear infinite;
-            display: inline-block;
-        }
-        @keyframes moveColorsLogo {
-            0% { background-position: 0% center; }
-            100% { background-position: 250% center; }
-        }
-
-        /* NEUMORPHISM CARDS */
+        /* CARDS VIDRO DE ALTA DEFINIÇÃO (LINEAR/VERCEL) */
         .glass-card {
-            background: var(--bg-neu) !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            border: 1px solid var(--neu-border) !important;
-            border-radius: 1.5rem;
-            box-shadow: 9px 9px 18px var(--shadow-dark), -9px -9px 18px var(--shadow-light) !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--surface-card) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid var(--border-subtle) !important;
+            border-radius: 1.5rem !important;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.06) !important;
-            box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light) !important;
-            transform: translateY(-3px);
+            border-color: var(--border-hover) !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(59, 130, 246, 0.15) !important;
         }
 
-        /* NEUMORPHISM INSET */
-        .bg-zinc-900, 
-        .bg-zinc-900\/90, 
-        .bg-zinc-950,
-        input[type=text],
-        input[type=tel],
-        select {
-            background: var(--bg-neu) !important;
-            border: 1px solid var(--neu-border) !important;
-            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light) !important;
+        /* TEXTO GRADIENTE MARICÁ */
+        .marica-gradient {
+            background: linear-gradient(135deg, #60a5fa 0%, #34d399 50%, #38bdf8 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textFlow 6s ease infinite;
+            display: inline-block;
+        }
+        @keyframes textFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        /* NEUMORPHISM BOTÕES E ELEMENTOS EXTRUDADOS */
-        .bg-zinc-800 {
-            background: linear-gradient(145deg, #1b1d25, #16181e) !important;
-            border: 1px solid var(--neu-border) !important;
-            box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light) !important;
-        }
-        .bg-zinc-800:hover {
-            box-shadow: 2px 2px 6px var(--shadow-dark), -2px -2px 6px var(--shadow-light) !important;
-        }
-        .bg-zinc-800:active {
-            box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light) !important;
-        }
-
-        /* BOTÃO AZUL PRINCIPAL */
+        /* BOTÃO PRINCIPAL AZUL */
         .bg-blue-600 {
-            background: linear-gradient(145deg, #2563eb, #1d4ed8) !important;
-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
-            box-shadow: 6px 6px 15px var(--shadow-dark), -6px -6px 15px var(--shadow-light), 0 0 15px rgba(37, 99, 235, 0.35) !important;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+            border-radius: 1rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 0 22px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .bg-blue-600:hover {
-            box-shadow: 3px 3px 8px var(--shadow-dark), -3px -3px 8px var(--shadow-light), 0 0 20px rgba(37, 99, 235, 0.5) !important;
-        }
-        .bg-blue-600:active {
-            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 0 32px rgba(37, 99, 235, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+            filter: brightness(1.06);
         }
 
-        /* BOTÃO VERDE */
+        /* BOTÃO VERDE WHATSAPP */
         .bg-green-500, .bg-green-600 {
-            background: linear-gradient(145deg, #10b981, #059669) !important;
-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
-            box-shadow: 6px 6px 15px var(--shadow-dark), -6px -6px 15px var(--shadow-light), 0 0 15px rgba(16, 185, 129, 0.35) !important;
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            border-radius: 1rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 0 22px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .bg-green-500:hover, .bg-green-600:hover {
-            box-shadow: 3px 3px 8px var(--shadow-dark), -3px -3px 8px var(--shadow-light), 0 0 20px rgba(16, 185, 129, 0.5) !important;
-        }
-        .bg-green-500:active, .bg-green-600:active {
-            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.2) !important;
-        }
-
-        /* HEADER NEUMORPHIC */
-        header {
-            background: var(--bg-neu) !important;
-            border-bottom: 1px solid var(--neu-border) !important;
-            box-shadow: 0 8px 18px var(--shadow-dark) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 0 32px rgba(16, 185, 129, 0.55) !important;
+            filter: brightness(1.06);
         }
 
-        /* BARRAS DE DIVISÃO */
-        .border-zinc-900, .border-zinc-800, .border-zinc-700 {
-            border-color: rgba(255, 255, 255, 0.04) !important;
+        /* BOTÃO OBSIDIANA / ZINC-800 */
+        .bg-zinc-800 {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-radius: 1rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.09) !important;
+            backdrop-filter: blur(10px) !important;
+            transition: all 0.2s ease !important;
+        }
+        .bg-zinc-800:hover {
+            background: rgba(255, 255, 255, 0.09) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-2px) !important;
         }
 
-        /* ÍCONES E EMBLEMAS CIRCULARES/QUADRADOS */
-        .bg-blue-600\/20, 
-        .bg-green-500\/20, 
-        .bg-red-600\/20, 
-        .bg-green-500\/10,
-        .rounded-full[class*="bg-"] {
-            box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light) !important;
+        /* INPUTS MODERNOS TECH */
+        input[type=text],
+        input[type=tel],
+        select,
+        .bg-zinc-900,
+        .bg-zinc-900\/90 {
+            background: rgba(8, 12, 22, 0.7) !important;
+            border: 1px solid rgba(255, 255, 255, 0.09) !important;
+            border-radius: 0.9rem !important;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+            transition: all 0.2s ease;
+        }
+        input[type=text]:focus,
+        input[type=tel]:focus,
+        select:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
         }
 
-        /* SLIDER NEUMORPHIC */
+        /* SLIDER APPLE/LINEAR */
         input[type=range] {
             -webkit-appearance: none;
             width: 100%;
-            background: var(--bg-neu) !important;
+            background: #0d1424 !important;
             border-radius: 9999px;
-            height: 10px;
+            height: 8px;
             outline: none;
-            box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light) !important;
-            border: 1px solid var(--neu-border);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            height: 26px;
-            width: 26px;
+            height: 24px;
+            width: 24px;
             border-radius: 50%;
-            background: linear-gradient(145deg, #3b82f6, #1d4ed8);
+            background: #3b82f6;
             cursor: pointer;
-            box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light), 0 0 10px rgba(59, 130, 246, 0.6);
-            border: 2px solid #fff;
-            transition: all 0.2s ease;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 16px rgba(59, 130, 246, 0.8) !important;
+            transition: transform 0.15s ease;
         }
         input[type=range]::-webkit-slider-thumb:hover {
-            transform: scale(1.1);
+            transform: scale(1.18);
         }
 
-        /* MARQUEE CANAL NEUMORPHIC INSET */
-        .marquee-container {
-            box-shadow: inset 0 6px 12px var(--shadow-dark), inset 0 -6px 12px var(--shadow-dark);
-        }
-
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        /* PULSO DE CONTATO */
         .pulse-btn { 
-            box-shadow: 6px 6px 16px var(--shadow-dark), -6px -6px 16px var(--shadow-light), 0 0 0 0 rgba(37, 211, 102, 0.7); 
-            animation: pulse-wa 2s infinite; 
+            animation: pulseWave 2s infinite; 
         }
-        @keyframes pulse-wa { 
-            0% { box-shadow: 6px 6px 16px var(--shadow-dark), -6px -6px 16px var(--shadow-light), 0 0 0 0 rgba(37, 211, 102, 0.7); } 
-            70% { box-shadow: 6px 6px 16px var(--shadow-dark), -6px -6px 16px var(--shadow-light), 0 0 0 15px rgba(37, 211, 102, 0); } 
-            100% { box-shadow: 6px 6px 16px var(--shadow-dark), -6px -6px 16px var(--shadow-light), 0 0 0 0 rgba(37, 211, 102, 0); } 
+        @keyframes pulseWave { 
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); } 
+            70% { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); } 
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } 
         }
 
-        @keyframes shimmer { 0% { transform: translateX(-150%) skewX(-12deg); } 100% { transform: translateX(400%) skewX(-12deg); } }
-        .animate-shimmer { animation: shimmer 2.5s infinite; }
+        @keyframes shimmer { 0% { transform: translateX(-150%) skewX(-12deg); } 100% { transform: translateX(350%) skewX(-12deg); } }
+        .animate-shimmer { animation: shimmer 3s infinite; }
 
         @keyframes ringPhone {
             0%, 100% { transform: rotate(0deg); }
-            10%, 30%, 50% { transform: rotate(-12deg); }
-            20%, 40% { transform: rotate(12deg); }
+            10%, 30%, 50% { transform: rotate(-10deg); }
+            20%, 40% { transform: rotate(10deg); }
             60% { transform: rotate(0deg); }
         }
         .animate-ring { animation: ringPhone 3s ease-in-out infinite; }
         
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+        .animate-marquee { display: flex; width: max-content; animation: marquee 35s linear infinite; }
         .animate-marquee:hover { animation-play-state: paused; }
         
-        .brand-logo { filter: brightness(0) invert(1) opacity(0.4); transition: opacity 0.3s ease; }
-        .brand-logo:hover { opacity: 1; }
+        .brand-logo { filter: grayscale(1) brightness(1.6) opacity(0.35); transition: all 0.3s ease; }
+        .brand-logo:hover { filter: grayscale(0) brightness(1.2) opacity(0.95); transform: scale(1.05); }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="pb-16 md:pb-0 relative">
+<body class="pb-16 md:pb-0 relative tech-grid">
 
-    <div class="ambient-glow-static"></div>
-
-    <div class="fixed top-0 left-0 w-full h-[4px] z-[60] bg-transparent">
-        <div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-600 via-emerald-400 to-green-500 w-0 rounded-r-full transition-all duration-150 shadow-[0_0_10px_rgba(59,130,246,0.6)]"></div>
+    <!-- BARRA DE PROGRESSO DE SCROLL -->
+    <div class="fixed top-0 left-0 w-full h-[2px] z-[80] bg-transparent">
+        <div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-500 via-teal-400 to-emerald-400 w-0 transition-all duration-150 shadow-[0_0_10px_#38bdf8]"></div>
     </div>
 
-    <div class="sticky top-0 z-50 w-full">
-        <header class="backdrop-blur-md relative">
-            <nav class="container mx-auto px-4 md:px-6 py-2.5 md:py-3 flex justify-between items-center relative z-20">
-                <a href="#" aria-label="Início">
-                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-8 sm:h-10 md:h-14 w-auto object-contain haptic-btn" width="160" height="56">
+    <!-- HEADER / NAVBAR FLUTUANTE TECH -->
+    <div class="fixed top-3 sm:top-5 left-0 w-full z-50 px-3 sm:px-6 pointer-events-none">
+        <header class="max-w-6xl mx-auto glass-card !rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex justify-between items-center pointer-events-auto border border-white/10 bg-[#090e1a]/85 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+            <nav class="w-full flex justify-between items-center">
+                <a href="#" aria-label="Início" class="flex items-center">
+                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-8 sm:h-10 md:h-11 w-auto object-contain haptic-btn" width="160" height="56">
                 </a>
                 
-                <div class="hidden lg:flex items-center space-x-5 xl:space-x-6">
-                    <a href="#inicio" class="text-white hover:text-blue-400 transition duration-300 text-sm font-medium haptic-btn">Início</a>
-                    <a href="#sobre" class="text-white hover:text-blue-400 transition duration-300 text-sm font-medium haptic-btn">Sobre</a>
-                    <a href="#servicos" class="text-white hover:text-blue-400 transition duration-300 text-sm font-medium haptic-btn">Serviços</a>
-                    <a href="#wallbox" class="text-white hover:text-blue-400 transition duration-300 text-sm font-medium haptic-btn">Wallbox</a>
-                    <a href="#documentacao" class="text-green-400 hover:text-green-300 text-sm font-bold transition duration-300 haptic-btn flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> TRT/NF</a>
-                    <a href="#portfolio" class="text-white hover:text-blue-400 transition duration-300 text-sm font-medium haptic-btn">Obras</a>
-                    <a href="#avaliacoes" class="text-white hover:text-blue-400 transition duration-300 text-sm font-medium haptic-btn">Avaliações</a>
+                <div class="hidden lg:flex items-center space-x-6 text-xs font-semibold tracking-wide text-slate-300">
+                    <a href="#inicio" class="text-white hover:text-blue-400 transition duration-200 text-sm font-medium haptic-btn">Início</a>
+                    <a href="#sobre" class="text-white hover:text-blue-400 transition duration-200 text-sm font-medium haptic-btn">Sobre</a>
+                    <a href="#servicos" class="text-white hover:text-blue-400 transition duration-200 text-sm font-medium haptic-btn">Serviços</a>
+                    <a href="#wallbox" class="text-white hover:text-blue-400 transition duration-200 text-sm font-medium haptic-btn">Wallbox</a>
+                    <a href="#documentacao" class="text-green-400 hover:text-green-300 text-sm font-bold transition duration-200 haptic-btn flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> TRT/NF</a>
+                    <a href="#portfolio" class="text-white hover:text-blue-400 transition duration-200 text-sm font-medium haptic-btn">Obras</a>
+                    <a href="#avaliacoes" class="text-white hover:text-blue-400 transition duration-200 text-sm font-medium haptic-btn">Avaliações</a>
                     
-                    <a href="/sistema" target="_blank" class="text-blue-400 font-bold px-3.5 py-1.5 rounded-xl transition-colors haptic-btn flex items-center gap-2 text-sm bg-zinc-800">
+                    <a href="/sistema" target="_blank" class="text-blue-400 font-bold px-3.5 py-1.5 rounded-xl transition-all haptic-btn flex items-center gap-2 text-xs bg-zinc-800">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
                         Sistema
                     </a>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <a href="tel:+5521976493932" aria-label="Ligar Agora" class="flex lg:hidden haptic-btn text-white p-2 focus:outline-none hover:text-blue-400 transition-colors bg-zinc-800 rounded-xl">
-                        <svg class="w-6 h-6 animate-ring text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <a href="tel:+5521976493932" aria-label="Ligar Agora" class="flex lg:hidden haptic-btn text-white p-2.5 focus:outline-none hover:text-blue-400 transition-all bg-zinc-800 rounded-xl">
+                        <svg class="w-5 h-5 animate-ring text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                     </a>
 
-                    <a href="tel:+5521976493932" aria-label="Ligar para Especialista" class="hidden lg:flex haptic-btn bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-5 rounded-xl items-center gap-2 text-sm transform hover:scale-105 transition-all">
-                        <svg class="w-4 h-4 animate-ring" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <a href="tel:+5521976493932" aria-label="Ligar para Especialista" class="hidden lg:flex haptic-btn bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-xl items-center gap-2 text-xs transition-all">
+                        <svg class="w-3.5 h-3.5 animate-ring" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                         </svg>
                         <span>(21) 97649-3932</span>
                     </a>
                     
                     <button id="mobile-menu-btn" class="lg:hidden text-gray-200 hover:text-white haptic-btn p-2 rounded-xl bg-zinc-800 focus:outline-none" aria-label="Abrir menu">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </nav>
-
-            <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full border-b border-zinc-800 shadow-2xl transition-all duration-300 origin-top transform scale-y-0 opacity-0 z-50 flex flex-col">
-                <div class="px-5 py-4 flex flex-col space-y-3">
-                    <a href="#inicio" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Início</a>
-                    <a href="#sobre" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Sobre</a>
-                    <a href="#servicos" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Serviços</a>
-                    <a href="#wallbox" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Wallbox</a>
-                    <a href="#documentacao" class="mobile-link text-green-400 text-base font-bold border-b border-zinc-800 pb-2 flex items-center gap-2">TRT (CFT) e NF</a>
-                    <a href="#portfolio" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Obras</a>
-                    <a href="#avaliacoes" class="mobile-link text-white text-base font-medium border-b border-zinc-800 pb-2">Avaliações</a>
-                    <a href="#contato" class="mobile-link text-blue-500 text-base font-bold pb-1">Solicitar Orçamento Formal</a>
-                    
-                    <a href="/sistema" target="_blank" class="mobile-link bg-zinc-800 text-blue-500 text-base font-bold py-2.5 mt-1 rounded-xl text-center flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
-                        Acesso ao Sistema
-                    </a>
-                </div>
-            </div>
         </header>
+
+        <!-- MENU MOBILE ELEGANTE -->
+        <div id="mobile-menu" class="lg:hidden max-w-sm mx-auto mt-2 glass-card !rounded-2xl p-5 transition-all duration-300 transform scale-95 opacity-0 pointer-events-none flex flex-col space-y-3 bg-[#0a0f1d]/95 border border-white/10">
+            <a href="#inicio" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Início</a>
+            <a href="#sobre" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Sobre</a>
+            <a href="#servicos" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Serviços</a>
+            <a href="#wallbox" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Wallbox</a>
+            <a href="#documentacao" class="mobile-link text-green-400 text-sm font-bold border-b border-white/5 pb-2 flex items-center gap-2">TRT (CFT) e NF</a>
+            <a href="#portfolio" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Obras</a>
+            <a href="#avaliacoes" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Avaliações</a>
+            <a href="#contato" class="mobile-link text-blue-500 text-sm font-bold pb-1">Solicitar Orçamento Formal</a>
+            
+            <a href="/sistema" target="_blank" class="mobile-link bg-zinc-800 text-blue-500 text-xs font-bold py-2.5 mt-1 rounded-xl text-center flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
+                Acesso ao Sistema
+            </a>
+        </div>
     </div>
 
-    <main class="relative z-10">
-        <section id="inicio" class="relative pt-10 pb-12 md:pt-24 md:pb-24 flex flex-col justify-center min-h-[70vh] md:min-h-[75vh] overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop" alt="Eletricista Instalando Painel em Maricá" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover z-0 opacity-20">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#191b22]/90 via-[#191b22]/85 to-[#191b22] z-0 pointer-events-none"></div>
+    <main class="relative z-10 pt-20">
+        <!-- HERO SECTION -->
+        <section id="inicio" class="relative pt-12 pb-16 md:pt-24 md:pb-28 flex flex-col justify-center min-h-[70vh] md:min-h-[75vh] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop" alt="Eletricista Instalando Painel em Maricá" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover z-0 opacity-15 pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#07090e] via-transparent to-[#07090e] z-0 pointer-events-none"></div>
 
-            <div class="container mx-auto px-5 text-left relative z-10">
-                <span class="bg-red-600 text-white px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wide mb-4 inline-block shadow-[4px_4px_10px_var(--shadow-dark),-4px_-4px_10px_var(--shadow-light)]">
+            <div class="container mx-auto px-5 text-left relative z-10 max-w-5xl">
+                <span class="bg-red-600/90 text-white px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wide mb-4 inline-block border border-red-500/30">
                     Eletricista em Maricá
                 </span>
 
@@ -391,21 +359,21 @@
                     Eletricista 24 Horas com o melhor preço de <span class="marica-gradient">Maricá</span>
                 </h1>
                 
-                <div class="flex items-center gap-2 p-2.5 rounded-2xl w-fit mb-5 shadow-[inset_3px_3px_6px_var(--shadow-dark),inset_-3px_-3px_6px_var(--shadow-light)] bg-zinc-900 border border-zinc-800">
+                <div class="flex items-center gap-2 p-2 px-3 rounded-xl w-fit mb-5 bg-zinc-900/80 border border-white/10">
                     <div class="flex text-yellow-400 text-xs sm:text-sm tracking-tighter" aria-hidden="true">★★★★★</div>
                     <span class="text-gray-200 text-[11px] sm:text-xs font-semibold">Avaliado com Nota 5 no Google</span>
                 </div>
 
-                <p class="text-sm sm:text-base md:text-xl font-light mb-6 max-w-2xl text-gray-300">
+                <p class="text-sm sm:text-base md:text-xl font-light mb-8 max-w-2xl text-gray-300 leading-relaxed">
                     Eletricista 24 Horas em Maricá especializado em instalação elétrica, manutenção elétrica residencial e empresarial.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="dynamic-wa haptic-btn bg-blue-600 text-white font-extrabold py-3.5 px-6 rounded-2xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto relative overflow-hidden" aria-label="Solicitar Orçamento">
-                        <div class="absolute inset-0 w-1/4 h-full bg-white/20 animate-shimmer"></div>
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="dynamic-wa haptic-btn bg-blue-600 text-white font-extrabold py-4 px-7 rounded-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transition-all w-full sm:w-auto relative overflow-hidden group" aria-label="Solicitar Orçamento">
+                        <div class="absolute inset-0 w-1/3 h-full bg-white/20 animate-shimmer pointer-events-none"></div>
                         <span class="relative z-10 flex items-center gap-2 text-sm sm:text-base">Solicitar Visita Técnica</span>
                     </a>
-                    <a href="tel:+5521976493932" class="haptic-btn bg-zinc-800 text-white font-extrabold py-3.5 px-6 rounded-2xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transform hover:scale-105 transition-all duration-300 w-full sm:w-auto relative overflow-hidden" aria-label="Ligar Agora">
+                    <a href="tel:+5521976493932" class="haptic-btn bg-zinc-800 text-white font-extrabold py-4 px-7 rounded-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transition-all w-full sm:w-auto relative overflow-hidden" aria-label="Ligar Agora">
                         <span class="relative z-10 flex items-center gap-2 text-sm sm:text-base">
                             <svg class="w-5 h-5 animate-ring text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                             Ligar Agora
@@ -413,16 +381,16 @@
                     </a>
                 </div>
                 
-                <p class="text-[11px] sm:text-xs text-gray-400 mt-4 mb-5 font-medium">🔒 Garantia de 90 dias no serviço • Empresa Formalizada</p>
+                <p class="text-[11px] sm:text-xs text-gray-400 mt-5 mb-5 font-medium flex items-center gap-1.5">🔒 Garantia de 90 dias no serviço • Empresa Formalizada</p>
 
-                <div class="flex overflow-x-auto gap-3.5 hide-scrollbar pb-2 mb-2 snap-x">
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20falta%20de%20luz/emergência." class="dynamic-wa haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2.5 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
+                <div class="flex overflow-x-auto gap-3 hide-scrollbar pb-2 mb-2 snap-x">
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20falta%20de%20luz/emergência." class="dynamic-wa haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
                         <span aria-hidden="true">⚡</span> Faltou Luz
                     </a>
-                    <a href="#wallbox" class="haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2.5 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
+                    <a href="#wallbox" class="haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
                         <span aria-hidden="true">🚗</span> Orçar Wallbox
                     </a>
-                    <a href="#documentacao" class="haptic-btn bg-zinc-800 text-green-400 text-xs font-semibold py-2.5 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
+                    <a href="#documentacao" class="haptic-btn bg-zinc-800 text-green-400 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
                         <span aria-hidden="true">📄</span> Preciso de TRT / NF
                     </a>
                 </div>
@@ -430,58 +398,58 @@
         </section>
 
         <!-- SEÇÃO SOBRE A EMPRESA E FOTO AMPLIADA -->
-        <section id="sobre" class="py-12 md:py-20 border-b border-zinc-900">
+        <section id="sobre" class="py-14 md:py-24 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
                     <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                        <span class="bg-zinc-800 text-blue-400 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-wide uppercase mb-3 inline-block">Sobre a Empresa</span>
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+                        <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-wide uppercase mb-3 inline-block">Sobre a Empresa</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight tracking-tight">
                             Sua referência técnica em instalações em <span class="text-blue-500">Maricá</span>
                         </h2>
-                        <p class="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">
+                        <p class="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed font-normal">
                             A <strong>Wellington Técnico Eletricista</strong> é especializada em serviços residenciais e comerciais. Contamos com preparo técnico atualizado para transformar desde reparos simples até instalações complexas em projetos seguros, limpos e eficientes.
                         </p>
                         
-                        <div class="space-y-5 mb-6">
-                            <div class="glass-card p-4 sm:p-5 flex items-start gap-3.5">
-                                <div class="bg-blue-600/20 p-2.5 rounded-xl text-blue-500 shrink-0">
+                        <div class="space-y-4 mb-8">
+                            <div class="glass-card p-5 flex items-start gap-4">
+                                <div class="bg-blue-600/20 border border-blue-500/30 p-2.5 rounded-xl text-blue-400 shrink-0">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold text-base mb-1">Orçamento Detalhado</h4>
+                                    <h4 class="text-white font-bold text-sm sm:text-base mb-1">Orçamento Detalhado</h4>
                                     <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Entrega por escrito com valores justos e prazos definidos. Sem surpresas no final da obra.</p>
                                 </div>
                             </div>
                             
-                            <div class="glass-card p-4 sm:p-5 flex items-start gap-3.5">
-                                <div class="bg-blue-600/20 p-2.5 rounded-xl text-blue-500 shrink-0">
+                            <div class="glass-card p-5 flex items-start gap-4">
+                                <div class="bg-blue-600/20 border border-blue-500/30 p-2.5 rounded-xl text-blue-400 shrink-0">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-bold text-base mb-1">Execução Impecável</h4>
+                                    <h4 class="text-white font-bold text-sm sm:text-base mb-1">Execução Impecável</h4>
                                     <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Serviço realizado com limpeza, respeito ao seu espaço e foco total nas normas de segurança.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 px-6 rounded-2xl inline-flex items-center justify-center gap-2 transition-all w-full sm:w-auto text-sm">
+                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="dynamic-wa haptic-btn bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-7 rounded-xl inline-flex items-center justify-center gap-2 transition-all w-full sm:w-auto text-sm">
                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
                             Falar com um especialista
                         </a>
                     </div>
                     
                     <div class="w-full lg:w-1/2 relative order-1 lg:order-2 px-2 sm:px-0 mt-6 lg:mt-0 flex justify-center">
-                        <div class="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[480px]">
-                            <div class="p-3 rounded-3xl shadow-[10px_10px_20px_var(--shadow-dark),-10px_-10px_20px_var(--shadow-light)] bg-[#191b22]">
+                        <div class="relative w-full max-w-[340px] sm:max-w-[420px]">
+                            <div class="glass-card p-3 rounded-3xl overflow-hidden border border-white/10">
                                 <img src="wellington-foto.png" alt="Wellington Técnico Eletricista" width="600" height="600" class="w-full rounded-2xl object-cover aspect-square" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop'" decoding="async" loading="lazy">
                             </div>
                             
-                            <div class="absolute -bottom-5 sm:-bottom-7 left-2 sm:left-4 glass-card p-3 sm:p-5 flex items-center gap-3 animate-bounce shadow-2xl" style="animation-duration: 3s;">
-                                <div class="bg-green-500/20 p-2.5 sm:p-3 rounded-full text-green-500">
-                                    <svg class="w-6 h-6 sm:w-8 sm:h-8" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <div class="absolute -bottom-4 sm:-bottom-5 left-3 sm:left-6 glass-card p-3 sm:p-4 flex items-center gap-3 border border-emerald-500/30">
+                                <div class="bg-green-500/20 p-2 rounded-xl text-green-400">
+                                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                                 </div>
                                 <div>
-                                    <p class="text-2xl sm:text-3xl font-black text-white leading-none">99%</p>
+                                    <p class="text-2xl font-black text-white leading-none">99%</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider mt-0.5">Taxa de Satisfação</p>
                                 </div>
                             </div>
@@ -492,59 +460,59 @@
         </section>
 
         <!-- SEÇÃO DE SERVIÇOS -->
-        <section id="servicos" class="py-12 md:py-20 border-b border-zinc-900">
+        <section id="servicos" class="py-14 md:py-24 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6">
-                <div class="text-center mb-10 md:mb-14">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 text-white">Nossos Serviços em <span class="text-blue-500">Maricá</span></h2>
-                    <p class="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">Instalações, manutenções e reparos elétricos com atendimento rápido, segurança e garantia.</p>
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 text-white tracking-tight">Nossos Serviços em <span class="text-blue-500">Maricá</span></h2>
+                    <p class="text-sm md:text-base text-gray-400 max-w-2xl mx-auto font-normal">Instalações, manutenções e reparos elétricos com atendimento rápido, segurança e garantia.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     <div class="glass-card p-6 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🏠</span>
-                        <h3 class="text-lg font-bold mb-2 text-white">Residenciais</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-white">Residenciais</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação e manutenção elétrica residencial para casas, apartamentos e condomínios com total segurança.</p>
                     </div>
                     
                     <div class="glass-card p-6 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🏢</span>
-                        <h3 class="text-lg font-bold mb-2 text-white">Comerciais</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-white">Comerciais</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Serviços elétricos comerciais para lojas, empresas e galpões com emissão de nota fiscal.</p>
                     </div>
                     
                     <div class="glass-card p-6 border-red-500/30 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🚨</span>
-                        <h3 class="text-lg font-bold mb-2 text-red-400">Manutenção 24h</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-red-400">Manutenção 24h</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Eletricista 24 horas em Maricá para curto-circuito, falta de energia, queda de disjuntor e emergências.</p>
                     </div>
 
                     <div class="glass-card p-6 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">💡</span>
-                        <h3 class="text-lg font-bold mb-2 text-white">Iluminação</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-white">Iluminação</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação de iluminação LED, lustres e projetos luminotécnicos para ambientes modernos e econômicos.</p>
                     </div>
 
                     <div class="glass-card p-6 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🎛️</span>
-                        <h3 class="text-lg font-bold mb-2 text-white">Quadros (DR/DPS)</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-white">Quadros (DR/DPS)</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Troca de disjuntores, adequação de quadro e instalação de DR e DPS em Maricá, seguindo a NBR 5410.</p>
                     </div>
 
                     <div class="glass-card p-6 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🚿</span>
-                        <h3 class="text-lg font-bold mb-2 text-white">Chuveiros</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-white">Chuveiros</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação e troca de chuveiro elétrico em Maricá com revisão completa da fiação e segurança da rede.</p>
                     </div>
 
                     <div class="glass-card p-6 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">🌀</span>
-                        <h3 class="text-lg font-bold mb-2 text-white">Ventiladores</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-white">Ventiladores</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Instalação de ventiladores de teto com montagem segura, balanceamento e acabamento profissional.</p>
                     </div>
 
                     <div class="glass-card p-6 group cursor-default">
                         <span class="text-3xl mb-3 block group-hover:scale-110 transition-transform origin-left" aria-hidden="true">❄️</span>
-                        <h3 class="text-lg font-bold mb-2 text-white">Ar-Condicionado</h3>
+                        <h3 class="text-base sm:text-lg font-bold mb-2 text-white">Ar-Condicionado</h3>
                         <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Infraestrutura elétrica para ar-condicionado com instalação 220V, disjuntores e adequação de carga.</p>
                     </div>
                 </div>
@@ -552,21 +520,21 @@
         </section>
 
         <!-- SEÇÃO WALLBOX -->
-        <section id="wallbox" class="py-12 md:py-20 border-b border-zinc-900">
+        <section id="wallbox" class="py-14 md:py-24 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6">
                 
-                <span class="bg-green-600 text-white px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase block w-fit mb-3 shadow-[4px_4px_10px_var(--shadow-dark),-4px_-4px_10px_var(--shadow-light)]">Especialidade Premium</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3">Instalação de Wallbox</h2>
-                <p class="text-sm sm:text-base text-gray-400 mb-4 max-w-2xl">Estrutura dedicada e em total conformidade com a NBR 17019 para carregar o seu veículo elétrico de forma rápida e segura na sua garagem.</p>
+                <span class="bg-green-600/20 text-green-400 border border-green-500/30 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase block w-fit mb-3">Especialidade Premium</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight">Instalação de Wallbox</h2>
+                <p class="text-sm sm:text-base text-gray-400 mb-6 max-w-2xl">Estrutura dedicada e em total conformidade com a NBR 17019 para carregar o seu veículo elétrico de forma rápida e segura na sua garagem.</p>
 
                 <ul class="text-sm sm:text-base text-gray-300 mb-6 space-y-2 max-w-2xl">
-                    <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Cabeamento dimensionado com isolação de 1kV.</li>
-                    <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Quadro de proteção com <strong>Disjuntor, DR e DPS</strong>.</li>
-                    <li class="flex items-center gap-2"><span class="text-blue-500">✔</span> Aterramento de acordo com a norma.</li>
+                    <li class="flex items-center gap-2.5"><span class="text-blue-500 font-bold">✔</span> Cabeamento dimensionado com isolação de 1kV.</li>
+                    <li class="flex items-center gap-2.5"><span class="text-blue-500 font-bold">✔</span> Quadro de proteção com <strong>Disjuntor, DR e DPS</strong>.</li>
+                    <li class="flex items-center gap-2.5"><span class="text-blue-500 font-bold">✔</span> Aterramento de acordo com a norma.</li>
                 </ul>
 
-                <div class="glass-card border-red-500/50 p-4 md:p-5 mb-8 flex items-start gap-4 max-w-3xl">
-                    <div class="bg-red-600/20 p-2.5 rounded-full text-red-500 shrink-0 mt-0.5">
+                <div class="glass-card border-red-500/40 p-4 md:p-5 mb-8 flex items-start gap-4 max-w-3xl">
+                    <div class="bg-red-600/20 p-2.5 rounded-xl text-red-400 shrink-0 mt-0.5">
                         <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                     </div>
                     <div>
@@ -578,46 +546,46 @@
                 <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
                     <div class="w-full lg:w-1/2">
                         <div class="glass-card p-5 md:p-6 mb-6 relative overflow-hidden">
-                            <div class="absolute top-0 right-0 bg-green-600 text-white text-[9px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-widest shadow-[2px_2px_6px_var(--shadow-dark)]">Simulador</div>
+                            <div class="absolute top-0 right-0 bg-green-600/90 text-white text-[9px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-widest">Simulador</div>
                             <h3 class="text-lg md:text-xl font-bold text-white mb-1 mt-1">Calculadora de Economia</h3>
-                            <p class="text-xs sm:text-sm text-gray-400 mb-5">Descubra o quanto você economiza recarregando em casa.</p>
+                            <p class="text-xs sm:text-sm text-gray-400 mb-6">Descubra o quanto você economiza recarregando em casa.</p>
                             
                             <div class="space-y-6">
                                 <div>
                                     <label for="gasolina-slider" class="flex justify-between items-center text-xs font-semibold text-gray-300 mb-3">
                                         <span>Gasto Mensal (Gasolina):</span>
-                                        <span class="text-white font-bold px-3 py-1 rounded-xl shadow-[inset_2px_2px_5px_var(--shadow-dark),inset_-2px_-2px_5px_var(--shadow-light)] bg-zinc-900 border border-zinc-800">R$ <span id="gasolina-valor">800</span></span>
+                                        <span class="text-white font-bold px-3 py-1 rounded-xl bg-zinc-900 border border-white/10">R$ <span id="gasolina-valor">800</span></span>
                                     </label>
                                     <input type="range" id="gasolina-slider" min="200" max="3000" step="50" value="800" class="w-full">
-                                    <div class="flex justify-between text-[10px] text-gray-500 mt-2 font-semibold">
+                                    <div class="flex justify-between text-[10px] text-gray-400 mt-2 font-semibold">
                                         <span>R$ 200</span>
                                         <span>R$ 3.000+</span>
                                     </div>
                                 </div>
                                 
-                                <div class="grid grid-cols-2 gap-4 pt-3 border-t border-zinc-800">
-                                    <div class="p-4 rounded-2xl flex flex-col justify-center shadow-[inset_3px_3px_6px_var(--shadow-dark),inset_-3px_-3px_6px_var(--shadow-light)] bg-zinc-900 border border-zinc-800">
+                                <div class="grid grid-cols-2 gap-4 pt-3 border-t border-white/10">
+                                    <div class="p-4 rounded-xl flex flex-col justify-center bg-zinc-900/90 border border-white/5">
                                         <span class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Gasto em Energia</span>
-                                        <span class="text-lg font-bold text-white">R$ <span id="energia-valor">224</span><span class="text-[10px] text-gray-500 font-normal"> /mês</span></span>
+                                        <span class="text-lg font-bold text-white">R$ <span id="energia-valor">224</span><span class="text-[10px] text-gray-400 font-normal"> /mês</span></span>
                                     </div>
-                                    <div class="p-4 rounded-2xl flex flex-col justify-center relative overflow-hidden shadow-[inset_3px_3px_6px_var(--shadow-dark),inset_-3px_-3px_6px_var(--shadow-light)] bg-zinc-900 border border-green-500/30">
-                                        <div class="absolute -right-2 -bottom-2 opacity-20"><svg class="w-12 h-12 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path></svg></div>
+                                    <div class="p-4 rounded-xl flex flex-col justify-center relative overflow-hidden bg-zinc-900/90 border border-green-500/30">
+                                        <div class="absolute -right-2 -bottom-2 opacity-15"><svg class="w-12 h-12 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path></svg></div>
                                         <span class="text-[10px] text-green-400 font-bold uppercase tracking-wider mb-0.5 relative z-10">Economia no Ano</span>
-                                        <span class="text-xl md:text-2xl font-black text-green-500 relative z-10">R$ <span id="economia-valor">6.912</span></span>
+                                        <span class="text-xl md:text-2xl font-black text-green-400 relative z-10">R$ <span id="economia-valor">6.912</span></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20instalação%20de%20Wallbox." target="_blank" class="dynamic-wa haptic-btn w-full block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 sm:py-4 rounded-2xl transition-all text-sm sm:text-base">
+                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20instalação%20de%20Wallbox." target="_blank" class="dynamic-wa haptic-btn w-full block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all text-sm sm:text-base">
                             Solicitar Orçamento Seguro do Carregador
                         </a>
                     </div>
 
-                    <div class="w-full lg:w-1/2 mt-8 lg:mt-0">
-                        <div class="glass-card rounded-3xl overflow-hidden relative">
-                            <img src="wallboxcarro.png" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox" class="w-full h-full object-cover min-h-[300px] lg:min-h-[500px]" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&q=80'">
-                            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#191b22] via-[#191b22]/80 to-transparent p-6 pt-16">
+                    <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
+                        <div class="glass-card rounded-3xl overflow-hidden relative border border-white/10">
+                            <img src="wallboxcarro.png" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox" class="w-full h-full object-cover min-h-[300px] lg:min-h-[480px]" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&q=80'">
+                            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#090e1a] via-[#090e1a]/85 to-transparent p-6 pt-16">
                                 <h3 class="text-white font-bold text-xl mt-2">Wallbox</h3>
                                 <p class="text-gray-300 text-sm mt-1">Quadro de proteção (Disjuntor, DR e DPS), aterramento e documentação técnica (se necessário).</p>
                             </div>
@@ -628,30 +596,30 @@
         </section>
 
         <!-- SEÇÃO: RESPONSABILIDADE TÉCNICA (TRT), CFT E NF -->
-        <section id="documentacao" class="py-12 md:py-20 border-b border-zinc-900 relative overflow-hidden">
+        <section id="documentacao" class="py-14 md:py-24 border-t border-white/[0.07] relative overflow-hidden">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
                     
                     <div class="w-full lg:w-1/2 relative order-2 lg:order-1 mt-6 lg:mt-0">
-                        <div class="glass-card p-6 md:p-8 relative z-10">
-                            <div class="flex justify-between items-start mb-5 border-b border-zinc-800 pb-5">
+                        <div class="glass-card p-6 md:p-8 relative z-10 border border-emerald-500/20">
+                            <div class="flex justify-between items-start mb-5 border-b border-white/10 pb-5">
                                 <div>
                                     <h3 class="text-xl sm:text-2xl font-bold text-white">BRvolts</h3>
                                     <p class="text-gray-400 text-xs sm:text-sm mt-1 uppercase tracking-wide">Técnico Eletrotécnico</p>
                                 </div>
-                                <div class="bg-green-500/20 text-green-500 p-2 sm:p-3 rounded-2xl shrink-0">
+                                <div class="bg-green-500/20 text-green-400 p-2 sm:p-3 rounded-xl shrink-0 border border-green-500/20">
                                     <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                                 </div>
                             </div>
                             <div class="space-y-4">
-                                <div class="flex justify-between items-center border-b border-zinc-800/50 pb-3">
+                                <div class="flex justify-between items-center border-b border-white/5 pb-3">
                                     <span class="text-gray-400 font-medium text-[11px] sm:text-xs uppercase tracking-wider">CNPJ</span>
-                                    <button onclick="copiarCNPJ()" class="group flex items-center gap-1.5 text-white font-bold text-xs sm:text-sm tracking-wider hover:text-blue-400 transition-colors haptic-btn bg-zinc-800 px-3 py-1.5 rounded-xl">
+                                    <button onclick="copiarCNPJ()" class="group flex items-center gap-1.5 text-white font-bold text-xs sm:text-sm tracking-wider hover:text-blue-400 transition-all haptic-btn bg-zinc-800 px-3.5 py-2 rounded-xl border border-white/10">
                                         <span id="cnpj-text">68.694.956/0001-74</span>
                                         <svg class="w-3.5 h-3.5 text-zinc-400 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 002 2z"></path></svg>
                                     </button>
                                 </div>
-                                <div class="flex justify-between items-center border-b border-zinc-800/50 pb-3">
+                                <div class="flex justify-between items-center border-b border-white/5 pb-3">
                                     <span class="text-gray-400 font-medium text-[11px] sm:text-xs uppercase tracking-wider">Nota Fiscal</span>
                                     <span class="bg-zinc-800 text-green-400 text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-xl border border-green-600/30">SIM (NF-e)</span>
                                 </div>
@@ -664,48 +632,48 @@
                     </div>
                     
                     <div class="w-full lg:w-1/2 order-1 lg:order-2">
-                        <span class="bg-zinc-800 text-green-400 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 inline-block">Responsabilidade Técnica</span>
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+                        <span class="bg-green-500/10 text-green-400 border border-green-500/20 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 inline-block">Responsabilidade Técnica</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight tracking-tight">
                             Legalidade e segurança para o seu <span class="text-green-500">Condomínio e Empresa</span>
                         </h2>
                         <p class="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">
                             A segurança do seu patrimônio começa pela legalidade do profissional. Somos uma <strong>empresa regularizada</strong>, garantindo total transparência e conformidade com as normas da ABNT.
                         </p>
                         
-                        <div class="space-y-5">
+                        <div class="space-y-4">
                             <div class="flex items-start gap-3.5">
-                                <div class="text-green-500 mt-0.5 shrink-0 p-2 rounded-xl bg-zinc-800"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                                <div class="text-green-400 mt-0.5 shrink-0 p-2.5 rounded-xl bg-zinc-800 border border-white/10"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
                                 <div>
-                                    <h4 class="text-white font-bold text-base mb-1">Emissão de Nota Fiscal</h4>
+                                    <h4 class="text-white font-bold text-sm sm:text-base mb-1">Emissão de Nota Fiscal</h4>
                                     <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Apresentação de Notas Fiscais detalhadas para facilitar a prestação de contas de síndicos, gestores comerciais e administradoras.</p>
                                 </div>
                             </div>
                             
                             <div class="flex items-start gap-3.5">
-                                <div class="text-green-500 mt-0.5 shrink-0 p-2 rounded-xl bg-zinc-800"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                                <div class="text-green-400 mt-0.5 shrink-0 p-2.5 rounded-xl bg-zinc-800 border border-white/10"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
                                 <div>
-                                    <h4 class="text-white font-bold text-base mb-1">Laudos e TRT (CFT)</h4>
+                                    <h4 class="text-white font-bold text-sm sm:text-base mb-1">Laudos e TRT (CFT)</h4>
                                     <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">Assinatura de Termo de Responsabilidade Técnica (TRT). Respaldo legal obrigatório para liberação de obras em condomínios e aprovações na concessionária (Enel).</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap gap-3 mt-6">
-                            <div class="flex items-center gap-1.5 bg-zinc-800 px-3 py-1.5 rounded-xl text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide">
+                        <div class="flex flex-wrap gap-2.5 mt-6">
+                            <div class="flex items-center gap-1.5 bg-zinc-800 px-3.5 py-2 rounded-xl text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide border border-white/10">
                                 <svg class="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                 REGISTRO CFT
                             </div>
-                            <div class="flex items-center gap-1.5 bg-zinc-800 px-3 py-1.5 rounded-xl text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide">
+                            <div class="flex items-center gap-1.5 bg-zinc-800 px-3.5 py-2 rounded-xl text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide border border-white/10">
                                 <svg class="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                 NBR 5410 / 17019
                             </div>
-                            <div class="flex items-center gap-1.5 bg-zinc-800 px-3 py-1.5 rounded-xl text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide">
+                            <div class="flex items-center gap-1.5 bg-zinc-800 px-3.5 py-2 rounded-xl text-[10px] sm:text-xs text-gray-300 font-bold tracking-wide border border-white/10">
                                 <svg class="w-3.5 h-3.5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A12.01 12.01 0 012.167 5C2.056 5.65 2 6.32 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944a11.956 11.956 0 011.3-.898z" clip-rule="evenodd"></path></svg>
                                 PADRÃO ENEL
                             </div>
                         </div>
 
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Sou%20síndico/gestor%20e%20gostaria%20de%20solicitar%20um%20serviço%20com%20Nota%20Fiscal%20e%20TRT." target="_blank" class="dynamic-wa haptic-btn mt-6 sm:mt-8 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-3.5 px-6 rounded-2xl flex items-center justify-center sm:inline-flex gap-2 transition-all text-sm sm:text-base">
+                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Sou%20síndico/gestor%20e%20gostaria%20de%20solicitar%20um%20serviço%20com%20Nota%20Fiscal%20e%20TRT." target="_blank" class="dynamic-wa haptic-btn mt-6 sm:mt-8 bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 px-7 rounded-xl flex items-center justify-center sm:inline-flex gap-2 transition-all text-sm sm:text-base border border-white/10">
                             Atendimento para Síndicos e CNPJ
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
@@ -715,45 +683,45 @@
         </section>
 
         <!-- SEÇÃO: OBRAS (PORTFÓLIO) -->
-        <section id="portfolio" class="py-12 md:py-20 border-b border-zinc-900">
+        <section id="portfolio" class="py-14 md:py-24 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="text-center md:text-left mb-8">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white">Nossas Obras Executadas</h2>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white tracking-tight">Nossas Obras Executadas</h2>
                     <p class="text-sm md:text-base text-gray-400">Veja registros reais de instalações e manutenções feitas por nós na região de Maricá.</p>
                 </div>
                 
                 <div id="portfolio-carousel" class="flex overflow-x-auto gap-5 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-4">
-                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center">
-                        <img src="wallbox-pindobas.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox em Pindobas" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
-                        <div class="p-4 sm:p-5 border-t border-zinc-800">
-                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center group">
+                        <img src="wallbox-pindobas.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox em Pindobas" width="500" height="300" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 border-t border-white/5">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block tracking-wider">📸 Instalação Real</span>
                             <p class="font-bold text-white text-base leading-tight mb-1">Infraestrutura Exclusiva para Wallbox</p>
                             <p class="text-xs text-gray-400">📍 Condomínio em Pindobas</p>
                         </div>
                     </div>
                     
-                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center">
-                        <img src="wallbox-caxito2.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox no Caxito" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
-                        <div class="p-4 sm:p-5 border-t border-zinc-800">
-                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center group">
+                        <img src="wallbox-caxito2.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox no Caxito" width="500" height="300" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 border-t border-white/5">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block tracking-wider">📸 Instalação Real</span>
                             <p class="font-bold text-white text-base leading-tight mb-1">Infraestrutura Exclusiva para Wallbox</p>
                             <p class="text-xs text-gray-400">📍 Caxito, Maricá</p>
                         </div>
                     </div>
                     
-                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center">
-                        <img src="wallbox-barra-de-marica2.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox na Barra de Maricá" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
-                        <div class="p-4 sm:p-5 border-t border-zinc-800">
-                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center group">
+                        <img src="wallbox-barra-de-marica2.jpg" loading="lazy" decoding="async" alt="Infraestrutura Exclusiva para Wallbox na Barra de Maricá" width="500" height="300" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 border-t border-white/5">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block tracking-wider">📸 Instalação Real</span>
                             <p class="font-bold text-white text-base leading-tight mb-1">Infraestrutura Exclusiva para Wallbox</p>
                             <p class="text-xs text-gray-400">📍 Barra de Maricá</p>
                         </div>
                     </div>
 
-                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center">
-                        <img src="quadro_wallbox_saojose.jpg" loading="lazy" decoding="async" alt="Quadro de Proteção Wallbox em São José do Imbassaí" width="500" height="300" class="w-full h-40 sm:h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
-                        <div class="p-4 sm:p-5 border-t border-zinc-800">
-                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1.5 block tracking-wider">📸 Instalação Real</span>
+                    <div class="glass-card rounded-2xl overflow-hidden shrink-0 w-[80vw] md:w-full snap-center group">
+                        <img src="quadro_wallbox_saojose.jpg" loading="lazy" decoding="async" alt="Quadro de Proteção Wallbox em São José do Imbassaí" width="500" height="300" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&q=80'">
+                        <div class="p-4 sm:p-5 border-t border-white/5">
+                            <span class="text-[10px] text-green-400 font-bold uppercase mb-1 block tracking-wider">📸 Instalação Real</span>
                             <p class="font-bold text-white text-base leading-tight mb-1">Quadro Proteção Wallbox</p>
                             <p class="text-xs text-gray-400">📍 São José do Imbassaí, Maricá</p>
                         </div>
@@ -761,36 +729,36 @@
                 </div>
                 
                 <div class="flex justify-center items-center gap-2 mt-5 md:hidden" id="portfolio-dots">
-                    <div class="w-3 h-3 rounded-full bg-blue-500 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-blue-500 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
                 </div>
             </div>
         </section>
 
         <!-- SEÇÃO AVERSÃO À PERDA -->
-        <section id="aversao" class="py-10 md:py-16 border-b border-zinc-900">
+        <section id="aversao" class="py-10 md:py-16 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6 max-w-4xl">
-                <div class="glass-card border-red-900/50 p-5 md:p-8 flex flex-col md:flex-row items-center gap-5 md:gap-6">
-                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-red-500 shrink-0 bg-zinc-800">
-                        <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <div class="glass-card border-red-900/40 p-6 md:p-8 flex flex-col md:flex-row items-center gap-5 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center text-red-400 shrink-0 bg-red-500/10 border border-red-500/20">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                     </div>
                     <div class="text-center md:text-left">
-                        <h3 class="text-lg md:text-xl font-bold text-red-500 mb-2">Não arrisque o seu patrimônio</h3>
-                        <p class="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed">Instalações elétricas mal dimensionadas são a principal causa de curtos e queima de eletrodomésticos. Valorize a segurança da sua família contratando um técnico credenciado e evite que o "barato saia muito caro".</p>
+                        <h3 class="text-lg md:text-xl font-bold text-red-400 mb-2">Não arrisque o seu patrimônio</h3>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed font-normal">Instalações elétricas mal dimensionadas são a principal causa de curtos e queima de eletrodomésticos. Valorize a segurança da sua família contratando um técnico credenciado e evite que o "barato saia muito caro".</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO DE AVALIAÇÕES ATUALIZADA -->
-        <section id="avaliacoes" class="py-12 md:py-20 border-b border-zinc-900">
+        <!-- SEÇÃO DE AVALIAÇÕES ATUALIZADA (TODAS AS 10 MANTIDAS) -->
+        <section id="avaliacoes" class="py-14 md:py-24 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6">
                 
                 <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div class="bg-zinc-800 p-2.5 rounded-2xl shrink-0">
-                        <svg class="w-6 h-6 sm:w-8 sm:h-8" aria-hidden="true" viewBox="0 0 48 48">
+                    <div class="bg-zinc-800 p-2.5 rounded-2xl shrink-0 border border-white/10">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" viewBox="0 0 48 48">
                             <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                             <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                             <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
@@ -798,277 +766,211 @@
                         </svg>
                     </div>
                     <div>
-                        <h2 class="text-xl sm:text-2xl md:text-4xl font-bold text-white leading-tight">Avaliações do Google</h2>
-                        <div class="flex items-center gap-1.5 mt-0.5 sm:mt-1">
+                        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight tracking-tight">Avaliações do Google</h2>
+                        <div class="flex items-center gap-1.5 mt-0.5">
                             <span class="text-white font-bold text-sm sm:text-base">5.0</span>
-                            <div class="flex text-[#FBBC05]">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05]">★★★★★</div>
                         </div>
                     </div>
                 </div>
-                <p class="text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8 ml-1">Opiniões de clientes reais baseadas na satisfação com os nossos serviços pela região.</p>
+                <p class="text-xs sm:text-sm text-gray-400 mb-8 ml-1">Opiniões de clientes reais baseadas na satisfação com os nossos serviços pela região.</p>
                 
                 <div id="avaliacoes-carousel" class="flex overflow-x-auto gap-5 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-2 lg:grid-cols-3">
                     
-                    <!-- AVALIAÇÃO: MYLENE -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 1. MYLENE -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">M</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-sm">M</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Mylene</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Excelente profissional. Pontual, atencioso, educado, eficiente, prestativo e caprichoso. Trabalho excelente e limpo. Deixou toda a fiação organizada (estava muito ruim) e explicava tudo que estava fazendo. Analisou e explicou toda a fiação do quadro de luz antes de iniciar o trabalho. Passa muita segurança no que faz. Indico, com certeza! Não é o valor de um 'faz tudo', mas vale a pena porque é de excelência."</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: PATRICIA -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 2. PATRICIA -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">P</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold text-sm">P</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Patricia</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Centro, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Excelente trabalho, atendimento impecável. Ótimo profissional.. está de parabéns pelos serviços prestados realmente vale cada centavo."</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: VALDO NOBREGA -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 3. VALDO NOBREGA -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">V</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-sm">V</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Valdo Nobrega</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"O serviço foi feito com maestria e paciência. Indico"</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: CHRISTIAN BARROS -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 4. CHRISTIAN BARROS -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">C</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-sky-600 flex items-center justify-center text-white font-bold text-sm">C</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Christian Barros</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Barra de Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Fiquei muito satisfeito com a pontualidade, clareza nas explicações e profissionalismo. Com certeza guardarei seu contato para os próximos serviços e vou te indicar para os amigos. Sucesso!"</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: KARINE GUEDES -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 5. KARINE GUEDES -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm sm:text-lg">K</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">K</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Karine Guedes</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Precisava de um eletricista em Itaipuaçu urgente para a minha casa. Cumprimento de prazo, atendimento excelente e preço justo na manutenção. Total transparência com o cliente. Obrigada!"</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: VINICIUS LOPES -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 6. VINICIUS LOPES -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">V</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-sm">V</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Vinicius Lopes</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Inoã, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Eletricista extremamente técnico e pontual. Fez uma instalação de padrão elétrico em Inoã impecável. Recomendo com toda a certeza a Wellington Tecnico Eletricista."</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: TELMA COSTA -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 7. TELMA COSTA -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">T</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm">T</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Telma Costa</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Centro, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Foi uma experiência surpreendente. Tive um problema de madrugada e achei um eletricista 24 horas em Maricá. É muito difícil encontrar profissionais com tanta capacidade."</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: RICARDO SILVA -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 8. RICARDO SILVA -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">R</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold text-sm">R</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Ricardo Silva</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 São José do Imbassaí</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Excelente trabalho na instalação de Wallbox em Maricá para o meu carregador BYD. Conhece muito as normas técnicas e deixou o quadro protegido com DR."</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: MARIANA COSTA -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 9. MARIANA COSTA -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">M</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-sm">M</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Mariana Costa</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Ponta Negra, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Estávamos com um problema de superaquecimento e o eletricista em Ponta Negra resolveu de forma cirúrgica. Excelente serviço de manutenção em Maricá!"</p>
                         </div>
                     </div>
 
-                    <!-- AVALIAÇÃO: CARLOS EDUARDO -->
-                    <div class="glass-card p-5 sm:p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
+                    <!-- 10. CARLOS EDUARDO -->
+                    <div class="glass-card p-6 shrink-0 w-[80vw] md:w-full snap-center relative flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-3 mb-3 sm:mb-4">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg">C</div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm">C</div>
                                 <div>
                                     <p class="font-bold text-white text-xs sm:text-sm">Carlos Eduardo</p>
                                     <p class="text-[10px] sm:text-xs text-gray-400">📍 Itaipuaçu, Maricá</p>
                                 </div>
                             </div>
-                            <div class="flex text-[#FBBC05] mb-2 sm:mb-3 gap-0.5" aria-hidden="true">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            </div>
+                            <div class="flex text-[#FBBC05] mb-2 gap-0.5 text-xs">★★★★★</div>
                             <p class="text-xs sm:text-sm text-gray-300">"Muito caprichoso! Precisava instalar chuveiro elétrico e arrumar a fiação do quadro de disjuntores. Preço justo pela alta qualidade. Um baita eletricista em Itaipuaçu."</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="flex justify-center items-center gap-2 mt-6 md:hidden" id="avaliacoes-dots">
-                    <div class="w-3 h-3 rounded-full bg-blue-500 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
-                    <div class="w-3 h-3 rounded-full bg-zinc-800 transition-colors duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-blue-500 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-800 transition-all duration-300"></div>
                 </div>
 
                 <!-- BOTÃO DE INDICAÇÃO ATUALIZADO -->
                 <div class="text-center mt-10 md:mt-12 mb-4">
-                    <button id="shareBtn" class="glass-card py-3.5 px-6 rounded-full inline-flex items-center justify-center gap-2 w-full sm:w-auto text-sm md:text-base font-semibold text-white haptic-btn">
-                        <svg class="w-5 h-5 text-blue-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                    <button id="shareBtn" class="glass-card py-3.5 px-7 rounded-full inline-flex items-center justify-center gap-2 w-full sm:w-auto text-sm font-semibold text-white haptic-btn border border-white/10">
+                        <svg class="w-4 h-4 text-blue-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
                         Gostou? Indique a BRvolts
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Formulário de Contato -->
-        <section id="contato" class="py-12 md:py-20 border-t border-zinc-900">
+        <!-- FORMULÁRIO DE CONTATO -->
+        <section id="contato" class="py-14 md:py-24 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6 max-w-5xl">
-                <div class="glass-card p-6 md:p-10 flex flex-col md:flex-row gap-8 md:gap-10">
+                <div class="glass-card p-6 md:p-10 flex flex-col md:flex-row gap-8 md:gap-12">
                     <div class="w-full md:w-1/2">
-                        <span class="bg-zinc-800 text-blue-400 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 inline-block">Atendimento Digital</span>
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3">Solicite um Orçamento</h2>
+                        <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 inline-block">Atendimento Digital</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight">Solicite um Orçamento</h2>
                         <p class="text-gray-400 text-sm mb-6 leading-relaxed">Prefere formalizar seu pedido? Preencha os dados abaixo e retornaremos com as informações para o seu condomínio, residência ou empresa.</p>
                         <div class="space-y-3">
-                            <div class="flex items-center gap-3 text-gray-300 text-xs sm:text-sm"><span class="text-blue-500 text-lg">📞</span> Resposta rápida via WhatsApp ou Ligação</div>
-                            <div class="flex items-center gap-3 text-gray-300 text-xs sm:text-sm"><span class="text-blue-500 text-lg">🏢</span> Atendimento exclusivo para CNPJ e Condomínios</div>
+                            <div class="flex items-center gap-3 text-gray-300 text-xs sm:text-sm"><span class="text-blue-500 text-base">📞</span> Resposta rápida via WhatsApp ou Ligação</div>
+                            <div class="flex items-center gap-3 text-gray-300 text-xs sm:text-sm"><span class="text-blue-500 text-base">🏢</span> Atendimento exclusivo para CNPJ e Condomínios</div>
                         </div>
                     </div>
                     
                     <div class="w-full md:w-1/2 relative">
-                        <div id="form-success-msg" class="hidden absolute inset-0 bg-zinc-900 rounded-2xl flex-col items-center justify-center p-6 text-center z-10">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-green-500/20 rounded-full flex items-center justify-center text-green-500 mb-4">
-                                <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <div id="form-success-msg" class="hidden absolute inset-0 bg-[#0c1220] rounded-2xl flex-col items-center justify-center p-6 text-center z-10 border border-emerald-500/30">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 mb-3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Mensagem Enviada!</h3>
+                            <h3 class="text-base sm:text-lg font-bold text-white mb-1">Mensagem Enviada!</h3>
                             <p class="text-xs sm:text-sm text-gray-400">Recebemos sua solicitação e entraremos em contato com você o mais rápido possível.</p>
                         </div>
 
@@ -1076,22 +978,22 @@
                             <form id="contato-form" action="https://formspree.io/f/xnjkgwby" method="POST" class="space-y-4">
                                 <div>
                                     <label for="nome" class="block text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1.5 ml-1">Seu Nome / Empresa</label>
-                                    <input type="text" id="nome" name="nome" required class="w-full rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none placeholder-gray-500" placeholder="Ex: Síndico João">
+                                    <input type="text" id="nome" name="nome" required class="w-full px-4 py-3 text-white text-sm focus:outline-none placeholder-gray-500" placeholder="Ex: Síndico João">
                                 </div>
                                 <div>
                                     <label for="telefone" class="block text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1.5 ml-1">WhatsApp ou Telefone</label>
-                                    <input type="tel" id="telefone" name="telefone" required oninput="maskPhone(event)" maxlength="15" class="w-full rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none placeholder-gray-500" placeholder="(21) 90000-0000">
+                                    <input type="tel" id="telefone" name="telefone" required oninput="maskPhone(event)" maxlength="15" class="w-full px-4 py-3 text-white text-sm focus:outline-none placeholder-gray-500" placeholder="(21) 90000-0000">
                                 </div>
                                 <div>
                                     <label for="servico" class="block text-[11px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1.5 ml-1">Tipo de Serviço</label>
-                                    <select id="servico" name="servico" class="w-full rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none appearance-none">
+                                    <select id="servico" name="servico" class="w-full px-4 py-3 text-white text-sm focus:outline-none appearance-none">
                                         <option value="wallbox">Instalação de Wallbox (Carregador VE)</option>
                                         <option value="manutencao">Manutenção Elétrica Geral</option>
                                         <option value="projetos">Laudos e TRT (CFT)</option>
                                         <option value="outro">Outros Serviços</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="haptic-btn w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg mt-3 tracking-wide uppercase text-sm flex justify-center items-center">
+                                <button type="submit" class="haptic-btn w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-all mt-2 tracking-wide uppercase text-sm flex justify-center items-center">
                                     Enviar Solicitação
                                 </button>
                             </form>
@@ -1101,103 +1003,104 @@
             </div>
         </section>
 
-        <section id="atuacao" class="py-12 md:py-16 border-t border-zinc-900">
+        <!-- SEÇÃO DE ATUAÇÃO COM MAPA -->
+        <section id="atuacao" class="py-14 md:py-20 border-t border-white/[0.07]">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white">Atendemos em <span class="text-blue-500">Toda Maricá</span></h2>
-                    <p class="text-xs sm:text-sm md:text-lg text-gray-400 mt-2">Pronta resposta técnica com frota própria para residências, condomínios e comércios locais.</p>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">Atendemos em <span class="text-blue-500">Toda Maricá</span></h2>
+                    <p class="text-xs sm:text-sm md:text-base text-gray-400 mt-2">Pronta resposta técnica com frota própria para residências, condomínios e comércios locais.</p>
                 </div>
-                <div class="w-full max-w-5xl mx-auto glass-card p-3 rounded-3xl">
+                <div class="w-full max-w-5xl mx-auto glass-card p-2 rounded-3xl overflow-hidden border border-white/10">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117688.37535198811!2d-42.89531940984869!3d-22.92477380905953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9901458b68a623%3A0x861348505527a2b2!2sMaric%C3%A1%2C%20RJ!5e0!3m2!1spt-BR!2sbr!4v1716490895360!5m2!1spt-BR!2sbr" 
                         width="100%" 
-                        height="350" 
+                        height="340" 
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade"
-                        class="rounded-2xl opacity-85 hover:opacity-100 transition-opacity">
+                        class="rounded-2xl opacity-80 hover:opacity-100 transition-opacity duration-300">
                     </iframe>
                 </div>
             </div>
         </section>
 
         <!-- SEÇÃO DE MARCAS (ROLAGEM ANIMADA) -->
-        <div class="py-8 border-t border-zinc-900 overflow-hidden relative marquee-container">
-            <div class="container mx-auto px-4 mb-5 text-center">
+        <div class="py-10 border-t border-white/[0.07] overflow-hidden relative">
+            <div class="container mx-auto px-4 mb-6 text-center">
                 <p class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-widest">Especialista nas principais marcas do mercado</p>
             </div>
-            <div class="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-[#191b22] to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-[#191b22] to-transparent z-10 pointer-events-none"></div>
             
             <div class="animate-marquee flex gap-12 md:gap-16 items-center px-4">
-                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-10 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-12 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-9 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-10 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
                 
-                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-10 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-12 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
-                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-8 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Siemens-logo.svg" alt="Siemens" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Schneider_Electric_2007.svg" alt="Schneider" class="h-7 md:h-9 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="ABB_logo.svg" alt="ABB" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Weg_logo_blue_vector.svg" alt="WEG" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logotipo_da_Lorenzetti.svg" alt="Lorenzetti" class="h-8 md:h-10 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Clamperlogo.svg" alt="Clamper" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
+                <img src="Logo_Legrand_SA.svg" alt="Legrand" class="h-6 md:h-7 w-auto object-contain brand-logo" loading="lazy" decoding="async">
             </div>
         </div>
     </main>
 
-    <footer class="text-white border-t border-zinc-900 pb-20 md:pb-0 relative z-10">
-        <div class="container mx-auto px-6 py-12">
+    <!-- FOOTER -->
+    <footer class="text-white border-t border-white/[0.08] pb-20 md:pb-0 relative z-10 bg-[#05070c]">
+        <div class="container mx-auto px-6 py-12 max-w-6xl">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 <div>
-                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-12 sm:h-14 w-auto object-contain mx-auto md:mx-0 mb-4 opacity-95" width="160" height="56" loading="lazy" decoding="async">
-                    <p class="text-gray-400 text-xs sm:text-sm">BRvolts - Sua escolha certa em técnica e manutenção elétrica comercial ou residencial de alto padrão.</p>
+                    <img src="logo1.png" alt="Logo Wellington Eletricista" class="h-10 w-auto object-contain mx-auto md:mx-0 mb-4 opacity-95" width="160" height="56" loading="lazy" decoding="async">
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">BRvolts - Sua escolha certa em técnica e manutenção elétrica comercial ou residencial de alto padrão.</p>
                 </div>
                 <div>
                     <h4 class="font-bold text-sm sm:text-base mb-3 text-blue-500">Links Rápidos</h4>
-                    <ul class="text-xs sm:text-sm space-y-1.5 text-gray-400">
-                        <li><a href="#documentacao" class="hover:text-white haptic-btn">Documentação / NF</a></li>
-                        <li><a href="#servicos" class="hover:text-white haptic-btn">Nossos Serviços</a></li>
-                        <li><a href="#wallbox" class="hover:text-white haptic-btn">Instalação de Wallbox</a></li>
-                        <li><a href="#portfolio" class="hover:text-white haptic-btn">Portfólio Real</a></li>
+                    <ul class="text-xs sm:text-sm space-y-2 text-gray-400">
+                        <li><a href="#documentacao" class="hover:text-white haptic-btn transition-colors">Documentação / NF</a></li>
+                        <li><a href="#servicos" class="hover:text-white haptic-btn transition-colors">Nossos Serviços</a></li>
+                        <li><a href="#wallbox" class="hover:text-white haptic-btn transition-colors">Instalação de Wallbox</a></li>
+                        <li><a href="#portfolio" class="hover:text-white haptic-btn transition-colors">Portfólio Real</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-sm sm:text-base mb-3 text-blue-500">Áreas Atendidas</h4>
                     <p class="text-[10px] sm:text-xs text-zinc-400 font-bold mb-1.5">Atendimento em Toda Maricá - RJ</p>
-                    <ul class="text-xs sm:text-sm space-y-1.5 text-gray-400">
-                        <li><a href="eletricista-itaipuacu.html" class="hover:text-white haptic-btn">Eletricista em Itaipuaçu</a></li>
-                        <li><a href="eletricista-inoa.html" class="hover:text-white haptic-btn">Eletricista em Inoã</a></li>
-                        <li><a href="eletricista-ponta-negra.html" class="hover:text-white haptic-btn">Eletricista em Ponta Negra</a></li>
+                    <ul class="text-xs sm:text-sm space-y-2 text-gray-400">
+                        <li><a href="eletricista-itaipuacu.html" class="hover:text-white haptic-btn transition-colors">Eletricista em Itaipuaçu</a></li>
+                        <li><a href="eletricista-inoa.html" class="hover:text-white haptic-btn transition-colors">Eletricista em Inoã</a></li>
+                        <li><a href="eletricista-ponta-negra.html" class="hover:text-white haptic-btn transition-colors">Eletricista em Ponta Negra</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-sm sm:text-base mb-3 text-blue-500">Contato</h4>
-                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
-                        <strong>WhatsApp:</strong> (21) 97649-3932<br>
-                        <strong>CNPJ:</strong> 68.694.956/0001-74<br>
-                        <strong>Base de Atendimento:</strong> Maricá - RJ, CEP: 24900-000
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed space-y-1">
+                        <span><strong>WhatsApp:</strong> (21) 97649-3932</span><br>
+                        <span><strong>CNPJ:</strong> 68.694.956/0001-74</span><br>
+                        <span><strong>Base de Atendimento:</strong> Maricá - RJ, CEP: 24900-000</span>
                     </p>
                 </div>
             </div>
-            <div class="border-t border-zinc-900 mt-8 pt-6 text-center text-gray-500 text-[10px] sm:text-xs">
+            <div class="border-t border-white/5 mt-10 pt-6 text-center text-gray-500 text-[10px] sm:text-xs">
                 <p>© <span id="current-year"></span> BRvolts | Wellington Técnico Eletricista. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <button id="backToTop" class="haptic-btn fixed bottom-24 right-4 md:bottom-5 md:right-5 bg-zinc-800 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center z-40 opacity-0 pointer-events-none transition-all duration-300" aria-label="Voltar ao topo">
-        <svg class="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
+    <!-- BOTÃO TOPO -->
+    <button id="backToTop" class="haptic-btn fixed bottom-24 right-4 md:bottom-6 md:right-6 glass-card text-white w-11 h-11 rounded-full flex items-center justify-center z-40 opacity-0 pointer-events-none transition-all duration-300" aria-label="Voltar ao topo">
+        <svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
     </button>
 
-    <!-- Botão Fixo Mobile -->
-    <div class="fixed bottom-0 left-0 w-full z-50 md:hidden bg-green-500 shadow-[0_-8px_20px_var(--shadow-dark)]">
+    <!-- BOTÃO FIXO MOBILE -->
+    <div class="fixed bottom-0 left-0 w-full z-50 md:hidden bg-green-500 shadow-[0_-8px_20px_rgba(0,0,0,0.5)]">
         <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20atendimento." class="dynamic-wa haptic-btn flex justify-center items-center w-full py-3.5 text-white font-extrabold text-[14px] tracking-wide uppercase gap-2 relative overflow-hidden" aria-label="Solicitar orçamento pelo WhatsApp">
-            <div class="absolute inset-0 w-1/4 h-full bg-white/20 animate-shimmer"></div>
+            <div class="absolute inset-0 w-1/3 h-full bg-white/20 animate-shimmer"></div>
             <svg class="w-4 h-4 relative z-10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
             </svg>
@@ -1205,13 +1108,14 @@
         </a>
     </div>
 
-    <!-- Botão Fixo Flutuante Desktop -->
-    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20atendimento." target="_blank" class="dynamic-wa haptic-btn hidden md:flex fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full items-center justify-center pulse-btn z-50 transform transition-all duration-300 hover:scale-110" aria-label="Solicitar orçamento pelo WhatsApp">
+    <!-- BOTÃO FIXO FLUTUANTE DESKTOP -->
+    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20atendimento." target="_blank" class="dynamic-wa haptic-btn hidden md:flex fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full items-center justify-center pulse-btn z-50 transform transition-all duration-300 hover:scale-110 shadow-2xl" aria-label="Solicitar orçamento pelo WhatsApp">
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
             <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
         </svg>
     </a>
 
+    <!-- SCRIPTS -->
     <script>
         function copiarCNPJ() {
             navigator.clipboard.writeText("68694956000174").then(() => {
@@ -1222,7 +1126,7 @@
             });
         }
 
-        // COMPARTILHAR SITE (WEB SHARE API COM FALLBACK)
+        // COMPARTILHAR SITE
         const shareBtn = document.getElementById('shareBtn');
         if (shareBtn) {
             shareBtn.addEventListener('click', async () => {
@@ -1255,7 +1159,7 @@
 
         document.querySelectorAll('.haptic-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                if (navigator.vibrate) navigator.vibrate(50);
+                if (navigator.vibrate) navigator.vibrate(40);
             });
         });
 
@@ -1264,20 +1168,20 @@
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
         mobileMenuBtn.addEventListener('click', () => {
-            const isClosed = mobileMenu.classList.contains('scale-y-0');
+            const isClosed = mobileMenu.classList.contains('pointer-events-none');
             if (isClosed) {
-                mobileMenu.classList.remove('scale-y-0', 'opacity-0');
-                mobileMenu.classList.add('scale-y-100', 'opacity-100');
+                mobileMenu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
             } else {
-                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
-                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                mobileMenu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
             }
         });
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
-                mobileMenu.classList.add('scale-y-0', 'opacity-0');
+                mobileMenu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
             });
         });
 
@@ -1350,7 +1254,7 @@
         updateCarouselDots('portfolio-carousel', 'portfolio-dots');
         updateCarouselDots('avaliacoes-carousel', 'avaliacoes-dots');
 
-        // SCROLL LEVE
+        // SCROLL SUAVE & BACK TO TOP
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
@@ -1362,7 +1266,7 @@
                     if (progressBar) progressBar.style.width = scrolled + '%';
 
                     const backToTopBtn = document.getElementById("backToTop");
-                    if (winScroll > 500) {
+                    if (winScroll > 450) {
                         backToTopBtn.classList.remove("opacity-0", "pointer-events-none");
                         backToTopBtn.classList.add("opacity-100", "pointer-events-auto");
                     } else {
@@ -1416,11 +1320,6 @@
                 const economiaAno = economiaMes * 12;
                 
                 economiaValor.innerText = economiaAno.toLocaleString('pt-BR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
-                
-                const min = gasSlider.min || 200;
-                const max = gasSlider.max || 3000;
-                const percent = ((val - min) / (max - min)) * 100;
-                gasSlider.style.background = `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${percent}%, #191b22 ${percent}%, #191b22 100%)`;
             }
 
             gasSlider.addEventListener('input', atualizarSimulador);
