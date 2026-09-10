@@ -102,7 +102,7 @@
             --bg-base: #07090e;
             --surface-card: #0d121e;
             --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(59, 130, 246, 0.35);
+            --border-hover: rgba(59, 130, 246, 0.4);
         }
 
         * { -webkit-tap-highlight-color: transparent; }
@@ -115,26 +115,26 @@
             overflow-x: hidden;
         }
 
-        /* CAMADA DE FUNDO FIXA ACELERADA POR HARDWARE (ELIMINA REPAINT NO SCROLL) */
+        /* FUNDO AMBIENTAL COM COMPOSIÇÃO ACELERADA POR GPU */
         .ambient-bg {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 0;
             background: 
-                radial-gradient(circle 500px at 15% 15%, rgba(37, 99, 235, 0.10), transparent 70%),
-                radial-gradient(circle 500px at 85% 35%, rgba(16, 185, 129, 0.07), transparent 70%),
+                radial-gradient(circle 550px at 15% 15%, rgba(37, 99, 235, 0.12), transparent 70%),
+                radial-gradient(circle 500px at 85% 35%, rgba(16, 185, 129, 0.08), transparent 70%),
                 radial-gradient(circle 450px at 50% 85%, rgba(6, 182, 212, 0.06), transparent 70%);
             transform: translateZ(0);
         }
 
-        /* OTIMIZAÇÃO CRUCIAL: CARDS LEVES NO MOBILE, BLUR APENAS EM TELAS GRANDES */
+        /* CARDS OTIMIZADOS (ZERO TRAVAMENTO NO MOBILE, BLUR APENAS DESKTOP) */
         .glass-card {
             background-color: var(--surface-card) !important;
             border: 1px solid var(--border-subtle) !important;
             border-radius: 1.25rem !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-            transition: transform 0.2s ease, border-color 0.2s ease !important;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
             transform: translateZ(0);
         }
 
@@ -148,17 +148,67 @@
             .glass-card:hover {
                 border-color: var(--border-hover) !important;
                 transform: translateY(-3px) !important;
-                box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(59, 130, 246, 0.15) !important;
+                box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.65), 0 0 25px -5px rgba(59, 130, 246, 0.18) !important;
             }
         }
 
-        /* TEXTO GRADIENTE MARICÁ */
+        /* ANIMAÇÃO FLUTUANTE DA NOTA GOOGLE */
+        @keyframes floatBadge {
+            0%, 100% { 
+                transform: translateY(0px); 
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(251, 188, 5, 0.2);
+            }
+            50% { 
+                transform: translateY(-8px); 
+                box-shadow: 0 18px 32px -5px rgba(0, 0, 0, 0.6), 0 0 25px -3px rgba(251, 188, 5, 0.4);
+            }
+        }
+        .animate-float {
+            animation: floatBadge 3.2s ease-in-out infinite;
+            will-change: transform, box-shadow;
+        }
+
+        /* TEXTO GRADIENTE MARICÁ COM MOVIMENTO */
         .marica-gradient {
-            background: linear-gradient(135deg, #60a5fa 0%, #34d399 50%, #38bdf8 100%);
+            background: linear-gradient(135deg, #60a5fa 0%, #34d399 45%, #38bdf8 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: textFlow 5s ease infinite;
             display: inline-block;
+        }
+        @keyframes textFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* BRILHO / SHIMMER NOS BOTÕES */
+        @keyframes shimmer { 
+            0% { transform: translateX(-150%) skewX(-15deg); } 
+            100% { transform: translateX(350%) skewX(-15deg); } 
+        }
+        .animate-shimmer { 
+            animation: shimmer 2.8s infinite; 
+            will-change: transform;
+        }
+
+        /* TELEFONE TOCANDO */
+        @keyframes ringPhone {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30%, 50% { transform: rotate(-10deg); }
+            20%, 40% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+        }
+        .animate-ring { animation: ringPhone 2.6s ease-in-out infinite; }
+
+        /* PULSO DO WHATSAPP */
+        .pulse-btn { 
+            animation: pulseWave 2s infinite; 
+        }
+        @keyframes pulseWave { 
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.65); } 
+            70% { box-shadow: 0 0 0 16px rgba(16, 185, 129, 0); } 
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } 
         }
 
         /* BOTÃO PRINCIPAL AZUL */
@@ -171,7 +221,8 @@
         }
         .bg-blue-600:hover {
             transform: translateY(-2px) !important;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5) !important;
+            box-shadow: 0 8px 22px rgba(37, 99, 235, 0.55) !important;
+            filter: brightness(1.05);
         }
 
         /* BOTÃO VERDE */
@@ -184,7 +235,8 @@
         }
         .bg-green-500:hover, .bg-green-600:hover {
             transform: translateY(-2px) !important;
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5) !important;
+            box-shadow: 0 8px 22px rgba(16, 185, 129, 0.55) !important;
+            filter: brightness(1.05);
         }
 
         /* BOTÃO OBSIDIANA / ZINC-800 */
@@ -238,28 +290,14 @@
             cursor: pointer;
             border: 2px solid #ffffff;
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+            transition: transform 0.15s ease;
         }
-
-        /* PULSO DE CONTATO */
-        .pulse-btn { 
-            animation: pulseWave 2s infinite; 
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
         }
-        @keyframes pulseWave { 
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); } 
-            70% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); } 
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } 
-        }
-
-        @keyframes ringPhone {
-            0%, 100% { transform: rotate(0deg); }
-            10%, 30%, 50% { transform: rotate(-8deg); }
-            20%, 40% { transform: rotate(8deg); }
-            60% { transform: rotate(0deg); }
-        }
-        .animate-ring { animation: ringPhone 3s ease-in-out infinite; }
         
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: max-content; animation: marquee 35s linear infinite; will-change: transform; }
+        .animate-marquee { display: flex; width: max-content; animation: marquee 32s linear infinite; will-change: transform; }
         .animate-marquee:hover { animation-play-state: paused; }
         
         .brand-logo { filter: grayscale(1) brightness(1.6) opacity(0.35); transition: opacity 0.3s ease; }
@@ -268,7 +306,6 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* CONTENT VISIBILITY PARA FLUIDEZ TOTAL NO SCROLL MOBILE */
         .perf-section {
             content-visibility: auto;
             contain-intrinsic-size: 1px 600px;
@@ -285,7 +322,7 @@
         <div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-500 via-teal-400 to-emerald-400 w-0 transition-all duration-150 shadow-[0_0_8px_#38bdf8]"></div>
     </div>
 
-    <!-- HEADER / NAVBAR FLUTUANTE OTIMIZADA -->
+    <!-- HEADER / NAVBAR FLUTUANTE TECH -->
     <div class="fixed top-3 sm:top-5 left-0 w-full z-50 px-3 sm:px-6 pointer-events-none">
         <header class="max-w-6xl mx-auto rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex justify-between items-center pointer-events-auto border border-white/10 bg-[#090e1a]/95 sm:bg-[#090e1a]/85 sm:backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
             <nav class="w-full flex justify-between items-center">
@@ -329,7 +366,7 @@
             </nav>
         </header>
 
-        <!-- MENU MOBILE SEM PESO DE BLUR -->
+        <!-- MENU MOBILE -->
         <div id="mobile-menu" class="lg:hidden max-w-sm mx-auto mt-2 rounded-2xl p-5 transition-all duration-300 transform scale-95 opacity-0 pointer-events-none flex flex-col space-y-3 bg-[#0d121e] border border-white/10 shadow-2xl">
             <a href="#inicio" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Início</a>
             <a href="#sobre" class="mobile-link text-white text-sm font-medium border-b border-white/5 pb-2">Sobre</a>
@@ -372,7 +409,8 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="dynamic-wa haptic-btn bg-blue-600 text-white font-extrabold py-4 px-7 rounded-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transition-all w-full sm:w-auto" aria-label="Solicitar Orçamento">
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="dynamic-wa haptic-btn bg-blue-600 text-white font-extrabold py-4 px-7 rounded-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transition-all w-full sm:w-auto relative overflow-hidden group" aria-label="Solicitar Orçamento">
+                        <div class="absolute inset-0 w-1/3 h-full bg-white/20 animate-shimmer pointer-events-none"></div>
                         <span class="relative z-10 flex items-center gap-2 text-sm sm:text-base">Solicitar Visita Técnica</span>
                     </a>
                     <a href="tel:+5521976493932" class="haptic-btn bg-zinc-800 text-white font-extrabold py-4 px-7 rounded-xl uppercase tracking-wide text-center flex items-center justify-center gap-2 transition-all w-full sm:w-auto" aria-label="Ligar Agora">
@@ -386,20 +424,20 @@
                 <p class="text-[11px] sm:text-xs text-gray-400 mt-5 mb-5 font-medium flex items-center gap-1.5">🔒 Garantia de 90 dias no serviço • Empresa Formalizada</p>
 
                 <div class="flex overflow-x-auto gap-3 hide-scrollbar pb-2 mb-2 snap-x">
-                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20falta%20de%20luz/emergência." class="dynamic-wa haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
+                    <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Estou%20com%20falta%20de%20luz/emergência." class="dynamic-wa haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all hover:border-red-500/40">
                         <span aria-hidden="true">⚡</span> Faltou Luz
                     </a>
-                    <a href="#wallbox" class="haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
+                    <a href="#wallbox" class="haptic-btn bg-zinc-800 text-gray-200 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all hover:border-blue-500/40">
                         <span aria-hidden="true">🚗</span> Orçar Wallbox
                     </a>
-                    <a href="#documentacao" class="haptic-btn bg-zinc-800 text-green-400 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all">
+                    <a href="#documentacao" class="haptic-btn bg-zinc-800 text-green-400 text-xs font-semibold py-2 px-4 rounded-full whitespace-nowrap shrink-0 snap-start transition-all hover:border-green-500/40">
                         <span aria-hidden="true">📄</span> Preciso de TRT / NF
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO SOBRE A EMPRESA E FOTO AMPLIADA -->
+        <!-- SEÇÃO SOBRE A EMPRESA COM NOVO SELO ANIMADO DO GOOGLE -->
         <section id="sobre" class="py-14 md:py-24 border-t border-white/[0.07] perf-section">
             <div class="container mx-auto px-5 md:px-6">
                 <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
@@ -446,13 +484,22 @@
                                 <img src="wellington-foto.png" alt="Wellington Técnico Eletricista" width="600" height="600" class="w-full rounded-2xl object-cover aspect-square" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop'" decoding="async" loading="lazy">
                             </div>
                             
-                            <div class="absolute -bottom-4 sm:-bottom-5 left-3 sm:left-6 glass-card p-3 sm:p-4 flex items-center gap-3 border border-emerald-500/30">
-                                <div class="bg-green-500/20 p-2 rounded-xl text-green-400">
-                                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <!-- SELO NOTA 5.0 NO GOOGLE COM LOGO E ANIMAÇÃO FLUTUANTE -->
+                            <div class="absolute -bottom-5 sm:-bottom-6 left-2 sm:left-4 glass-card p-3 sm:p-4 flex items-center gap-3 border border-yellow-500/30 animate-float bg-[#0e1422]/95">
+                                <div class="bg-white p-2 rounded-xl shrink-0 shadow-md flex items-center justify-center">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 48 48" aria-hidden="true">
+                                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                                    </svg>
                                 </div>
                                 <div>
-                                    <p class="text-2xl font-black text-white leading-none">99%</p>
-                                    <p class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider mt-0.5">Taxa de Satisfação</p>
+                                    <div class="flex items-center gap-1.5">
+                                        <p class="text-xl sm:text-2xl font-black text-white leading-none">5.0</p>
+                                        <div class="flex text-[#FBBC05] text-xs">★★★★★</div>
+                                    </div>
+                                    <p class="text-[10px] sm:text-xs text-slate-300 font-bold tracking-wide mt-1">Nota 5.0 no Google</p>
                                 </div>
                             </div>
                         </div>
@@ -579,8 +626,9 @@
                             </div>
                         </div>
 
-                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20instalação%20de%20Wallbox." target="_blank" class="dynamic-wa haptic-btn w-full block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all text-sm sm:text-base">
-                            Solicitar Orçamento Seguro do Carregador
+                        <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20instalação%20de%20Wallbox." target="_blank" class="dynamic-wa haptic-btn w-full block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all text-sm sm:text-base relative overflow-hidden group">
+                            <div class="absolute inset-0 w-1/3 h-full bg-white/20 animate-shimmer pointer-events-none"></div>
+                            <span class="relative z-10">Solicitar Orçamento Seguro do Carregador</span>
                         </a>
                     </div>
 
@@ -945,7 +993,7 @@
 
                 <!-- BOTÃO DE INDICAÇÃO ATUALIZADO -->
                 <div class="text-center mt-10 md:mt-12 mb-4">
-                    <button id="shareBtn" class="glass-card py-3.5 px-7 rounded-full inline-flex items-center justify-center gap-2 w-full sm:w-auto text-sm font-semibold text-white haptic-btn border border-white/10">
+                    <button id="shareBtn" class="glass-card py-3.5 px-7 rounded-full inline-flex items-center justify-center gap-2 w-full sm:w-auto text-sm font-semibold text-white haptic-btn border border-white/10 hover:border-blue-500/40">
                         <svg class="w-4 h-4 text-blue-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
                         Gostou? Indique a BRvolts
                     </button>
@@ -1102,6 +1150,7 @@
     <!-- BOTÃO FIXO MOBILE -->
     <div class="fixed bottom-0 left-0 w-full z-50 md:hidden bg-green-500 shadow-[0_-8px_20px_rgba(0,0,0,0.5)]">
         <a href="https://api.whatsapp.com/send?phone=5521976493932&text=Olá!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20atendimento." class="dynamic-wa haptic-btn flex justify-center items-center w-full py-3.5 text-white font-extrabold text-[14px] tracking-wide uppercase gap-2 relative overflow-hidden" aria-label="Solicitar orçamento pelo WhatsApp">
+            <div class="absolute inset-0 w-1/3 h-full bg-white/20 animate-shimmer"></div>
             <svg class="w-4 h-4 relative z-10" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
             </svg>
@@ -1127,7 +1176,6 @@
             });
         }
 
-        // COMPARTILHAR SITE
         const shareBtn = document.getElementById('shareBtn');
         if (shareBtn) {
             shareBtn.addEventListener('click', async () => {
@@ -1259,7 +1307,7 @@
         updateCarouselDots('portfolio-carousel', 'portfolio-dots');
         updateCarouselDots('avaliacoes-carousel', 'avaliacoes-dots');
 
-        // SCROLL OTIMIZADO COM REQUEST ANIMATION FRAME
+        // SCROLL LEVE
         let ticking = false;
         const progressBar = document.getElementById('scroll-progress');
         const backToTopBtn = document.getElementById("backToTop");
