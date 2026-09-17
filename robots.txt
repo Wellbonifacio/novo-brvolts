@@ -1,0 +1,31 @@
+# robots.txt for https://www.brvolts.site/
+# Otimizado para Motores Tradicionais e Mecanismos de Busca com IA (GEO)
+
+User-agent: *
+Allow: /
+Disallow: /sistema/
+Disallow: /*.bak$
+
+# Agentes de IA e Motores Generativos (ChatGPT Search, Perplexity, Gemini, Copilot, Claude)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://www.brvolts.site/sitemap.xml
