@@ -5,6 +5,8 @@ User-agent: *
 Allow: /
 Disallow: /sistema/
 Disallow: /*.bak$
+Disallow: /*.bak
+Disallow: /proposta.html
 
 # Agentes de IA e Motores Generativos (ChatGPT Search, Perplexity, Gemini, Copilot, Claude)
 User-agent: GPTBot
